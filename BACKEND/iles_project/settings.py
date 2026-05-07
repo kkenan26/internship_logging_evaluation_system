@@ -79,6 +79,8 @@ STATIC_URL = 'static/'
 
 AUTH_USER_MODEL = 'users.CustomUser'
 
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
