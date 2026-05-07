@@ -1,5 +1,6 @@
 // src/Context/AuthContext.jsx
 import React, { createContext, useState, useEffect } from 'react';
+import API from '../Services/Api';
 
 // Create the context (named export)
 export const AuthContext = createContext();
@@ -27,14 +28,24 @@ export const AuthProvider = ({ children }) => {
     checkAuth();
   }, []);
 
-  const login = (userData) => {
-    setUser(userData);
-    localStorage.setItem('user', JSON.stringify(userData));
+  const login = async (username, password) => {
+    const response = await API.post('/auth/login/', { username, password });
+    const userData = response.data.user;
+    const accessToken = response.data.access;
+    const refreshToken = response.data.refresh;
+    const authUser = { ...userData, accessToken, refreshToken };
+    setUser(authUser);
+    localStorage.setItem('user', JSON.stringify(authUser));
+    localStorage.setItem('token', accessToken);
+    localStorage.setItem('refreshToken', refreshToken);
+    return authUser;
   };
 
   const logout = () => {
     setUser(null);
     localStorage.removeItem('user');
+    localStorage.removeItem('token');
+    localStorage.removeItem('refreshToken');
   };
 
   const value = {

@@ -18,7 +18,7 @@ const NAV = {
     { to: '/academic/dashboard',   label: 'Dashboard',   icon: '🏠' },
     { to: '/academic/evaluations', label: 'Evaluations', icon: '📋' },
   ],
-  administrator: [
+  admin: [
     { to: '/admin/dashboard',   label: 'Dashboard',   icon: '🏠' },
     { to: '/admin/users',       label: 'Users',        icon: '👥' },
     { to: '/admin/placements',  label: 'Placements',   icon: '🏢' },
@@ -30,7 +30,7 @@ const ROLE_LABELS = {
   student:              'Student Intern',
   workplace_supervisor: 'Workplace Supervisor',
   academic_supervisor:  'Academic Supervisor',
-  administrator:        'Administrator',
+  admin:                'Administrator',
 };
 
 export default function MainLayout() {

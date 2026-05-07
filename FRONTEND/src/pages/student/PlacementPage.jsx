@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import API from '../../services/Api';
+import API from '../../Services/Api';
 
 export default function PlacementPage() {
   const [placement, setPlacement] = useState(null);
   const [loading, setLoading]     = useState(true);
 
   useEffect(() => {
-    api.get('/placements/my/')
+    API.get('/placements/my/')
       .then(res => setPlacement(res.data))
       .catch(() => setPlacement(null))
       .finally(() => setLoading(false));

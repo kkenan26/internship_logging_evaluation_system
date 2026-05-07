@@ -7,7 +7,7 @@ const ROLE_REDIRECTS = {
   student:             '/student/dashboard',
   workplace_supervisor:'/supervisor/dashboard',
   academic_supervisor: '/academic/dashboard',
-  administrator:       '/admin/dashboard',
+  admin:               '/admin/dashboard',
 };
 
 export default function LoginPage() {
@@ -31,7 +31,10 @@ export default function LoginPage() {
       const from = location.state?.from?.pathname || ROLE_REDIRECTS[user.role] || '/';
       navigate(from, { replace: true });
     } catch (err) {
-      setError(err.response?.data?.detail || 'Invalid username or password.');
+      const data = err.response?.data;
+      setError(
+        data?.error || data?.detail || data?.message || 'Invalid username or email or password.'
+      );
     } finally {
       setLoading(false);
     }
@@ -49,13 +52,13 @@ export default function LoginPage() {
 
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label>Username</label>
+            <label>Username or Email</label>
             <input
               className="form-control"
               name="username"
               value={form.username}
               onChange={handleChange}
-              placeholder="Enter your username"
+              placeholder="Enter your username or email"
               required
               autoFocus
             />

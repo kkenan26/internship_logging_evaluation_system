@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import API from '../services/api';
+import API from '../Services/Api';
 
 const ROLES = [
   { value: 'student', label: 'Student' },
   { value: 'academic_supervisor', label: 'Academic Supervisor' },
-  { value: 'administrator', label: 'Administrator' },
+  { value: 'admin', label: 'Administrator' },
   { value: 'workplace_supervisor', label: 'Workplace Supervisor' },
 ];
 
