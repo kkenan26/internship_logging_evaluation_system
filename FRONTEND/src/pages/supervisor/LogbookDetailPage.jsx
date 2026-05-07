@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import API from "../../Services/api";
+import API from "../../Services/Api";
 
 const STATUS_FLOW = { draft: "submitted", submitted: "reviewed", reviewed: "approved" };
 const STATUS_COLORS = {
