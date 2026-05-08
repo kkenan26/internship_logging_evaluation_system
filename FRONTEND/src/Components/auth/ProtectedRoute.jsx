@@ -1,13 +1,9 @@
 import { Navigate, useLocation } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext';
+import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext';
 
-/**
- * Wrap any route with <ProtectedRoute roles={['student']} />
- * If not logged in → redirect to /login
- * If wrong role    → redirect to /unauthorized
- */
 export default function ProtectedRoute({ children, roles }) {
-  const { user, loading } = useAuth();
+  const { user, loading } = useContext(AuthContext);
   const location = useLocation();
 
   if (loading) {
@@ -24,6 +20,14 @@ export default function ProtectedRoute({ children, roles }) {
 
   if (roles && !roles.includes(user.role)) {
     return <Navigate to="/unauthorized" replace />;
+  }
+   if (loading) {
+    return (
+      <div style={{ display: 'flex', justifyContent: 'center', 
+                    alignItems: 'center', height: '100vh' }}>
+        <div className="spinner" />
+      </div>
+    );
   }
 
   return children;
