@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import API from "../../Services/Api";
+import API from '../../Services/Api';
 
 const AcademicEvaluationPage = () => {
   const [students, setStudents] = useState([]);
@@ -18,7 +18,6 @@ const AcademicEvaluationPage = () => {
     comments: "",
   });
 
-  // Weights: 40% logbook, 30% supervisor, 30% presentation
   const weights = { logbook_score: 0.4, supervisor_score: 0.3, presentation_score: 0.3 };
 
   const computedTotal =
@@ -38,11 +37,33 @@ const AcademicEvaluationPage = () => {
     return { label: "F", color: "#ef4444" };
   };
 
+  // ── Fetch placements assigned to this academic supervisor ──────
   useEffect(() => {
     const fetchStudents = async () => {
       try {
-        const res = await API.get("/placements/?role=academic");
-        setStudents(res.data);
+        // Fetch all placements — backend filters to only those where
+        // the logged-in user is the academic_supervisor
+        const res = await API.get("/placements/");
+        const placements = Array.isArray(res.data)
+          ? res.data
+          : res.data.results || [];
+
+        // Extract the student object from each placement
+        // Each placement has student info embedded via the serializer
+        const studentList = placements
+          .filter((p) => p.student_name) // only placements with a student
+          .map((p) => ({
+            id: p.student,
+            username: p.student_name,
+            email: p.student_email || "",
+            placementId: p.id,
+            company: p.company_name,
+            start_date: p.start_date,
+            end_date: p.end_date,
+            placementStatus: p.status,
+          }));
+
+        setStudents(studentList);
       } catch {
         setStudents([]);
       }
@@ -58,23 +79,31 @@ const AcademicEvaluationPage = () => {
     setScores({ logbook_score: "", supervisor_score: "", presentation_score: "", comments: "" });
     setLoading(true);
     try {
-      const [placementRes, evalRes] = await Promise.all([
-        API.get(`/placements/?student=${student.id}`),
-        API.get(`/evaluations/?student=${student.id}`),
-      ]);
-      setPlacement(placementRes.data[0] || null);
-      if (evalRes.data && evalRes.data.length > 0) {
-        const ev = evalRes.data[0];
+      // Use the placement we already have from the student object
+      setPlacement({
+        company_name: student.company,
+        start_date: student.start_date,
+        end_date: student.end_date,
+      });
+
+      // Check for existing evaluation
+      const evalRes = await API.get(`/evaluations/?student=${student.id}`);
+      const evals = Array.isArray(evalRes.data)
+        ? evalRes.data
+        : evalRes.data.results || [];
+
+      if (evals.length > 0) {
+        const ev = evals[0];
         setExistingEval(ev);
         setScores({
-          logbook_score: ev.logbook_score || "",
-          supervisor_score: ev.supervisor_score || "",
+          logbook_score:      ev.logbook_score      || "",
+          supervisor_score:   ev.supervisor_score   || "",
           presentation_score: ev.presentation_score || "",
-          comments: ev.comments || "",
+          comments:           ev.comments           || "",
         });
       }
     } catch {
-      setErrorMsg("Failed to load student data.");
+      setErrorMsg("Failed to load student evaluation data.");
     } finally {
       setLoading(false);
     }
@@ -97,23 +126,25 @@ const AcademicEvaluationPage = () => {
     setSuccessMsg("");
     try {
       const payload = {
-        student: selectedStudent.id,
-        logbook_score: parseFloat(scores.logbook_score),
-        supervisor_score: parseFloat(scores.supervisor_score),
+        student:            selectedStudent.id,
+        placement:          selectedStudent.placementId,
+        logbook_score:      parseFloat(scores.logbook_score),
+        supervisor_score:   parseFloat(scores.supervisor_score),
         presentation_score: parseFloat(scores.presentation_score),
-        total_score: parseFloat(computedTotal),
-        comments: scores.comments,
+        total_score:        parseFloat(computedTotal),
+        comments:           scores.comments,
       };
       if (existingEval) {
         await API.put(`/evaluations/${existingEval.id}/`, payload);
         setSuccessMsg("Evaluation updated successfully.");
       } else {
-        await API.post("/evaluations/", payload);
+        const res = await API.post("/evaluations/", payload);
         setSuccessMsg("Evaluation submitted successfully.");
-        setExistingEval({ id: "new", ...payload });
+        setExistingEval(res.data);
       }
-    } catch {
-      setErrorMsg("Submission failed. Please check inputs and try again.");
+    } catch (err) {
+      const data = err.response?.data;
+      setErrorMsg(data ? JSON.stringify(data) : "Submission failed. Please check inputs and try again.");
     } finally {
       setSubmitting(false);
     }
@@ -122,17 +153,8 @@ const AcademicEvaluationPage = () => {
   const grade = computedTotal ? getGrade(parseFloat(computedTotal)) : null;
 
   return (
+    // ── Scoped wrapper — dark theme only applies inside this component ──
     <div style={styles.page}>
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Syne:wght@600;700&display=swap');
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background: #0f1117; }
-        .score-input:focus { outline: none; border-color: #6ee7b7 !important; box-shadow: 0 0 0 3px rgba(110,231,183,0.15); }
-        .student-card:hover { background: #1e2130 !important; border-color: #6ee7b7 !important; cursor: pointer; }
-        .submit-btn:hover:not(:disabled) { background: #059669 !important; transform: translateY(-1px); }
-        .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-      `}</style>
-
       <div style={styles.header}>
         <div>
           <h1 style={styles.title}>Academic Evaluation</h1>
@@ -150,23 +172,28 @@ const AcademicEvaluationPage = () => {
         <div style={styles.sidebar}>
           <p style={styles.sectionLabel}>Assigned Students</p>
           {students.length === 0 ? (
-            <p style={styles.empty}>No students assigned.</p>
+            <div>
+              <p style={styles.empty}>No students assigned yet.</p>
+              <p style={{ fontSize: 12, color: '#374151', marginTop: 8 }}>
+                Students will appear here once an admin assigns you as their academic supervisor on a placement.
+              </p>
+            </div>
           ) : (
             students.map((s) => (
               <div
                 key={s.id}
-                className="student-card"
                 onClick={() => handleStudentSelect(s)}
                 style={{
                   ...styles.studentCard,
                   borderColor: selectedStudent?.id === s.id ? "#6ee7b7" : "#2a2d3e",
-                  background: selectedStudent?.id === s.id ? "#1e2130" : "#161824",
+                  background:  selectedStudent?.id === s.id ? "#1e2130" : "#161824",
+                  cursor: "pointer",
                 }}
               >
                 <div style={styles.avatar}>{s.username?.[0]?.toUpperCase() || "S"}</div>
                 <div>
                   <p style={styles.studentName}>{s.username}</p>
-                  <p style={styles.studentMeta}>{s.email}</p>
+                  <p style={styles.studentMeta}>{s.company || s.email}</p>
                 </div>
               </div>
             ))
@@ -204,14 +231,14 @@ const AcademicEvaluationPage = () => {
               </div>
 
               {successMsg && <div style={styles.successAlert}>{successMsg}</div>}
-              {errorMsg && <div style={styles.errorAlert}>{errorMsg}</div>}
+              {errorMsg   && <div style={styles.errorAlert}>{errorMsg}</div>}
 
               <form onSubmit={handleSubmit} style={styles.form}>
                 <div style={styles.scoreGrid}>
                   {[
-                    { name: "logbook_score", label: "Logbook Score", weight: "40%", icon: "📓" },
-                    { name: "supervisor_score", label: "Supervisor Score", weight: "30%", icon: "👤" },
-                    { name: "presentation_score", label: "Presentation Score", weight: "30%", icon: "🎤" },
+                    { name: "logbook_score",      label: "Logbook Score",      weight: "40%", icon: "📓" },
+                    { name: "supervisor_score",    label: "Supervisor Score",   weight: "30%", icon: "👤" },
+                    { name: "presentation_score",  label: "Presentation Score", weight: "30%", icon: "🎤" },
                   ].map(({ name, label, weight, icon }) => (
                     <div key={name} style={styles.scoreCard}>
                       <div style={styles.scoreCardHeader}>
@@ -230,8 +257,12 @@ const AcademicEvaluationPage = () => {
                         min="0"
                         max="100"
                         required
-                        className="score-input"
-                        style={styles.scoreInput}
+                        style={{
+                          ...styles.scoreInput,
+                          // ensure input is always interactive
+                          pointerEvents: 'auto',
+                          userSelect: 'text',
+                        }}
                       />
                     </div>
                   ))}
@@ -267,7 +298,15 @@ const AcademicEvaluationPage = () => {
                   />
                 </div>
 
-                <button type="submit" disabled={submitting || !computedTotal} className="submit-btn" style={styles.submitBtn}>
+                <button
+                  type="submit"
+                  disabled={submitting || !computedTotal}
+                  style={{
+                    ...styles.submitBtn,
+                    opacity: (submitting || !computedTotal) ? 0.5 : 1,
+                    cursor:  (submitting || !computedTotal) ? 'not-allowed' : 'pointer',
+                  }}
+                >
                   {submitting ? "Submitting..." : existingEval ? "Update Evaluation" : "Submit Evaluation"}
                 </button>
               </form>
@@ -280,50 +319,50 @@ const AcademicEvaluationPage = () => {
 };
 
 const styles = {
-  page: { minHeight: "100vh", background: "#0f1117", fontFamily: "'DM Sans', sans-serif", color: "#e2e8f0", padding: "32px 24px" },
-  header: { display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: 16, marginBottom: 36 },
-  title: { fontFamily: "'Syne', sans-serif", fontSize: 28, fontWeight: 700, color: "#f1f5f9", letterSpacing: "-0.5px" },
-  subtitle: { fontSize: 14, color: "#64748b", marginTop: 4 },
-  weightBadges: { display: "flex", gap: 8, flexWrap: "wrap" },
-  badge: { background: "#1e2130", border: "1px solid #2a2d3e", color: "#94a3b8", fontSize: 12, padding: "4px 12px", borderRadius: 20 },
-  layout: { display: "grid", gridTemplateColumns: "260px 1fr", gap: 24 },
-  sidebar: { background: "#161824", border: "1px solid #2a2d3e", borderRadius: 12, padding: 20 },
-  sectionLabel: { fontSize: 11, fontWeight: 600, color: "#475569", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 14 },
-  empty: { fontSize: 13, color: "#475569" },
-  studentCard: { display: "flex", alignItems: "center", gap: 12, padding: "12px 14px", borderRadius: 8, border: "1px solid", marginBottom: 8, transition: "all 0.15s" },
-  avatar: { width: 36, height: 36, borderRadius: "50%", background: "linear-gradient(135deg, #6ee7b7, #3b82f6)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14, fontWeight: 700, color: "#0f1117", flexShrink: 0 },
-  studentName: { fontSize: 13, fontWeight: 500, color: "#e2e8f0" },
-  studentMeta: { fontSize: 11, color: "#475569", marginTop: 2 },
-  main: { background: "#161824", border: "1px solid #2a2d3e", borderRadius: 12, padding: 32 },
-  emptyState: { display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minHeight: 320, gap: 12 },
-  emptyIcon: { fontSize: 48 },
-  emptyTitle: { fontSize: 16, fontWeight: 600, color: "#94a3b8" },
-  emptyText: { fontSize: 13, color: "#475569" },
-  studentHeader: { display: "flex", alignItems: "center", gap: 16, marginBottom: 28, paddingBottom: 24, borderBottom: "1px solid #2a2d3e" },
-  avatarLg: { width: 52, height: 52, borderRadius: "50%", background: "linear-gradient(135deg, #6ee7b7, #3b82f6)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20, fontWeight: 700, color: "#0f1117", flexShrink: 0 },
-  studentFullName: { fontFamily: "'Syne', sans-serif", fontSize: 20, fontWeight: 700, color: "#f1f5f9" },
-  placementInfo: { fontSize: 13, color: "#64748b", marginTop: 4 },
-  evalBadge: { display: "inline-block", background: "#1a3a2e", color: "#6ee7b7", fontSize: 11, padding: "3px 10px", borderRadius: 20, marginTop: 6 },
-  successAlert: { background: "#0d2818", border: "1px solid #16a34a", color: "#4ade80", borderRadius: 8, padding: "12px 16px", marginBottom: 20, fontSize: 13 },
-  errorAlert: { background: "#2d1212", border: "1px solid #dc2626", color: "#f87171", borderRadius: 8, padding: "12px 16px", marginBottom: 20, fontSize: 13 },
-  form: {},
-  scoreGrid: { display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, marginBottom: 24 },
-  scoreCard: { background: "#0f1117", border: "1px solid #2a2d3e", borderRadius: 10, padding: 20 },
+  page:            { minHeight: "100vh", background: "#0f1117", fontFamily: "'DM Sans', sans-serif", color: "#e2e8f0", padding: "32px 24px", borderRadius: 12 },
+  header:          { display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: 16, marginBottom: 36 },
+  title:           { fontSize: 28, fontWeight: 700, color: "#f1f5f9", letterSpacing: "-0.5px" },
+  subtitle:        { fontSize: 14, color: "#64748b", marginTop: 4 },
+  weightBadges:    { display: "flex", gap: 8, flexWrap: "wrap" },
+  badge:           { background: "#1e2130", border: "1px solid #2a2d3e", color: "#94a3b8", fontSize: 12, padding: "4px 12px", borderRadius: 20 },
+  layout:          { display: "grid", gridTemplateColumns: "260px 1fr", gap: 24 },
+  sidebar:         { background: "#161824", border: "1px solid #2a2d3e", borderRadius: 12, padding: 20 },
+  sectionLabel:    { fontSize: 11, fontWeight: 600, color: "#475569", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 14 },
+  empty:           { fontSize: 13, color: "#475569" },
+  studentCard:     { display: "flex", alignItems: "center", gap: 12, padding: "12px 14px", borderRadius: 8, border: "1px solid", marginBottom: 8, transition: "all 0.15s" },
+  avatar:          { width: 36, height: 36, borderRadius: "50%", background: "linear-gradient(135deg, #6ee7b7, #3b82f6)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14, fontWeight: 700, color: "#0f1117", flexShrink: 0 },
+  studentName:     { fontSize: 13, fontWeight: 500, color: "#e2e8f0" },
+  studentMeta:     { fontSize: 11, color: "#475569", marginTop: 2 },
+  main:            { background: "#161824", border: "1px solid #2a2d3e", borderRadius: 12, padding: 32 },
+  emptyState:      { display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minHeight: 320, gap: 12 },
+  emptyIcon:       { fontSize: 48 },
+  emptyTitle:      { fontSize: 16, fontWeight: 600, color: "#94a3b8" },
+  emptyText:       { fontSize: 13, color: "#475569" },
+  studentHeader:   { display: "flex", alignItems: "center", gap: 16, marginBottom: 28, paddingBottom: 24, borderBottom: "1px solid #2a2d3e" },
+  avatarLg:        { width: 52, height: 52, borderRadius: "50%", background: "linear-gradient(135deg, #6ee7b7, #3b82f6)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20, fontWeight: 700, color: "#0f1117", flexShrink: 0 },
+  studentFullName: { fontSize: 20, fontWeight: 700, color: "#f1f5f9" },
+  placementInfo:   { fontSize: 13, color: "#64748b", marginTop: 4 },
+  evalBadge:       { display: "inline-block", background: "#1a3a2e", color: "#6ee7b7", fontSize: 11, padding: "3px 10px", borderRadius: 20, marginTop: 6 },
+  successAlert:    { background: "#0d2818", border: "1px solid #16a34a", color: "#4ade80", borderRadius: 8, padding: "12px 16px", marginBottom: 20, fontSize: 13 },
+  errorAlert:      { background: "#2d1212", border: "1px solid #dc2626", color: "#f87171", borderRadius: 8, padding: "12px 16px", marginBottom: 20, fontSize: 13 },
+  form:            {},
+  scoreGrid:       { display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, marginBottom: 24 },
+  scoreCard:       { background: "#0f1117", border: "1px solid #2a2d3e", borderRadius: 10, padding: 20 },
   scoreCardHeader: { display: "flex", alignItems: "center", gap: 12, marginBottom: 16 },
-  scoreIcon: { fontSize: 24 },
-  scoreLabel: { fontSize: 13, fontWeight: 500, color: "#cbd5e1" },
-  scoreWeight: { fontSize: 11, color: "#475569", marginTop: 2 },
-  scoreInput: { width: "100%", background: "#161824", border: "1px solid #2a2d3e", borderRadius: 8, padding: "10px 14px", color: "#f1f5f9", fontSize: 20, fontWeight: 600, fontFamily: "'Syne', sans-serif", transition: "border-color 0.15s, box-shadow 0.15s" },
-  totalBox: { background: "linear-gradient(135deg, #0d1f17, #0f1a2e)", border: "1px solid #2a2d3e", borderRadius: 12, padding: "20px 24px", marginBottom: 24, display: "flex", justifyContent: "space-between", alignItems: "center" },
-  totalLabel: { fontSize: 14, fontWeight: 600, color: "#94a3b8" },
-  totalFormula: { fontSize: 11, color: "#475569", marginTop: 4 },
-  totalRight: { display: "flex", alignItems: "center", gap: 12 },
-  totalScore: { fontFamily: "'Syne', sans-serif", fontSize: 40, fontWeight: 700 },
-  gradePill: { padding: "4px 14px", borderRadius: 20, fontWeight: 700, fontSize: 14 },
-  commentsBlock: { marginBottom: 24 },
-  commentsLabel: { display: "block", fontSize: 13, color: "#94a3b8", marginBottom: 8 },
-  textarea: { width: "100%", background: "#0f1117", border: "1px solid #2a2d3e", borderRadius: 8, padding: "12px 14px", color: "#e2e8f0", fontSize: 13, resize: "vertical", fontFamily: "'DM Sans', sans-serif", outline: "none" },
-  submitBtn: { width: "100%", background: "#10b981", color: "#fff", border: "none", borderRadius: 10, padding: "14px", fontSize: 15, fontWeight: 600, cursor: "pointer", transition: "all 0.15s", fontFamily: "'DM Sans', sans-serif" },
+  scoreIcon:       { fontSize: 24 },
+  scoreLabel:      { fontSize: 13, fontWeight: 500, color: "#cbd5e1" },
+  scoreWeight:     { fontSize: 11, color: "#475569", marginTop: 2 },
+  scoreInput:      { width: "100%", background: "#161824", border: "1px solid #2a2d3e", borderRadius: 8, padding: "10px 14px", color: "#f1f5f9", fontSize: 20, fontWeight: 600, transition: "border-color 0.15s" },
+  totalBox:        { background: "linear-gradient(135deg, #0d1f17, #0f1a2e)", border: "1px solid #2a2d3e", borderRadius: 12, padding: "20px 24px", marginBottom: 24, display: "flex", justifyContent: "space-between", alignItems: "center" },
+  totalLabel:      { fontSize: 14, fontWeight: 600, color: "#94a3b8" },
+  totalFormula:    { fontSize: 11, color: "#475569", marginTop: 4 },
+  totalRight:      { display: "flex", alignItems: "center", gap: 12 },
+  totalScore:      { fontSize: 40, fontWeight: 700 },
+  gradePill:       { padding: "4px 14px", borderRadius: 20, fontWeight: 700, fontSize: 14 },
+  commentsBlock:   { marginBottom: 24 },
+  commentsLabel:   { display: "block", fontSize: 13, color: "#94a3b8", marginBottom: 8 },
+  textarea:        { width: "100%", background: "#0f1117", border: "1px solid #2a2d3e", borderRadius: 8, padding: "12px 14px", color: "#e2e8f0", fontSize: 13, resize: "vertical", outline: "none" },
+  submitBtn:       { width: "100%", background: "#10b981", color: "#fff", border: "none", borderRadius: 10, padding: "14px", fontSize: 15, fontWeight: 600, transition: "all 0.15s" },
 };
 
 export default AcademicEvaluationPage;
