@@ -3,7 +3,7 @@ import {
   BarChart, Bar, LineChart, Line, PieChart, Pie, Cell,
   XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend
 } from "recharts";
-import API from "../../Services/Api";
+import API from '../../Services/Api';
 
 const COLORS = ["#6ee7b7", "#3b82f6", "#f59e0b", "#ef4444", "#8b5cf6"];
 
@@ -34,13 +34,14 @@ const AdminStatisticsPage = () => {
           API.get("/evaluations/"),
         ]);
 
-        const users = usersRes.data;
-        const placements = placementsRes.data;
-        const logs = logsRes.data;
-        const evaluations = evaluationsRes.data;
+        // ✅ Add these 4 lines to normalize paginated responses
+        const users       = Array.isArray(usersRes.data)       ? usersRes.data       : usersRes.data.results       ?? [];
+        const placements  = Array.isArray(placementsRes.data)  ? placementsRes.data  : placementsRes.data.results  ?? [];
+        const logs        = Array.isArray(logsRes.data)        ? logsRes.data        : logsRes.data.results        ?? [];
+        const evaluations = Array.isArray(evaluationsRes.data) ? evaluationsRes.data : evaluationsRes.data.results ?? [];
 
         // Role distribution
-        const roleDist = ["student", "supervisor", "academic", "admin"].map((role) => ({
+        const roleDist = ["student", "workplace_supervisor", "academic_supervisor", "admin"].map((role) => ({
           name: role.charAt(0).toUpperCase() + role.slice(1),
           value: users.filter((u) => u.role === role).length,
         }));
