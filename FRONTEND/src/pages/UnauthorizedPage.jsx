@@ -6,6 +6,7 @@ const ROLE_HOME = {
   workplace_supervisor: '/supervisor/dashboard',
   academic_supervisor:  '/academic/dashboard',
   administrator:        '/admin/dashboard',
+  admin:                '/admin/dashboard', 
 };
 
 export default function UnauthorizedPage() {
@@ -18,11 +19,15 @@ export default function UnauthorizedPage() {
         <div style={{ fontSize: 64, marginBottom: 16 }}>🚫</div>
         <h1 style={{ fontSize: 24, fontWeight: 700, marginBottom: 8 }}>Access Denied</h1>
         <p style={{ color: '#64748b', marginBottom: 24 }}>You don't have permission to view this page.</p>
+        {/* TEMP DEBUG - remove before production */}
+<p style={{ fontSize: 12, color: '#94a3b8', marginBottom: 24 }}>
+  Your role: <code>{user?.role ?? 'undefined'}</code>
+</p>
         <button
           className="btn btn-primary"
           onClick={() => navigate(ROLE_HOME[user?.role] || '/login')}
         >
-          Go to My Dashboard
+          Go Back
         </button>
       </div>
     </div>
