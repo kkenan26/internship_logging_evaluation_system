@@ -4,10 +4,10 @@ import { useAuth } from "../context/AuthContext";
 import { Link } from 'react-router-dom';
 
 const ROLE_REDIRECTS = {
-  student:             '/student/dashboard',
-  workplace_supervisor:'/supervisor/dashboard',
-  academic_supervisor: '/academic/dashboard',
-  administrator:       '/admin/dashboard',
+  student:              '/student/dashboard',
+  workplace_supervisor: '/supervisor/dashboard',
+  academic_supervisor:  '/academic/dashboard',
+  admin:                '/admin/dashboard',  // ✅ matches backend
 };
 
 export default function LoginPage() {
@@ -27,11 +27,12 @@ export default function LoginPage() {
     setError('');
     setLoading(true);
     try {
+    
       const user = await login(form.username, form.password);
       const from = location.state?.from?.pathname || ROLE_REDIRECTS[user.role] || '/';
       navigate(from, { replace: true });
     } catch (err) {
-      setError(err.response?.data?.detail || 'Invalid username or password.');
+      setError(err.response?.data?.error || err.response?.data?.detail || 'Invalid username or password.');
     } finally {
       setLoading(false);
     }
