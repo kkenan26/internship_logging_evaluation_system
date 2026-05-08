@@ -333,3 +333,30 @@ class PlacementDashboardView(APIView):
             })
 
         return Response({'error': 'Unknown role'})
+    
+
+class StudentPlacementRequestView(generics.CreateAPIView):
+    serializer_class = InternshipPlacementSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def perform_create(self, serializer):
+        serializer.save(student=self.request.user, status='pending')
+
+class StudentUploadLetterView(generics.UpdateAPIView):
+    serializer_class = InternshipPlacementSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def get_queryset(self):
+        return InternshipPlacement.objects.filter(student=self.request.user)
+    
+    def perform_update(self, serializer):
+        from django.utils import timezone
+        serializer.save(letter_submitted_at=timezone.now())
+
+class AdminApprovePlacementView(generics.UpdateAPIView):
+    queryset = InternshipPlacement.objects.all()
+    serializer_class = InternshipPlacementSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def perform_update(self, serializer):
+        serializer.save(status='active')

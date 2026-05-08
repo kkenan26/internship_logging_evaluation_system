@@ -53,7 +53,7 @@ class InternshipPlacementSerializer(serializers.ModelSerializer):
             'status',
             'created_at',
         ]
-        read_only_fields = ['created_at']
+        read_only_fields = ['created_at', 'status', 'student']
 
     def get_duration_weeks(self, obj):
         """

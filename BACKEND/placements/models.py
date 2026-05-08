@@ -40,6 +40,9 @@ class InternshipPlacement(models.Model):
         default='pending'
     )
     created_at = models.DateTimeField(auto_now_add=True)
+    acceptance_letter = models.FileField(upload_to= 'acceptance_letters/', blank= True, null= True)
+    letter_submitted_at = models.DateTimeField(blank= True, null=True)
+    
 
     def clean(self):
         if self.start_date > self.end_date:
