@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import API from "../../Services/Api";
+import API from '../../Services/Api';
 
 const PlacementManagementPage = () => {
   const [placements, setPlacements] = useState([]);
@@ -27,23 +27,27 @@ const PlacementManagementPage = () => {
   const [formData, setFormData] = useState(emptyForm);
 
   const fetchAll = async () => {
-    setLoading(true);
-    try {
-      const [p, u] = await Promise.all([
-        API.get("/placements/"),
-        API.get("/users/"),
-      ]);
-      setPlacements(p.data);
-      const allUsers = u.data;
-      setStudents(allUsers.filter((u) => u.role === "student"));
-      setSupervisors(allUsers.filter((u) => u.role === "supervisor"));
-      setAcademics(allUsers.filter((u) => u.role === "academic"));
-    } catch {
-      setPlacements([]);
-    } finally {
-      setLoading(false);
-    }
-  };
+  setLoading(true);
+  try {
+    const [p, u] = await Promise.all([
+      API.get("/placements/"),
+      API.get("/users/"),
+    ]);
+
+    const placementList = Array.isArray(p.data) ? p.data : p.data.results ?? [];
+    const allUsers      = Array.isArray(u.data) ? u.data : u.data.results ?? [];
+
+    setPlacements(placementList);
+    setStudents(allUsers.filter((u) => u.role === "student"));
+    setSupervisors(allUsers.filter((u) => u.role === "workplace_supervisor"));
+    setAcademics(allUsers.filter((u) => u.role === "academic_supervisor"));
+  } catch (err) {
+    console.error('fetchAll failed:', err.response?.status, err.message);
+    setPlacements([]);
+  } finally {
+    setLoading(false);
+  }
+};
 
   useEffect(() => { fetchAll(); }, []);
 
