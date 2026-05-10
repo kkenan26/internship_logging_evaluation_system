@@ -47,13 +47,15 @@ class InternshipPlacementSerializer(serializers.ModelSerializer):
             'company_address',
             'start_date',
             'end_date',
+            'acceptance_letter',
+            'letter_submitted_at',
             'duration_weeks',
             'is_active',
             'days_remaining',
             'status',
             'created_at',
         ]
-        read_only_fields = ['created_at', 'status', 'student']
+        read_only_fields = ['created_at', 'status', 'student', 'letter_submitted_at']
 
     def get_duration_weeks(self, obj):
         """
@@ -118,9 +120,19 @@ class InternshipPlacementSerializer(serializers.ModelSerializer):
         2. Student cannot have overlapping placements
         3. Placement cannot be created in the past
         """
-        start_date = data.get('start_date')
-        end_date = data.get('end_date')
-        student = data.get('student')
+        today = timezone.now().date()
+        start_date = data.get(
+            'start_date',
+            self.instance.start_date if self.instance else None
+        )
+        end_date = data.get(
+            'end_date',
+            self.instance.end_date if self.instance else None
+        )
+        student = data.get(
+            'student',
+            self.instance.student if self.instance else None
+        )
 
         # Check 1: start date must be before end date
         if start_date and end_date:
@@ -142,6 +154,13 @@ class InternshipPlacementSerializer(serializers.ModelSerializer):
                 raise serializers.ValidationError(
                     "This student already has an internship placement during this period. "
                     "Please choose different dates."
+                )
+
+        # Check 3: prevent creation or modification with a start date in the past
+        if start_date and start_date < today:
+            if self.instance is None or start_date != self.instance.start_date:
+                raise serializers.ValidationError(
+                    "Start date cannot be in the past. Please choose a current or future date."
                 )
 
         return data
