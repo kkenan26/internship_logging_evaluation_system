@@ -107,21 +107,3 @@ class Evaluation(models.Model):
 
     def __str__(self):
         return f"{self.student.username} - {self.criteria.name}: {self.score}"
-    
-class AcademicEvaluation(models.Model):
-    placement = models.OneToOneField(
-        'placements.InternshipPlacement',
-        on_delete= models.CASCADE,
-        related_name= 'academic_evaluation'
-    )
-    academic_supervisor = models.ForeignKey(
-        CustomUser,
-        on_delete=models.SET_NULL,
-        null=True,
-        limit_choices_to={'role':'academic_supervisor'}
-    )
-    score= models.FloatField()
-    feedback=models.TextField()
-
-    def __str__(self):
-        return f"Evaluation - {self.placement.student.username}"
