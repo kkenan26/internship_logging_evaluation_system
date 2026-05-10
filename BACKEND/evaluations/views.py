@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.exceptions import PermissionDenied, NotFound
 from django.db.models import Q, Sum, Avg, Count
-from .models import Evaluation, EvaluationCriteria, AcademicEvaluation
+from .models import Evaluation, EvaluationCriteria, AcademicEvaluation, WorkplaceEvaluation
 from .serializers import (
     EvaluationSerializer,
     EvaluationCriteriaSerializer,

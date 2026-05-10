@@ -54,9 +54,9 @@ class WeeklyLog(models.Model):
         #Checks the status of a log and sets the timestamp for the relevant status
         if self.status == 'submitted' and self.submitted_at is None:
             self.submitted_at = timezone.now()
-        if self.status =='reviewed' and self.reviewed_at is None:
+        if self.status == 'reviewed' and self.reviewed_at is None:
             self.reviewed_at = timezone.now()
-        if self.status=='approved' and self.approved_at is None:
+        if self.status == 'approved' and self.approved_at is None:
             self.approved_at = timezone.now()
 
         super().save(*args, **kwargs) #Saves the database
