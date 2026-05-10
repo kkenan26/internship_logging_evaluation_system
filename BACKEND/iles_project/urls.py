@@ -6,7 +6,22 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView
 )
 def home(request):
-    return HttpResponse("Welcome 🚀")
+    return HttpResponse(
+        """
+        <html>
+            <head>
+                <title>Internship Logging and Evaluation System</title>
+            </head>
+            <body>
+                <h1>Internship Logging and Evaluation System</h1>
+                <p><strong>Track. Monitor. Evaluate. Grow.</strong></p>
+                <p>A centralized platform designed to simplify internship management through digital activity logging, supervisor feedback, and performance evaluation.</p>
+                <button>Get Started</button>
+            </body>
+        </html>
+        """,
+        content_type="text/html"
+    )
 from users.views import (
     RegisterView,
     LoginView,
