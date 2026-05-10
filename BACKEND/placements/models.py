@@ -1,6 +1,18 @@
 from django.db import models
 from users.models import CustomUser
 from django.core.exceptions import ValidationError
+import os
+from django.core.validators import FileExtensionValidator
+
+def validate_file_size(file):
+    """
+    Validate that the uploaded file is not too large.
+    Maximum size: 10MB
+    """
+    file_size = file.size
+    limit_mb = 10
+    if file_size > limit_mb * 1024 * 1024:
+        raise ValidationError(f'File size must not exceed {limit_mb}MB')
 
 
 def placement_letter_path(instance, filename):
@@ -54,6 +66,27 @@ class InternshipPlacement(models.Model):
     letter_submitted_at  = models.DateTimeField(null=True, blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
+    acceptance_letter = models.FileField(
+        upload_to='acceptance_letters/',
+        blank=True,
+        null=True,
+        validators=[
+            FileExtensionValidator(
+                allowed_extensions=['pdf'],
+                message='Only PDF files are allowed for acceptance letters.'
+            ),
+            validate_file_size
+        ]
+    )
+    letter_submitted_at = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        indexes = [
+            models.Index(fields=['student', 'start_date', 'end_date']),
+            models.Index(fields=['status']),
+            models.Index(fields=['academic_supervisor']),
+            models.Index(fields=['workplace_supervisor']),
+        ]
 
     def clean(self):
         if self.start_date and self.end_date:

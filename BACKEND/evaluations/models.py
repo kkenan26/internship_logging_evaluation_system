@@ -39,6 +39,12 @@ class Evaluation(models.Model):
 
     class Meta:
         unique_together = ['student', 'placement', 'criteria']
+        indexes = [
+            models.Index(fields=['student', 'evaluated_at']),
+            models.Index(fields=['evaluator']),
+            models.Index(fields=['placement']),
+            models.Index(fields=['score']),
+        ]
 
     def __str__(self):
         return f"{self.student.username} - {self.criteria.name}: {self.score}"

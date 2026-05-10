@@ -114,15 +114,22 @@ class WeeklyLogListCreateView(generics.ListCreateAPIView):
 
     def get_queryset(self):
         user = self.request.user
+        queryset = WeeklyLog.objects.select_related(
+            'student',
+            'placement',
+            'placement__academic_supervisor',
+            'placement__workplace_supervisor'
+        ).prefetch_related('review')
+        
         if user.role == 'admin':
-            return WeeklyLog.objects.all()
+            return queryset
         elif user.role in ['academic_supervisor', 'workplace_supervisor']:
-            return WeeklyLog.objects.filter(
+            return queryset.filter(
                 Q(placement__academic_supervisor=user) |
                 Q(placement__workplace_supervisor=user)
             ).distinct()
         elif user.role == 'student':
-            return WeeklyLog.objects.filter(student=user)
+            return queryset.filter(student=user)
         return WeeklyLog.objects.none()
 
     def perform_create(self, serializer):
@@ -154,9 +161,16 @@ class WeeklyLogDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         user = self.request.user
+        queryset = WeeklyLog.objects.select_related(
+            'student',
+            'placement',
+            'placement__academic_supervisor',
+            'placement__workplace_supervisor'
+        ).prefetch_related('review')
+        
         if user.role in ['admin', 'academic_supervisor', 'workplace_supervisor']:
-            return WeeklyLog.objects.all()
-        return WeeklyLog.objects.filter(student=user)
+            return queryset
+        return queryset.filter(student=user)
 
     def update(self, request, *args, **kwargs):
         """Prevent editing logs that are not in draft status."""

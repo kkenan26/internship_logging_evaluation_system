@@ -103,14 +103,20 @@ class PlacementListCreateView(generics.ListCreateAPIView):
 
     def get_queryset(self):
         user = self.request.user
-        if user.role in ['admin', 'administrator']:
-            return InternshipPlacement.objects.all()
+        queryset = InternshipPlacement.objects.select_related(
+            'student',
+            'academic_supervisor',
+            'workplace_supervisor'
+        )
+        
+        if user.role == 'admin':
+            return queryset
         elif user.role == 'academic_supervisor':
-            return InternshipPlacement.objects.filter(academic_supervisor=user)
+            return queryset.filter(academic_supervisor=user)
         elif user.role == 'workplace_supervisor':
-            return InternshipPlacement.objects.filter(workplace_supervisor=user)
+            return queryset.filter(workplace_supervisor=user)
         elif user.role == 'student':
-            return InternshipPlacement.objects.filter(student=user)
+            return queryset.filter(student=user)
         return InternshipPlacement.objects.none()
 
     def get_permissions(self):
@@ -142,14 +148,20 @@ class PlacementDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         user = self.request.user
-        if user.role in ['admin', 'administrator']:
-            return InternshipPlacement.objects.all()
+        queryset = InternshipPlacement.objects.select_related(
+            'student',
+            'academic_supervisor',
+            'workplace_supervisor'
+        )
+        
+        if user.role == 'admin':
+            return queryset
         elif user.role == 'academic_supervisor':
-            return InternshipPlacement.objects.filter(academic_supervisor=user)
+            return queryset.filter(academic_supervisor=user)
         elif user.role == 'workplace_supervisor':
-            return InternshipPlacement.objects.filter(workplace_supervisor=user)
+            return queryset.filter(workplace_supervisor=user)
         elif user.role == 'student':
-            return InternshipPlacement.objects.filter(student=user)
+            return queryset.filter(student=user)
         return InternshipPlacement.objects.none()
 
     def destroy(self, request, *args, **kwargs):
@@ -367,4 +379,31 @@ class PlacementDashboardView(APIView):
                 'active_students': placements.filter(status='active').count(),
             })
 
-        return Response({'error': 'Unknown role'}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({'error': 'Unknown role'})
+    
+
+class StudentPlacementRequestView(generics.CreateAPIView):
+    serializer_class = InternshipPlacementSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def perform_create(self, serializer):
+        serializer.save(student=self.request.user, status='pending')
+
+class StudentUploadLetterView(generics.UpdateAPIView):
+    serializer_class = InternshipPlacementSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def get_queryset(self):
+        return InternshipPlacement.objects.filter(student=self.request.user)
+    
+    def perform_update(self, serializer):
+        from django.utils import timezone
+        serializer.save(letter_submitted_at=timezone.now())
+
+class AdminApprovePlacementView(generics.UpdateAPIView):
+    queryset = InternshipPlacement.objects.all()
+    serializer_class = InternshipPlacementSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def perform_update(self, serializer):
+        serializer.save(status='active')

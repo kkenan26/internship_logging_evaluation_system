@@ -5,7 +5,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.contrib.auth import authenticate
-from .userserializers import RegisterSerializer, UserSerializer
+from .serializers import RegisterSerializer, UserSerializer
 from .models import CustomUser
 
 # CUSTOM PERMISSIONS
@@ -49,7 +49,7 @@ class RegisterView(generics.CreateAPIView):
 
 class LoginView(APIView):
     """
-    POST: Login with username and password.
+    POST: Login with username/email and password.
     Returns JWT access and refresh tokens on success.
     Access token expires after 1 day.
     Refresh token expires after 7 days.
@@ -57,23 +57,29 @@ class LoginView(APIView):
     permission_classes = [AllowAny]
 
     def post(self, request):
-        username = request.data.get('username')
+        username_or_email = request.data.get('username')
         password = request.data.get('password')
 
-        # Check username and password are provided
-        if not username or not password:
+        # Check username/email and password are provided
+        if not username_or_email or not password:
             return Response(
-                {'error': 'Please provide username and password!'},
+                {'error': 'Please provide username/email and password!'},
                 status=status.HTTP_400_BAD_REQUEST
             )
 
-        # Authenticate the user
-        user = authenticate(username=username, password=password)
+        # Authenticate with username first, then fallback to email
+        user = authenticate(username=username_or_email, password=password)
+        if not user:
+            try:
+                user_obj = CustomUser.objects.get(email__iexact=username_or_email)
+                user = authenticate(username=user_obj.username, password=password)
+            except CustomUser.DoesNotExist:
+                user = None
 
         # Check if user exists
         if not user:
             return Response(
-                {'error': 'Invalid username or password!'},
+                {'error': 'Invalid username/email or password!'},
                 status=status.HTTP_401_UNAUTHORIZED
             )
 

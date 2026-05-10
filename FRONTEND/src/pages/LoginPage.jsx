@@ -50,13 +50,13 @@ export default function LoginPage() {
 
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label>Username</label>
+            <label>Username or Email</label>
             <input
               className="form-control"
               name="username"
               value={form.username}
               onChange={handleChange}
-              placeholder="Enter your username"
+              placeholder="Enter your username or email"
               required
               autoFocus
             />

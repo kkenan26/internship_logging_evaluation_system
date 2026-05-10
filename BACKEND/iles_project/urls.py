@@ -30,16 +30,14 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
-    # Users
-    path('api/register/', RegisterView.as_view(), name='register'),
-    path('api/login/', LoginView.as_view(), name='login'),
-    path('api/users/', include('users.urls')),
-
-    # Frontend auth endpoints
+    # Authentication endpoints (prefer /api/auth/ paths)
     path('api/auth/login/', LoginView.as_view(), name='auth-login'),
     path('api/auth/register/', RegisterView.as_view(), name='auth-register'),
     path('api/auth/profile/', ProfileView.as_view(), name='auth-profile'),
     path('api/auth/logout/', LogoutView.as_view(), name='auth-logout'),
+    
+    # Users management
+    path('api/users/', include('users.urls')),
 
     # Placements
     path('api/placements/', include('placements.urls')),

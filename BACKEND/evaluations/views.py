@@ -87,12 +87,19 @@ class EvaluationListCreateView(generics.ListCreateAPIView):
 
     def get_queryset(self):
         user = self.request.user
+        queryset = Evaluation.objects.select_related(
+            'student',
+            'evaluator',
+            'criteria',
+            'placement'
+        )
+        
         if user.role == 'admin':
-            return Evaluation.objects.all()
+            return queryset
         elif user.role in ['academic_supervisor', 'workplace_supervisor']:
-            return Evaluation.objects.filter(evaluator=user)
+            return queryset.filter(evaluator=user)
         elif user.role == 'student':
-            return Evaluation.objects.filter(student=user)
+            return queryset.filter(student=user)
         return Evaluation.objects.none()
 
     def perform_create(self, serializer):
@@ -105,9 +112,15 @@ class EvaluationDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         user = self.request.user
+        queryset = Evaluation.objects.select_related(
+            'student',
+            'evaluator',
+            'criteria'
+        )
+        
         if user.role == 'admin':
-            return Evaluation.objects.all()
-        return Evaluation.objects.filter(evaluator=user)
+            return queryset
+        return queryset.filter(evaluator=user)
 
 
 # ============================================================
@@ -119,9 +132,11 @@ class StudentEvaluationView(generics.ListAPIView):
 
     def get_queryset(self):
         if self.request.user.role == 'student':
-            return Evaluation.objects.filter(
-                student=self.request.user
-            ).order_by('criteria__name')
+            return Evaluation.objects.select_related(
+                'student',
+                'evaluator',
+                'criteria'
+            ).filter(student=self.request.user).order_by('criteria__name')
         return Evaluation.objects.none()
 
     def list(self, request, *args, **kwargs):
@@ -142,16 +157,18 @@ class AcademicEvaluationListCreateView(generics.ListCreateAPIView):
 
     def get_queryset(self):
         user = self.request.user
+        queryset = AcademicEvaluation.objects.select_related(
+            'placement',
+            'placement__student',
+            'academic_supervisor'
+        )
+        
         if user.role == 'admin':
-            return AcademicEvaluation.objects.all()
+            return queryset
         elif user.role == 'academic_supervisor':
-            return AcademicEvaluation.objects.filter(
-                academic_supervisor=user
-            )
+            return queryset.filter(academic_supervisor=user)
         elif user.role == 'student':
-            return AcademicEvaluation.objects.filter(
-                placement__student=user
-            )
+            return queryset.filter(placement__student=user)
         return AcademicEvaluation.objects.none()
 
     def get_permissions(self):
@@ -179,9 +196,15 @@ class AcademicEvaluationDetailView(generics.RetrieveUpdateAPIView):
 
     def get_queryset(self):
         user = self.request.user
+        queryset = AcademicEvaluation.objects.select_related(
+            'placement',
+            'placement__student',
+            'academic_supervisor'
+        )
+        
         if user.role == 'admin':
-            return AcademicEvaluation.objects.all()
-        return AcademicEvaluation.objects.filter(academic_supervisor=user)
+            return queryset
+        return queryset.filter(academic_supervisor=user)
 
 
 # ============================================================

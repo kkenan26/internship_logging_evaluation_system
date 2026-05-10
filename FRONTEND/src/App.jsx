@@ -68,7 +68,7 @@ function AppRoutes() {
       student:              '/student/dashboard',
       workplace_supervisor: '/supervisor/dashboard',
       academic_supervisor:  '/academic/dashboard',
-      administrator:        '/admin/dashboard',
+      admin:                '/admin/dashboard',
     };
     return map[user.role] || '/login';
   };
@@ -120,7 +120,7 @@ function AppRoutes() {
       {/* ── Administrator ── */}
       <Route
         path="/admin"
-        element={<ProtectedRoute roles={['administrator']}><MainLayout /></ProtectedRoute>}
+        element={<ProtectedRoute roles={['admin']}><MainLayout /></ProtectedRoute>}
       >
         <Route index             element={<Navigate to="dashboard" replace />} />
         <Route path="dashboard"  element={<AdminDashboard />} />

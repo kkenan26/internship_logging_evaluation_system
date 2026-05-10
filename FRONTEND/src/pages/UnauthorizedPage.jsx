@@ -6,7 +6,6 @@ const ROLE_HOME = {
   workplace_supervisor: '/supervisor/dashboard',
   academic_supervisor:  '/academic/dashboard',
   administrator:        '/admin/dashboard',
-  admin:                '/admin/dashboard', 
 };
 
 export default function UnauthorizedPage() {

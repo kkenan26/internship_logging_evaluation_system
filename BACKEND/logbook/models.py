@@ -41,6 +41,11 @@ class WeeklyLog(models.Model):
 
     class Meta:
         unique_together = ['student', 'placement', 'week_number']
+        indexes = [
+            models.Index(fields=['student', 'placement', 'week_number']),
+            models.Index(fields=['status', 'submitted_at']),
+            models.Index(fields=['placement', 'status']),
+        ]
 
     def __str__(self):
         return f"{self.student.username} - Week {self.week_number}"
@@ -50,9 +55,9 @@ class WeeklyLog(models.Model):
         if self.status == 'submitted' and self.submitted_at is None:
             self.submitted_at = timezone.now()
         if self.status =='reviewed' and self.reviewed_at is None:
-            self.reviewed_at== timezone.now()
+            self.reviewed_at = timezone.now()
         if self.status=='approved' and self.approved_at is None:
-            self.approved_at == timezone.now()
+            self.approved_at = timezone.now()
 
         super().save(*args, **kwargs) #Saves the database
 
