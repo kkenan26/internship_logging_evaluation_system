@@ -38,7 +38,6 @@ from logbook.views import StudentLogbookView, SupervisorReviewListView
 from placements.views import StudentPlacementView
 
 urlpatterns = [
-     path('', home),   #  homepage
     path('admin/', admin.site.urls),
 
     # JWT Authentication

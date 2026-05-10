@@ -9,6 +9,7 @@ import MainLayout     from './Components/layout/MainLayout';
 // Public
 import LoginPage        from './pages/LoginPage';
 import RegisterPage     from './pages/Registerpage';
+import LandingPage      from './pages/LandingPage';
 import UnauthorizedPage from './pages/UnauthorizedPage';
 import NotFoundPage     from './pages/NotFoundPage';
 
@@ -77,7 +78,7 @@ function AppRoutes() {
     <Routes>
 
       {/* ── Public ── */}
-      <Route path="/"             element={<Navigate to={homePath()} replace />} />
+      <Route path="/" element={user ? <Navigate to={homePath()} replace /> : <LandingPage />} />
       <Route path="/login"        element={<LoginPage />} />
       <Route path="/register"     element={<RegisterPage />} />
       <Route path="/unauthorized" element={<UnauthorizedPage />} />
