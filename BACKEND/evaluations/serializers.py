@@ -1,7 +1,7 @@
 
 from rest_framework import serializers
 from django.db.models import Avg, Sum
-from .models import Evaluation, EvaluationCriteria, AcademicEvaluation
+from .models import Evaluation, EvaluationCriteria, AcademicEvaluation, WorkplaceEvaluation
 from users.models import CustomUser
 from placements.models import InternshipPlacement
 

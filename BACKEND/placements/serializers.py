@@ -30,7 +30,7 @@ class InternshipPlacementSerializer(serializers.ModelSerializer):
         model = InternshipPlacement
         fields = [
             'id',
-            'student',           # write: admin can assign; read_only for students via perform_create
+            'student',
             'student_name',
             'student_email',
             'workplace_supervisor',
@@ -41,18 +41,20 @@ class InternshipPlacementSerializer(serializers.ModelSerializer):
             'company_address',
             'start_date',
             'end_date',
+            'acceptance_letter',
+            'letter_submitted_at',
             'duration_weeks',
             'is_active',
             'days_remaining',
             'status',
-            'acceptance_letter',
-            'letter_submitted_at',
             'created_at',
         ]
         # ✅ student is set automatically by perform_create for students
         # ✅ acceptance_letter is handled by the dedicated upload endpoint
         read_only_fields = [
             'created_at',
+            'status',
+            'student',
             'letter_submitted_at',
             'student_name',
             'student_email',
@@ -112,9 +114,26 @@ class InternshipPlacementSerializer(serializers.ModelSerializer):
         return value
 
     def validate(self, data):
-        start_date = data.get('start_date')
-        end_date   = data.get('end_date')
-        student    = data.get('student')
+        """
+        Full validation for placement data.
+        Checks:
+        1. Start date must be before end date
+        2. Student cannot have overlapping placements
+        3. Placement cannot be created in the past
+        """
+        today = timezone.now().date()
+        start_date = data.get(
+            'start_date',
+            self.instance.start_date if self.instance else None
+        )
+        end_date = data.get(
+            'end_date',
+            self.instance.end_date if self.instance else None
+        )
+        student = data.get(
+            'student',
+            self.instance.student if self.instance else None
+        )
 
         # 1. Date order check
         if start_date and end_date:
@@ -138,6 +157,13 @@ class InternshipPlacementSerializer(serializers.ModelSerializer):
             if overlapping.exists():
                 raise serializers.ValidationError(
                     "This student already has an internship placement during this period."
+                )
+
+        # 3. Prevent creation or modification with a start date in the past
+        if start_date and start_date < today:
+            if self.instance is None or start_date != self.instance.start_date:
+                raise serializers.ValidationError(
+                    "Start date cannot be in the past. Please choose a current or future date."
                 )
 
         return data

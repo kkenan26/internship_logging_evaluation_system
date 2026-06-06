@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.exceptions import PermissionDenied, NotFound
 from django.db.models import Q, Sum, Avg, Count
-from .models import Evaluation, EvaluationCriteria, AcademicEvaluation
+from .models import Evaluation, EvaluationCriteria, AcademicEvaluation, WorkplaceEvaluation
 from .serializers import (
     EvaluationSerializer,
     EvaluationCriteriaSerializer,
@@ -214,32 +214,104 @@ class AdminReportView(APIView):
     permission_classes = [permissions.IsAuthenticated, IsAdminOnly]
 
     def get(self, request):
+        # User statistics
         total_students = CustomUser.objects.filter(role='student').count()
         total_supervisors = CustomUser.objects.filter(
             role__in=['workplace_supervisor', 'academic_supervisor']
         ).count()
+        total_admins = CustomUser.objects.filter(role='admin').count()
+
+        # Placement statistics
         total_placements = InternshipPlacement.objects.count()
         active_placements = InternshipPlacement.objects.filter(status='active').count()
         pending_placements = InternshipPlacement.objects.filter(status='pending').count()
         completed_placements = InternshipPlacement.objects.filter(status='completed').count()
+        cancelled_placements = InternshipPlacement.objects.filter(status='cancelled').count()
+
+        # Logbook statistics
         total_logs = WeeklyLog.objects.count()
         draft_logs = WeeklyLog.objects.filter(status='draft').count()
         submitted_logs = WeeklyLog.objects.filter(status='submitted').count()
         reviewed_logs = WeeklyLog.objects.filter(status='reviewed').count()
         approved_logs = WeeklyLog.objects.filter(status='approved').count()
+
+        # Evaluation statistics
         total_evaluations = Evaluation.objects.count()
         average_score = Evaluation.objects.aggregate(avg=Avg('score'))['avg'] or 0
+
+        # Academic Evaluation statistics
+        academic_evals = AcademicEvaluation.objects.all()
+        total_academic_evals = academic_evals.count()
+        avg_academic_score = academic_evals.aggregate(avg=Avg('score'))['avg'] or 0
+
+        # Workplace Evaluation statistics
+        workplace_evals = WorkplaceEvaluation.objects.all()
+        total_workplace_evals = workplace_evals.count()
+        avg_workplace_score = workplace_evals.aggregate(avg=Avg('score'))['avg'] or 0
+
+        # Supervisor workload
+        academic_supervisors = CustomUser.objects.filter(role='academic_supervisor')
+        workplace_supervisors = CustomUser.objects.filter(role='workplace_supervisor')
+
+        academic_workload = []
+        for sup in academic_supervisors:
+            placements = InternshipPlacement.objects.filter(academic_supervisor=sup)
+            academic_workload.append({
+                'supervisor': sup.username,
+                'active_placements': placements.filter(status='active').count(),
+                'total_placements': placements.count(),
+                'pending_evaluations': academic_evals.filter(
+                    placement__academic_supervisor=sup,
+                    placement__status='active'
+                ).count()
+            })
+
+        workplace_workload = []
+        for sup in workplace_supervisors:
+            placements = InternshipPlacement.objects.filter(workplace_supervisor=sup)
+            workplace_workload.append({
+                'supervisor': sup.username,
+                'active_placements': placements.filter(status='active').count(),
+                'total_placements': placements.count(),
+                'pending_evaluations': workplace_evals.filter(
+                    placement__workplace_supervisor=sup,
+                    placement__status='active'
+                ).count()
+            })
+
+        # Weekly log submission trends (last 4 weeks)
+        from django.utils import timezone
+        from datetime import timedelta
+
+        today = timezone.now().date()
+        weekly_stats = []
+        for i in range(4):
+            week_start = today - timedelta(days=today.weekday() + (i * 7))
+            week_end = week_start + timedelta(days=6)
+            week_logs = WeeklyLog.objects.filter(
+                week_start_date__gte=week_start,
+                week_start_date__lte=week_end
+            )
+            weekly_stats.append({
+                'week': f'Week {4-i}',
+                'start_date': week_start,
+                'total_logs': week_logs.count(),
+                'submitted': week_logs.filter(status__in=['submitted', 'reviewed', 'approved']).count(),
+                'approved': week_logs.filter(status='approved').count()
+            })
 
         return Response({
             'users': {
                 'total_students': total_students,
                 'total_supervisors': total_supervisors,
+                'total_admins': total_admins,
             },
             'placements': {
                 'total': total_placements,
                 'active': active_placements,
                 'pending': pending_placements,
                 'completed': completed_placements,
+                'cancelled': cancelled_placements,
             },
             'logs': {
                 'total': total_logs,
@@ -247,10 +319,23 @@ class AdminReportView(APIView):
                 'submitted': submitted_logs,
                 'reviewed': reviewed_logs,
                 'approved': approved_logs,
+                'weekly_trends': weekly_stats,
             },
             'evaluations': {
                 'total': total_evaluations,
                 'average_score': round(average_score, 2),
+                'academic': {
+                    'total': total_academic_evals,
+                    'average_score': round(avg_academic_score, 2),
+                },
+                'workplace': {
+                    'total': total_workplace_evals,
+                    'average_score': round(avg_workplace_score, 2),
+                }
+            },
+            'supervisor_workload': {
+                'academic_supervisors': academic_workload,
+                'workplace_supervisors': workplace_workload,
             }
         })
 
@@ -322,3 +407,175 @@ class StudentScoreView(generics.RetrieveAPIView):
         serializer = self.get_serializer(data)
         serializer.is_valid(raise_exception=True)
         return Response(serializer.data)
+
+
+# ============================================================
+# COMPREHENSIVE DASHBOARD VIEW
+# ============================================================
+class ComprehensiveDashboardView(APIView):
+    """
+    GET: Returns comprehensive dashboard statistics for admins.
+    Combines data from all modules with advanced aggregations.
+    """
+    permission_classes = [permissions.IsAuthenticated, IsAdminOnly]
+
+    def get(self, request):
+        from django.db.models import Count, Avg, Sum, Q
+        from django.utils import timezone
+        from datetime import timedelta
+
+        # Time-based filters
+        today = timezone.now().date()
+        last_30_days = timezone.now() - timedelta(days=30)
+        last_7_days = timezone.now() - timedelta(days=7)
+
+        # ===== USER STATISTICS =====
+        users = CustomUser.objects.all()
+        user_stats = {
+            'total_users': users.count(),
+            'students': users.filter(role='student').count(),
+            'academic_supervisors': users.filter(role='academic_supervisor').count(),
+            'workplace_supervisors': users.filter(role='workplace_supervisor').count(),
+            'admins': users.filter(role='admin').count(),
+            'new_users_30_days': users.filter(date_joined__gte=last_30_days).count(),
+        }
+
+        # ===== PLACEMENT STATISTICS =====
+        placements = InternshipPlacement.objects.all()
+        placement_stats = {
+            'total': placements.count(),
+            'active': placements.filter(status='active').count(),
+            'pending': placements.filter(status='pending').count(),
+            'completed': placements.filter(status='completed').count(),
+            'cancelled': placements.filter(status='cancelled').count(),
+            'new_30_days': placements.filter(created_at__gte=last_30_days).count(),
+            'completion_rate': round(
+                placements.filter(status='completed').count() /
+                placements.exclude(status='pending').count() * 100, 1
+            ) if placements.exclude(status='pending').count() > 0 else 0,
+        }
+
+        # Top companies
+        top_companies = placements.values('company_name').annotate(
+            count=Count('id')
+        ).order_by('-count')[:10]
+
+        # ===== LOGBOOK STATISTICS =====
+        logs = WeeklyLog.objects.all()
+        log_stats = {
+            'total': logs.count(),
+            'draft': logs.filter(status='draft').count(),
+            'submitted': logs.filter(status='submitted').count(),
+            'reviewed': logs.filter(status='reviewed').count(),
+            'approved': logs.filter(status='approved').count(),
+            'submission_rate': round(
+                logs.filter(status__in=['submitted', 'reviewed', 'approved']).count() /
+                logs.count() * 100, 1
+            ) if logs.count() > 0 else 0,
+            'approval_rate': round(
+                logs.filter(status='approved').count() /
+                logs.count() * 100, 1
+            ) if logs.count() > 0 else 0,
+            'new_7_days': logs.filter(created_at__gte=last_7_days).count(),
+        }
+
+        # ===== EVALUATION STATISTICS =====
+        evaluations = Evaluation.objects.all()
+        academic_evals = AcademicEvaluation.objects.all()
+        workplace_evals = WorkplaceEvaluation.objects.all()
+
+        eval_stats = {
+            'total_criteria_evaluations': evaluations.count(),
+            'avg_criteria_score': round(evaluations.aggregate(avg=Avg('score'))['avg'] or 0, 2),
+            'academic_evaluations': {
+                'total': academic_evals.count(),
+                'avg_score': round(academic_evals.aggregate(avg=Avg('score'))['avg'] or 0, 2),
+                'completion_rate': round(
+                    academic_evals.count() /
+                    placements.filter(status__in=['active', 'completed']).count() * 100, 1
+                ) if placements.filter(status__in=['active', 'completed']).count() > 0 else 0,
+            },
+            'workplace_evaluations': {
+                'total': workplace_evals.count(),
+                'avg_score': round(workplace_evals.aggregate(avg=Avg('score'))['avg'] or 0, 2),
+                'completion_rate': round(
+                    workplace_evals.count() /
+                    placements.filter(status__in=['active', 'completed']).count() * 100, 1
+                ) if placements.filter(status__in=['active', 'completed']).count() > 0 else 0,
+            },
+        }
+
+        # ===== TOTAL SCORES =====
+        # Calculate weighted total scores for completed placements
+        completed_placements = placements.filter(status='completed')
+        total_scores = []
+        for placement in completed_placements:
+            placement.calculate_total_score()  # This updates the total_score field
+            if placement.total_score:
+                total_scores.append(float(placement.total_score))
+
+        score_distribution = {
+            'average_total_score': round(sum(total_scores) / len(total_scores), 2) if total_scores else 0,
+            'highest_score': max(total_scores) if total_scores else 0,
+            'lowest_score': min(total_scores) if total_scores else 0,
+            'score_ranges': {
+                'excellent_90_plus': len([s for s in total_scores if s >= 90]),
+                'good_80_89': len([s for s in total_scores if 80 <= s < 90]),
+                'satisfactory_70_79': len([s for s in total_scores if 70 <= s < 80]),
+                'needs_improvement_below_70': len([s for s in total_scores if s < 70]),
+            }
+        }
+
+        # ===== SUPERVISOR PERFORMANCE =====
+        supervisors = CustomUser.objects.filter(
+            role__in=['academic_supervisor', 'workplace_supervisor']
+        )
+
+        supervisor_performance = []
+        for sup in supervisors:
+            # Placements supervised
+            academic_placements = placements.filter(academic_supervisor=sup)
+            workplace_placements = placements.filter(workplace_supervisor=sup)
+
+            # Evaluations completed
+            academic_eval_count = academic_evals.filter(evaluator=sup).count()
+            workplace_eval_count = workplace_evals.filter(evaluator=sup).count()
+
+            # Average scores given
+            academic_avg = academic_evals.filter(evaluator=sup).aggregate(avg=Avg('score'))['avg'] or 0
+            workplace_avg = workplace_evals.filter(evaluator=sup).aggregate(avg=Avg('score'))['avg'] or 0
+
+            supervisor_performance.append({
+                'supervisor': sup.username,
+                'role': sup.role,
+                'placements_supervised': academic_placements.count() + workplace_placements.count(),
+                'evaluations_completed': academic_eval_count + workplace_eval_count,
+                'avg_score_given': round((academic_avg + workplace_avg) / 2, 2) if (academic_avg + workplace_avg) > 0 else 0,
+            })
+
+        # ===== SYSTEM HEALTH =====
+        # Check for data consistency issues
+        health_stats = {
+            'orphaned_logs': logs.filter(placement__isnull=True).count(),
+            'placements_without_supervisors': placements.filter(
+                Q(academic_supervisor__isnull=True) | Q(workplace_supervisor__isnull=True),
+                status='active'
+            ).count(),
+            'evaluations_without_placements': evaluations.filter(placement__isnull=True).count(),
+            'inconsistent_statuses': placements.filter(
+                status='completed',
+                end_date__gt=today
+            ).count(),  # Completed but end date in future
+        }
+
+        return Response({
+            'generated_at': timezone.now(),
+            'users': user_stats,
+            'placements': placement_stats,
+            'top_companies': list(top_companies),
+            'logbook': log_stats,
+            'evaluations': eval_stats,
+            'total_scores': score_distribution,
+            'supervisor_performance': supervisor_performance,
+            'system_health': health_stats,
+        })

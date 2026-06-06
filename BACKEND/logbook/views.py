@@ -446,7 +446,7 @@ class SupervisorReviewListView(generics.ListAPIView):
 class LogbookDashboardView(APIView):
     """
     GET: Returns logbook statistics for the dashboard.
-    Shows different data based on user role.
+    Shows different data based on user role with detailed metrics.
     Used by frontend dashboard components.
     """
     permission_classes = [permissions.IsAuthenticated]
@@ -455,47 +455,153 @@ class LogbookDashboardView(APIView):
         user = request.user
 
         if user.role == 'admin':
+            all_logs = WeeklyLog.objects.all()
+
+            # Overall statistics
+            total_logs = all_logs.count()
+            draft = all_logs.filter(status='draft').count()
+            submitted = all_logs.filter(status='submitted').count()
+            reviewed = all_logs.filter(status='reviewed').count()
+            approved = all_logs.filter(status='approved').count()
+
+            # Submission rates
+            submission_rate = (submitted + reviewed + approved) / total_logs * 100 if total_logs > 0 else 0
+            approval_rate = approved / total_logs * 100 if total_logs > 0 else 0
+
+            # Weekly trends (last 4 weeks)
+            from django.utils import timezone
+            from datetime import timedelta
+            today = timezone.now().date()
+            weekly_trends = []
+            for i in range(4):
+                week_start = today - timedelta(days=today.weekday() + (i * 7))
+                week_end = week_start + timedelta(days=6)
+                week_logs = all_logs.filter(
+                    week_start_date__gte=week_start,
+                    week_start_date__lte=week_end
+                )
+                weekly_trends.append({
+                    'week': f'Week {4-i}',
+                    'total': week_logs.count(),
+                    'submitted': week_logs.filter(status__in=['submitted', 'reviewed', 'approved']).count(),
+                    'approved': week_logs.filter(status='approved').count(),
+                })
+
+            # Student engagement (logs per student)
+            student_stats = all_logs.values('student').annotate(
+                total_logs=Count('id'),
+                approved_logs=Count('id', filter=Q(status='approved'))
+            ).aggregate(
+                avg_logs_per_student=Avg('total_logs'),
+                avg_approved_per_student=Avg('approved_logs')
+            )
+
             return Response({
                 'role': 'admin',
-                'total_logs': WeeklyLog.objects.count(),
-                'draft': WeeklyLog.objects.filter(
-                    status='draft').count(),
-                'submitted': WeeklyLog.objects.filter(
-                    status='submitted').count(),
-                'reviewed': WeeklyLog.objects.filter(
-                    status='reviewed').count(),
-                'approved': WeeklyLog.objects.filter(
-                    status='approved').count(),
+                'summary': {
+                    'total_logs': total_logs,
+                    'draft': draft,
+                    'submitted': submitted,
+                    'reviewed': reviewed,
+                    'approved': approved,
+                    'submission_rate': round(submission_rate, 1),
+                    'approval_rate': round(approval_rate, 1),
+                },
+                'weekly_trends': weekly_trends,
+                'student_engagement': {
+                    'avg_logs_per_student': round(student_stats['avg_logs_per_student'] or 0, 1),
+                    'avg_approved_logs_per_student': round(student_stats['avg_approved_per_student'] or 0, 1),
+                }
             })
 
         elif user.role == 'student':
             logs = WeeklyLog.objects.filter(student=user)
+
+            total_logs = logs.count()
+            draft = logs.filter(status='draft').count()
+            submitted = logs.filter(status='submitted').count()
+            reviewed = logs.filter(status='reviewed').count()
+            approved = logs.filter(status='approved').count()
+
+            # Personal submission rate
+            submission_rate = (submitted + reviewed + approved) / total_logs * 100 if total_logs > 0 else 0
+
+            # Recent activity (last 30 days)
+            from django.utils import timezone
+            recent_logs = logs.filter(
+                created_at__gte=timezone.now() - timezone.timedelta(days=30)
+            ).count()
+
+            # Weekly completion status
+            weekly_completion = []
+            for log in logs.order_by('-week_number')[:4]:  # Last 4 weeks
+                weekly_completion.append({
+                    'week': log.week_number,
+                    'status': log.status,
+                    'submitted_on_time': log.submitted_at.date() <= log.week_end_date if log.submitted_at else False,
+                })
+
             return Response({
                 'role': 'student',
-                'total_logs': logs.count(),
-                'draft': logs.filter(status='draft').count(),
-                'submitted': logs.filter(status='submitted').count(),
-                'reviewed': logs.filter(status='reviewed').count(),
-                'approved': logs.filter(status='approved').count(),
+                'summary': {
+                    'total_logs': total_logs,
+                    'draft': draft,
+                    'submitted': submitted,
+                    'reviewed': reviewed,
+                    'approved': approved,
+                    'submission_rate': round(submission_rate, 1),
+                },
+                'recent_activity': {
+                    'logs_last_30_days': recent_logs,
+                },
+                'weekly_completion': weekly_completion,
             })
 
         elif user.role in ['workplace_supervisor', 'academic_supervisor']:
             if user.role == 'workplace_supervisor':
-                placements = InternshipPlacement.objects.filter(
-                    workplace_supervisor=user
-                )
+                placements = InternshipPlacement.objects.filter(workplace_supervisor=user)
             else:
-                placements = InternshipPlacement.objects.filter(
-                    academic_supervisor=user
-                )
+                placements = InternshipPlacement.objects.filter(academic_supervisor=user)
+
             logs = WeeklyLog.objects.filter(placement__in=placements)
+
+            # Workload statistics
+            total_students = placements.filter(status='active').count()
+            total_logs = logs.count()
+            pending_reviews = logs.filter(status='submitted').count()
+            reviewed = logs.filter(status='reviewed').count()
+            approved = logs.filter(status='approved').count()
+
+            # Review efficiency
+            review_rate = (reviewed + approved) / pending_reviews * 100 if pending_reviews > 0 else 100
+
+            # Student performance under supervision
+            student_performance = []
+            for placement in placements.filter(status='active'):
+                student_logs = logs.filter(placement=placement)
+                if student_logs.exists():
+                    approved_count = student_logs.filter(status='approved').count()
+                    total_count = student_logs.count()
+                    approval_rate = approved_count / total_count * 100 if total_count > 0 else 0
+
+                    student_performance.append({
+                        'student': placement.student.username,
+                        'total_logs': total_count,
+                        'approved_logs': approved_count,
+                        'approval_rate': round(approval_rate, 1),
+                    })
+
             return Response({
                 'role': user.role,
-                'total_students': placements.count(),
-                'pending_reviews': logs.filter(
-                    status='submitted').count(),
-                'reviewed': logs.filter(status='reviewed').count(),
-                'approved': logs.filter(status='approved').count(),
+                'workload': {
+                    'total_students': total_students,
+                    'total_logs': total_logs,
+                    'pending_reviews': pending_reviews,
+                    'reviewed': reviewed,
+                    'approved': approved,
+                    'review_completion_rate': round(review_rate, 1),
+                },
+                'student_performance': student_performance,
             })
 
         return Response({'error': 'Unknown role'})

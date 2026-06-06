@@ -6,7 +6,27 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView
 )
 def home(request):
-    return HttpResponse("Welcome 🚀")
+    return HttpResponse(
+        """
+        <html>
+            <head>
+                <title>Internship Logging and Evaluation System</title>
+                <style>
+                    body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+                    button { padding: 10px 20px; font-size: 16px; cursor: pointer; background-color: #007bff; color: white; border: none; border-radius: 5px; }
+                    button:hover { background-color: #0056b3; }
+                </style>
+            </head>
+            <body>
+                <h1>Internship Logging and Evaluation System</h1>
+                <p><strong>Track. Monitor. Evaluate. Grow.</strong></p>
+                <p>A centralized platform designed to simplify internship management through digital activity logging, supervisor feedback, and performance evaluation.</p>
+                <a href="http://localhost:5173/"><button>Get Started</button></a>
+            </body>
+        </html>
+        """,
+        content_type="text/html"
+    )
 from users.views import (
     RegisterView,
     LoginView,
@@ -23,7 +43,7 @@ from logbook.views import StudentLogbookView, SupervisorReviewListView
 from placements.views import StudentPlacementView
 
 urlpatterns = [
-     path('', home),   #  homepage
+    path('', home, name='home'),
     path('admin/', admin.site.urls),
 
     # JWT Authentication

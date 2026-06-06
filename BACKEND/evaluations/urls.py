@@ -64,6 +64,11 @@ urlpatterns = [
         views.AdminReportView.as_view(),
         name='admin-report'
     ),
+    path(
+        'comprehensive-dashboard/',
+        views.ComprehensiveDashboardView.as_view(),
+        name='comprehensive-dashboard'
+    ),
 
     # ====================== FUTURE ENDPOINTS (Commented) ======================
     # path('ranking/', views.StudentRankingView.as_view(), name='student-ranking'),

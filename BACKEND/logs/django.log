@@ -1,1 +1,56 @@
-INFO 2026-05-10 19:58:06,138 autoreload 7284 7124 Watching for file changes with StatReloader
+INFO 2026-05-11 00:57:30,721 autoreload 15604 8472 Watching for file changes with StatReloader
+INFO 2026-05-11 01:02:24,623 log 15604 8716 "OPTIONS /api/placements/dashboard/ HTTP/1.1" 200 0
+INFO 2026-05-11 01:02:24,623 log 15604 15408 "OPTIONS /api/logbook/dashboard/ HTTP/1.1" 200 0
+INFO 2026-05-11 01:02:24,627 log 15604 3780 "OPTIONS /api/logbook/dashboard/ HTTP/1.1" 200 0
+INFO 2026-05-11 01:02:24,628 log 15604 4916 "OPTIONS /api/evaluations/score/3/ HTTP/1.1" 200 0
+INFO 2026-05-11 01:02:24,628 log 15604 15476 "OPTIONS /api/evaluations/score/3/ HTTP/1.1" 200 0
+INFO 2026-05-11 01:02:24,632 log 15604 7332 "OPTIONS /api/placements/dashboard/ HTTP/1.1" 200 0
+WARNING 2026-05-11 01:02:25,113 log 15604 8716 Unauthorized: /api/placements/dashboard/
+WARNING 2026-05-11 01:02:25,118 log 15604 15476 Unauthorized: /api/evaluations/score/3/
+WARNING 2026-05-11 01:02:25,119 log 15604 8716 "GET /api/placements/dashboard/ HTTP/1.1" 401 84
+WARNING 2026-05-11 01:02:25,119 log 15604 15476 "GET /api/evaluations/score/3/ HTTP/1.1" 401 84
+WARNING 2026-05-11 01:02:25,131 log 15604 15476 Unauthorized: /api/placements/dashboard/
+INFO 2026-05-11 01:02:25,131 log 15604 4916 "OPTIONS /api/token/refresh/ HTTP/1.1" 200 0
+INFO 2026-05-11 01:02:25,132 log 15604 3780 "OPTIONS /api/token/refresh/ HTTP/1.1" 200 0
+WARNING 2026-05-11 01:02:25,137 log 15604 8716 Unauthorized: /api/evaluations/score/3/
+WARNING 2026-05-11 01:02:25,136 log 15604 15476 "GET /api/placements/dashboard/ HTTP/1.1" 401 84
+WARNING 2026-05-11 01:02:25,143 log 15604 8716 "GET /api/evaluations/score/3/ HTTP/1.1" 401 84
+WARNING 2026-05-11 01:02:25,149 log 15604 4916 Bad Request: /api/token/refresh/
+WARNING 2026-05-11 01:02:25,150 log 15604 4916 "POST /api/token/refresh/ HTTP/1.1" 400 160
+WARNING 2026-05-11 01:02:25,153 log 15604 3780 Bad Request: /api/token/refresh/
+WARNING 2026-05-11 01:02:25,155 log 15604 3780 "POST /api/token/refresh/ HTTP/1.1" 400 160
+WARNING 2026-05-11 01:02:25,157 log 15604 15476 Bad Request: /api/token/refresh/
+WARNING 2026-05-11 01:02:25,161 log 15604 8716 Bad Request: /api/token/refresh/
+WARNING 2026-05-11 01:02:25,169 log 15604 15476 "POST /api/token/refresh/ HTTP/1.1" 400 160
+WARNING 2026-05-11 01:02:25,169 log 15604 8716 "POST /api/token/refresh/ HTTP/1.1" 400 160
+WARNING 2026-05-11 01:02:25,804 log 15604 15408 Not Found: /api/logbook/dashboard/
+INFO 2026-05-11 01:02:25,806 basehttp 15604 15408 - Broken pipe from ('127.0.0.1', 62066)
+WARNING 2026-05-11 01:02:48,747 log 15604 5512 Not Found: /
+WARNING 2026-05-11 01:02:48,748 log 15604 5512 "GET / HTTP/1.1" 404 5190
+WARNING 2026-05-11 01:02:49,148 log 15604 5512 Not Found: /favicon.ico
+WARNING 2026-05-11 01:02:49,149 log 15604 5512 "GET /favicon.ico HTTP/1.1" 404 5241
+WARNING 2026-05-11 01:03:14,519 log 15604 13944 Not Found: /
+WARNING 2026-05-11 01:03:14,521 log 15604 13944 "GET / HTTP/1.1" 404 5190
+WARNING 2026-05-11 01:03:15,714 log 15604 13944 Not Found: /
+WARNING 2026-05-11 01:03:15,715 log 15604 13944 "GET / HTTP/1.1" 404 5190
+WARNING 2026-05-11 01:03:16,581 log 15604 13944 Not Found: /
+WARNING 2026-05-11 01:03:16,582 log 15604 13944 "GET / HTTP/1.1" 404 5190
+WARNING 2026-05-11 01:03:58,346 log 15604 13944 Not Found: /
+WARNING 2026-05-11 01:03:58,348 log 15604 13944 "GET / HTTP/1.1" 404 5190
+WARNING 2026-05-11 01:04:44,850 log 15604 13944 Not Found: /
+WARNING 2026-05-11 01:04:44,852 log 15604 13944 "GET / HTTP/1.1" 404 5190
+INFO 2026-05-11 01:05:49,276 autoreload 15604 8472 C:\Users\Akello\internship_logging_evaluation_system\BACKEND\iles_project\urls.py changed, reloading.
+INFO 2026-05-11 01:05:50,564 autoreload 16056 14344 Watching for file changes with StatReloader
+INFO 2026-05-11 01:05:54,727 autoreload 16056 14344 C:\Users\Akello\internship_logging_evaluation_system\BACKEND\iles_project\urls.py changed, reloading.
+INFO 2026-05-11 01:05:55,840 autoreload 6628 12888 Watching for file changes with StatReloader
+INFO 2026-05-11 01:06:45,018 autoreload 4916 456 Watching for file changes with StatReloader
+INFO 2026-05-11 01:07:34,038 log 6628 376 "GET / HTTP/1.1" 200 545
+INFO 2026-05-11 01:08:54,670 autoreload 6628 12888 C:\Users\Akello\internship_logging_evaluation_system\BACKEND\iles_project\urls.py changed, reloading.
+INFO 2026-05-11 01:08:54,700 autoreload 4916 456 C:\Users\Akello\internship_logging_evaluation_system\BACKEND\iles_project\urls.py changed, reloading.
+INFO 2026-05-11 01:08:56,475 autoreload 5232 6340 Watching for file changes with StatReloader
+INFO 2026-05-11 01:08:56,479 autoreload 12932 6364 Watching for file changes with StatReloader
+INFO 2026-05-11 01:08:59,835 autoreload 12932 6364 C:\Users\Akello\internship_logging_evaluation_system\BACKEND\iles_project\urls.py changed, reloading.
+INFO 2026-05-11 01:08:59,866 autoreload 5232 6340 C:\Users\Akello\internship_logging_evaluation_system\BACKEND\iles_project\urls.py changed, reloading.
+INFO 2026-05-11 01:09:01,092 autoreload 16200 11168 Watching for file changes with StatReloader
+INFO 2026-05-11 01:09:01,146 autoreload 7348 8020 Watching for file changes with StatReloader
+INFO 2026-05-11 01:09:17,997 log 16200 3144 "GET / HTTP/1.1" 200 951

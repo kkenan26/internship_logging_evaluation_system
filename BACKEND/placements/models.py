@@ -3,6 +3,7 @@ from users.models import CustomUser
 from django.core.exceptions import ValidationError
 import os
 from django.core.validators import FileExtensionValidator
+from decimal import Decimal
 
 def validate_file_size(file):
     """
@@ -52,33 +53,29 @@ class InternshipPlacement(models.Model):
     company_address = models.TextField()
     start_date      = models.DateField()
     end_date        = models.DateField()
-    status          = models.CharField(
+    status = models.CharField(
         max_length=20,
         choices=STATUS_CHOICES,
         default='pending'
     )
 
     # Acceptance letter uploaded by the student
-    acceptance_letter    = models.FileField(
+    acceptance_letter = models.FileField(
         upload_to=placement_letter_path,
         null=True, blank=True
     )
-    letter_submitted_at  = models.DateTimeField(null=True, blank=True)
+    letter_submitted_at = models.DateTimeField(null=True, blank=True)
+
+    # Computed total score from evaluations
+    total_score = models.DecimalField(
+        max_digits=5,
+        decimal_places=2,
+        null=True,
+        blank=True,
+        help_text="Weighted total score from academic and workplace evaluations"
+    )
 
     created_at = models.DateTimeField(auto_now_add=True)
-    acceptance_letter = models.FileField(
-        upload_to='acceptance_letters/',
-        blank=True,
-        null=True,
-        validators=[
-            FileExtensionValidator(
-                allowed_extensions=['pdf'],
-                message='Only PDF files are allowed for acceptance letters.'
-            ),
-            validate_file_size
-        ]
-    )
-    letter_submitted_at = models.DateTimeField(blank=True, null=True)
 
     class Meta:
         indexes = [
@@ -104,6 +101,34 @@ class InternshipPlacement(models.Model):
                 raise ValidationError(
                     "Student already has a pending or active internship during this period."
                 )
+
+    def calculate_total_score(self):
+        """
+        Calculate weighted total score from evaluations.
+        Weights: 40% workplace, 30% academic, 30% logbook (placeholder).
+        """
+        from evaluations.models import AcademicEvaluation, WorkplaceEvaluation
+        from logbook.models import WeeklyLog
+
+        academic_score = AcademicEvaluation.objects.filter(
+            student=self.student, placement=self
+        ).aggregate(avg=models.Avg('score'))['avg'] or 0
+
+        workplace_score = WorkplaceEvaluation.objects.filter(
+            student=self.student, placement=self
+        ).aggregate(avg=models.Avg('score'))['avg'] or 0
+
+        # Placeholder for logbook score (average of approved logs)
+        logbook_score = WeeklyLog.objects.filter(
+            student=self.student, placement=self, status='approved'
+        ).count() * 10  # Simple: 10 points per approved log
+
+        total = (Decimal(workplace_score) * Decimal('0.4') +
+                 Decimal(academic_score) * Decimal('0.3') +
+                 Decimal(logbook_score) * Decimal('0.3'))
+
+        self.total_score = round(total, 2)
+        self.save(update_fields=['total_score'])
 
     def __str__(self):
         return f"{self.student.username} at {self.company_name}"
