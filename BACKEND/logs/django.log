@@ -54,3 +54,21 @@ INFO 2026-05-11 01:08:59,866 autoreload 5232 6340 C:\Users\Akello\internship_log
 INFO 2026-05-11 01:09:01,092 autoreload 16200 11168 Watching for file changes with StatReloader
 INFO 2026-05-11 01:09:01,146 autoreload 7348 8020 Watching for file changes with StatReloader
 INFO 2026-05-11 01:09:17,997 log 16200 3144 "GET / HTTP/1.1" 200 951
+INFO 2026-06-06 14:34:03,076 autoreload 10748 18000 Watching for file changes with StatReloader
+INFO 2026-06-06 14:41:54,518 autoreload 11236 17884 Watching for file changes with StatReloader
+INFO 2026-06-06 14:42:19,068 log 11236 14852 "OPTIONS /api/auth/register/ HTTP/1.1" 200 0
+WARNING 2026-06-06 14:42:19,530 log 11236 14852 Bad Request: /api/auth/register/
+WARNING 2026-06-06 14:42:19,531 log 11236 14852 "POST /api/auth/register/ HTTP/1.1" 400 192
+INFO 2026-06-06 14:42:36,313 log 11236 14852 "OPTIONS /api/auth/login/ HTTP/1.1" 200 0
+INFO 2026-06-06 14:42:38,588 log 11236 14852 "POST /api/auth/login/ HTTP/1.1" 200 665
+INFO 2026-06-06 14:42:39,026 log 11236 14852 "OPTIONS /api/placements/dashboard/ HTTP/1.1" 200 0
+INFO 2026-06-06 14:42:39,037 log 11236 12988 "OPTIONS /api/logbook/dashboard/ HTTP/1.1" 200 0
+INFO 2026-06-06 14:42:39,038 log 11236 14852 "OPTIONS /api/logbook/dashboard/ HTTP/1.1" 200 0
+ERROR 2026-06-06 14:42:39,234 log 11236 12988 Internal Server Error: /api/placements/dashboard/
+ERROR 2026-06-06 14:42:39,235 log 11236 12988 "GET /api/placements/dashboard/ HTTP/1.1" 500 72
+ERROR 2026-06-06 14:42:39,264 log 11236 12988 Internal Server Error: /api/placements/dashboard/
+ERROR 2026-06-06 14:42:39,265 log 11236 12988 "GET /api/placements/dashboard/ HTTP/1.1" 500 72
+WARNING 2026-06-06 14:42:39,695 log 11236 14852 Not Found: /api/logbook/dashboard/
+WARNING 2026-06-06 14:42:39,712 log 11236 14852 "GET /api/logbook/dashboard/ HTTP/1.1" 404 5430
+WARNING 2026-06-06 14:42:39,731 log 11236 12988 Not Found: /api/logbook/dashboard/
+WARNING 2026-06-06 14:42:39,738 log 11236 12988 "GET /api/logbook/dashboard/ HTTP/1.1" 404 5430
