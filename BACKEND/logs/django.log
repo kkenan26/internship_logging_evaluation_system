@@ -250,3 +250,121 @@ INFO 2026-06-07 11:15:11,489 log 7732 9204 "GET /api/supervisor/reviews/ HTTP/1.
 INFO 2026-06-07 11:15:11,503 log 7732 9204 "GET /api/supervisor/reviews/ HTTP/1.1" 200 34
 INFO 2026-06-07 11:15:19,371 log 7732 9204 "GET /api/logs/dashboard/ HTTP/1.1" 200 178
 INFO 2026-06-07 11:15:19,391 log 7732 9204 "GET /api/logs/dashboard/ HTTP/1.1" 200 178
+INFO 2026-06-07 15:19:58,829 autoreload 18236 6712 Watching for file changes with StatReloader
+INFO 2026-06-07 15:22:42,203 autoreload 11904 6204 Watching for file changes with StatReloader
+INFO 2026-06-07 20:14:32,792 log 11904 8416 "OPTIONS /api/auth/register/ HTTP/1.1" 200 0
+INFO 2026-06-07 20:14:34,023 log 11904 8416 "POST /api/auth/register/ HTTP/1.1" 201 674
+INFO 2026-06-07 20:14:39,347 log 11904 8416 "OPTIONS /api/auth/login/ HTTP/1.1" 200 0
+INFO 2026-06-07 20:14:40,253 log 11904 8416 "POST /api/auth/login/ HTTP/1.1" 200 649
+INFO 2026-06-07 20:14:40,310 log 11904 8416 "OPTIONS /api/logs/dashboard/ HTTP/1.1" 200 0
+INFO 2026-06-07 20:14:40,311 log 11904 11096 "OPTIONS /api/student/placement/ HTTP/1.1" 200 0
+INFO 2026-06-07 20:14:40,314 log 11904 8416 "OPTIONS /api/evaluations/score/5/ HTTP/1.1" 200 0
+INFO 2026-06-07 20:14:40,314 log 11904 11096 "OPTIONS /api/logs/dashboard/ HTTP/1.1" 200 0
+INFO 2026-06-07 20:14:40,318 log 11904 8416 "OPTIONS /api/student/placement/ HTTP/1.1" 200 0
+INFO 2026-06-07 20:14:40,318 log 11904 11096 "OPTIONS /api/evaluations/score/5/ HTTP/1.1" 200 0
+INFO 2026-06-07 20:14:40,330 log 11904 11096 "GET /api/student/placement/ HTTP/1.1" 200 52
+INFO 2026-06-07 20:14:40,336 log 11904 8416 "GET /api/logs/dashboard/ HTTP/1.1" 200 180
+INFO 2026-06-07 20:14:40,340 log 11904 11096 "GET /api/evaluations/score/5/ HTTP/1.1" 200 121
+INFO 2026-06-07 20:14:40,348 log 11904 8416 "GET /api/student/placement/ HTTP/1.1" 200 52
+INFO 2026-06-07 20:14:40,354 log 11904 11096 "GET /api/logs/dashboard/ HTTP/1.1" 200 180
+INFO 2026-06-07 20:14:40,356 log 11904 8416 "GET /api/evaluations/score/5/ HTTP/1.1" 200 121
+INFO 2026-06-07 20:14:48,639 log 11904 8416 "OPTIONS /api/placements/ HTTP/1.1" 200 0
+INFO 2026-06-07 20:14:48,640 log 11904 11096 "OPTIONS /api/placements/ HTTP/1.1" 200 0
+ERROR 2026-06-07 20:14:48,765 log 11904 11096 Internal Server Error: /api/placements/
+ERROR 2026-06-07 20:14:48,765 log 11904 11096 "GET /api/placements/ HTTP/1.1" 500 72
+ERROR 2026-06-07 20:14:48,773 log 11904 8416 Internal Server Error: /api/placements/
+ERROR 2026-06-07 20:14:48,774 log 11904 8416 "GET /api/placements/ HTTP/1.1" 500 72
+INFO 2026-06-07 20:14:58,388 log 11904 8416 "OPTIONS /api/placements/my-placement/ HTTP/1.1" 200 0
+INFO 2026-06-07 20:14:58,388 log 11904 11096 "OPTIONS /api/placements/my-placement/ HTTP/1.1" 200 0
+INFO 2026-06-07 20:14:58,397 log 11904 11096 "GET /api/placements/my-placement/ HTTP/1.1" 200 52
+INFO 2026-06-07 20:14:58,402 log 11904 8416 "GET /api/placements/my-placement/ HTTP/1.1" 200 52
+ERROR 2026-06-07 20:15:38,113 log 11904 8416 Internal Server Error: /api/placements/my-placement/
+ERROR 2026-06-07 20:15:38,113 log 11904 8416 "POST /api/placements/my-placement/ HTTP/1.1" 500 72
+ERROR 2026-06-07 20:15:40,091 log 11904 8416 Internal Server Error: /api/placements/my-placement/
+ERROR 2026-06-07 20:15:40,091 log 11904 8416 "POST /api/placements/my-placement/ HTTP/1.1" 500 72
+ERROR 2026-06-07 20:15:41,062 log 11904 8416 Internal Server Error: /api/placements/my-placement/
+ERROR 2026-06-07 20:15:41,063 log 11904 8416 "POST /api/placements/my-placement/ HTTP/1.1" 500 72
+ERROR 2026-06-07 20:16:00,640 log 11904 8416 Internal Server Error: /api/placements/my-placement/
+ERROR 2026-06-07 20:16:00,641 log 11904 8416 "POST /api/placements/my-placement/ HTTP/1.1" 500 72
+ERROR 2026-06-07 20:16:01,641 log 11904 8416 Internal Server Error: /api/placements/my-placement/
+ERROR 2026-06-07 20:16:01,641 log 11904 8416 "POST /api/placements/my-placement/ HTTP/1.1" 500 72
+ERROR 2026-06-07 20:16:02,260 log 11904 8416 Internal Server Error: /api/placements/my-placement/
+ERROR 2026-06-07 20:16:02,260 log 11904 8416 "POST /api/placements/my-placement/ HTTP/1.1" 500 72
+INFO 2026-06-07 20:17:06,723 log 11904 8416 "POST /api/auth/register/ HTTP/1.1" 201 726
+INFO 2026-06-07 20:17:11,514 log 11904 8416 "POST /api/auth/login/ HTTP/1.1" 200 701
+ERROR 2026-06-07 20:17:14,682 log 11904 8416 Internal Server Error: /api/placements/
+ERROR 2026-06-07 20:17:14,683 log 11904 8416 "GET /api/placements/ HTTP/1.1" 500 72
+ERROR 2026-06-07 20:17:14,692 log 11904 11096 Internal Server Error: /api/placements/
+ERROR 2026-06-07 20:17:14,693 log 11904 11096 "GET /api/placements/ HTTP/1.1" 500 72
+INFO 2026-06-07 20:25:09,908 log 11904 9848 "POST /api/auth/register/ HTTP/1.1" 201 664
+INFO 2026-06-07 20:25:14,108 log 11904 9848 "POST /api/auth/login/ HTTP/1.1" 200 639
+INFO 2026-06-07 20:25:14,153 log 11904 18312 "OPTIONS /api/users/ HTTP/1.1" 200 0
+INFO 2026-06-07 20:25:14,157 log 11904 18312 "OPTIONS /api/logs/ HTTP/1.1" 200 0
+INFO 2026-06-07 20:25:14,162 log 11904 18312 "OPTIONS /api/users/ HTTP/1.1" 200 0
+ERROR 2026-06-07 20:25:14,163 log 11904 9848 Internal Server Error: /api/placements/
+ERROR 2026-06-07 20:25:14,163 log 11904 9848 "GET /api/placements/ HTTP/1.1" 500 72
+INFO 2026-06-07 20:25:14,164 log 11904 18312 "OPTIONS /api/logs/ HTTP/1.1" 200 0
+INFO 2026-06-07 20:25:14,176 log 11904 9848 "GET /api/users/ HTTP/1.1" 200 991
+ERROR 2026-06-07 20:25:14,181 log 11904 18312 Internal Server Error: /api/logs/
+ERROR 2026-06-07 20:25:14,182 log 11904 18312 "GET /api/logs/ HTTP/1.1" 500 72
+ERROR 2026-06-07 20:25:14,192 log 11904 9848 Internal Server Error: /api/placements/
+ERROR 2026-06-07 20:25:14,194 log 11904 9848 "GET /api/placements/ HTTP/1.1" 500 72
+INFO 2026-06-07 20:25:14,199 log 11904 18312 "GET /api/users/ HTTP/1.1" 200 991
+ERROR 2026-06-07 20:25:14,205 log 11904 9848 Internal Server Error: /api/logs/
+ERROR 2026-06-07 20:25:14,206 log 11904 9848 "GET /api/logs/ HTTP/1.1" 500 72
+INFO 2026-06-07 20:25:19,470 log 11904 9848 "OPTIONS /api/evaluations/comprehensive-dashboard/ HTTP/1.1" 200 0
+INFO 2026-06-07 20:25:19,472 log 11904 18312 "OPTIONS /api/evaluations/comprehensive-dashboard/ HTTP/1.1" 200 0
+ERROR 2026-06-07 20:25:19,523 log 11904 18312 Internal Server Error: /api/evaluations/comprehensive-dashboard/
+ERROR 2026-06-07 20:25:19,523 log 11904 18312 "GET /api/evaluations/comprehensive-dashboard/ HTTP/1.1" 500 72
+ERROR 2026-06-07 20:25:19,543 log 11904 9848 Internal Server Error: /api/evaluations/comprehensive-dashboard/
+ERROR 2026-06-07 20:25:19,543 log 11904 9848 "GET /api/evaluations/comprehensive-dashboard/ HTTP/1.1" 500 72
+INFO 2026-06-07 20:25:24,175 log 11904 9848 "GET /api/users/ HTTP/1.1" 200 991
+ERROR 2026-06-07 20:25:24,175 log 11904 18312 Internal Server Error: /api/placements/
+ERROR 2026-06-07 20:25:24,179 log 11904 18312 "GET /api/placements/ HTTP/1.1" 500 72
+ERROR 2026-06-07 20:25:24,185 log 11904 18848 Internal Server Error: /api/logs/
+ERROR 2026-06-07 20:25:24,187 log 11904 18848 "GET /api/logs/ HTTP/1.1" 500 72
+ERROR 2026-06-07 20:25:24,197 log 11904 9848 Internal Server Error: /api/placements/
+INFO 2026-06-07 20:25:24,197 log 11904 2248 "GET /api/users/ HTTP/1.1" 200 991
+ERROR 2026-06-07 20:25:24,200 log 11904 9848 "GET /api/placements/ HTTP/1.1" 500 72
+ERROR 2026-06-07 20:25:24,203 log 11904 18312 Internal Server Error: /api/logs/
+ERROR 2026-06-07 20:25:24,204 log 11904 18312 "GET /api/logs/ HTTP/1.1" 500 72
+INFO 2026-06-07 20:25:26,263 log 11904 18312 "GET /api/users/ HTTP/1.1" 200 991
+INFO 2026-06-07 20:25:26,272 log 11904 9848 "GET /api/users/ HTTP/1.1" 200 991
+ERROR 2026-06-07 20:25:40,236 log 11904 2248 Internal Server Error: /api/logs/
+ERROR 2026-06-07 20:25:40,237 log 11904 2248 "GET /api/logs/ HTTP/1.1" 500 72
+INFO 2026-06-07 20:25:40,237 log 11904 9848 "GET /api/users/ HTTP/1.1" 200 991
+ERROR 2026-06-07 20:25:40,246 log 11904 18312 Internal Server Error: /api/placements/
+ERROR 2026-06-07 20:25:40,248 log 11904 18312 "GET /api/placements/ HTTP/1.1" 500 72
+ERROR 2026-06-07 20:25:40,256 log 11904 9684 Internal Server Error: /api/logs/
+ERROR 2026-06-07 20:25:40,258 log 11904 9684 "GET /api/logs/ HTTP/1.1" 500 72
+INFO 2026-06-07 20:25:40,260 log 11904 18848 "GET /api/users/ HTTP/1.1" 200 991
+ERROR 2026-06-07 20:25:40,264 log 11904 2248 Internal Server Error: /api/placements/
+ERROR 2026-06-07 20:25:40,264 log 11904 2248 "GET /api/placements/ HTTP/1.1" 500 72
+ERROR 2026-06-07 20:25:42,108 log 11904 2248 Internal Server Error: /api/placements/
+ERROR 2026-06-07 20:25:42,109 log 11904 2248 "GET /api/placements/ HTTP/1.1" 500 72
+INFO 2026-06-07 20:25:42,113 log 11904 18848 "GET /api/users/ HTTP/1.1" 200 991
+ERROR 2026-06-07 20:25:42,123 log 11904 9684 Internal Server Error: /api/placements/
+ERROR 2026-06-07 20:25:42,123 log 11904 9684 "GET /api/placements/ HTTP/1.1" 500 72
+INFO 2026-06-07 20:25:42,125 log 11904 2248 "GET /api/users/ HTTP/1.1" 200 991
+INFO 2026-06-07 20:34:04,883 log 11904 11244 "POST /api/auth/register/ HTTP/1.1" 201 731
+INFO 2026-06-07 20:34:09,206 log 11904 11244 "POST /api/auth/login/ HTTP/1.1" 200 706
+ERROR 2026-06-07 20:34:09,242 log 11904 11244 Internal Server Error: /api/logs/dashboard/
+ERROR 2026-06-07 20:34:09,242 log 11904 11244 "GET /api/logs/dashboard/ HTTP/1.1" 500 72
+ERROR 2026-06-07 20:34:09,254 log 11904 5728 Internal Server Error: /api/logs/dashboard/
+ERROR 2026-06-07 20:34:09,254 log 11904 5728 "GET /api/logs/dashboard/ HTTP/1.1" 500 72
+ERROR 2026-06-07 20:34:13,605 log 11904 5728 Internal Server Error: /api/logs/dashboard/
+ERROR 2026-06-07 20:34:13,606 log 11904 5728 "GET /api/logs/dashboard/ HTTP/1.1" 500 72
+ERROR 2026-06-07 20:34:13,615 log 11904 11244 Internal Server Error: /api/logs/dashboard/
+ERROR 2026-06-07 20:34:13,615 log 11904 11244 "GET /api/logs/dashboard/ HTTP/1.1" 500 72
+INFO 2026-06-07 20:34:14,801 log 11904 11244 "OPTIONS /api/supervisor/reviews/ HTTP/1.1" 200 0
+INFO 2026-06-07 20:34:14,802 log 11904 5728 "OPTIONS /api/supervisor/reviews/ HTTP/1.1" 200 0
+INFO 2026-06-07 20:34:14,809 log 11904 5728 "GET /api/supervisor/reviews/ HTTP/1.1" 200 34
+INFO 2026-06-07 20:34:14,816 log 11904 11244 "GET /api/supervisor/reviews/ HTTP/1.1" 200 34
+INFO 2026-06-07 20:46:50,263 autoreload 20316 19464 Watching for file changes with StatReloader
+INFO 2026-06-07 20:48:22,873 log 20316 18716 "POST /api/auth/login/ HTTP/1.1" 200 649
+INFO 2026-06-07 21:01:55,654 autoreload 20316 19464 C:\Users\kkena\internship_logging_evaluation_system\BACKEND\placements\urls.py changed, reloading.
+INFO 2026-06-07 21:01:56,646 autoreload 19704 17560 Watching for file changes with StatReloader
+INFO 2026-06-07 21:02:02,375 autoreload 19704 17560 C:\Users\kkena\internship_logging_evaluation_system\BACKEND\evaluations\urls.py changed, reloading.
+INFO 2026-06-07 21:02:03,462 autoreload 18496 3988 Watching for file changes with StatReloader
+INFO 2026-06-07 21:08:03,772 autoreload 18496 3988 C:\Users\kkena\internship_logging_evaluation_system\BACKEND\logbook\serializers.py changed, reloading.
+INFO 2026-06-07 21:08:04,832 autoreload 6716 5652 Watching for file changes with StatReloader

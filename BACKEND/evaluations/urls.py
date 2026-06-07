@@ -70,7 +70,9 @@ urlpatterns = [
         name='comprehensive-dashboard'
     ),
 
-    # ====================== FUTURE ENDPOINTS (Commented) ======================
+    path('my/', views.StudentEvaluationView.as_view(), name='my-evaluations'),
+    
+    # ====================== FUTURE ENDPOINTS
     # path('ranking/', views.StudentRankingView.as_view(), name='student-ranking'),
     # path('statistics/', views.EvaluationStatisticsView.as_view(), name='evaluation-statistics'),
     # path('bulk-upload/', views.BulkEvaluationUploadView.as_view(), name='bulk-upload'),

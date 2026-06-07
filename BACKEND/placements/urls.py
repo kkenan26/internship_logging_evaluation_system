@@ -13,4 +13,5 @@ urlpatterns = [
     path('request/', StudentPlacementRequestView.as_view(), name='placement_request'),
     path('<int:pk>/upload-letter/', StudentUploadLetterView.as_view(), name='upload_letter'),
     path('<int:pk>/approve/', AdminApprovePlacementView.as_view(), name='approve_placement'),
+    path('my/', views.StudentPlacementView.as_view(), name='my-placement'),
 ]

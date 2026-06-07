@@ -4,11 +4,7 @@ from .models import WeeklyLog, SupervisorReview
 
 
 class SupervisorReviewSerializer(serializers.ModelSerializer):
-    """
-    Serializer for SupervisorReview model.
-    Handles reviews submitted by workplace and academic supervisors.
-    Each weekly log can have one review.
-    """
+  
     supervisor_name = serializers.CharField(
         source='supervisor.username',
         read_only=True
@@ -55,11 +51,6 @@ class SupervisorReviewSerializer(serializers.ModelSerializer):
 
 
 class WeeklyLogSerializer(serializers.ModelSerializer):
-    """
-    Serializer for WeeklyLog model.
-    Handles weekly activity logs submitted by student interns.
-    Includes full workflow validation for state transitions.
-    """
     student_name = serializers.CharField(
         source='student.username',
         read_only=True
@@ -112,16 +103,11 @@ class WeeklyLogSerializer(serializers.ModelSerializer):
     def get_can_edit(self, obj):
         """
         Checks if the log can still be edited.
-        A log can only be edited when it is in Draft status.
-        Once submitted, reviewed or approved it is locked.
         """
         return obj.status == 'draft'
 
     def get_days_since_submission(self, obj):
-        """
-        Calculates how many days ago the log was submitted.
-        Returns None if log has not been submitted yet.
-        """
+       
         if obj.submitted_at:
             delta = timezone.now() - obj.submitted_at
             return delta.days
@@ -144,19 +130,11 @@ class WeeklyLogSerializer(serializers.ModelSerializer):
         return value
 
     def validate(self, data):
-        """
-        Full validation for weekly log submission.
-        Checks:
-        1. Activities must be filled before submitting
-        2. Skills learned must be filled before submitting
-        3. Cannot submit a log that is already approved
-        4. Week number must be unique per student per placement
-        """
+
         status = data.get('status', '')
         activities = data.get('activities', '')
         skills_learned = data.get('skills_learned', '')
 
-        # Check 1 and 2: required fields before submitting
         if status == 'submitted':
             if not activities or not activities.strip():
                 raise serializers.ValidationError(
@@ -167,7 +145,7 @@ class WeeklyLogSerializer(serializers.ModelSerializer):
                     "Skills learned field is required before submitting."
                 )
 
-        # Check 3: cannot resubmit approved log
+
         if self.instance and self.instance.status == 'approved':
             raise serializers.ValidationError(
                 "This log has been approved and cannot be modified."
@@ -177,11 +155,7 @@ class WeeklyLogSerializer(serializers.ModelSerializer):
 
 
 class WeeklyLogSubmitSerializer(serializers.ModelSerializer):
-    """
-    Lightweight serializer for submitting a log.
-    Only allows changing status from draft to submitted.
-    Used in the submit endpoint.
-    """
+
     class Meta:
         model = WeeklyLog
         fields = ['id', 'status', 'submitted_at']
