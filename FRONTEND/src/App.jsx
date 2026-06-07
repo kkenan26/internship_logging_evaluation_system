@@ -32,7 +32,6 @@ import AcademicEvaluationPage from './pages/academic/AcademicEvaluationPage';
 import AdminDashboard          from './pages/admin/AdminDashboard';
 import UserManagementPage      from './pages/admin/UserManagementPage';
 import PlacementManagementPage from './pages/admin/PlacementManagementPage';
-import AdminStatisticsPage     from './pages/admin/AdminStatisticsPage';
 
 import './styles/index.css';
 
@@ -105,22 +104,20 @@ function AppRoutes() {
         path="/academic"
         element={<ProtectedRoute roles={['academic_supervisor']}><MainLayout /></ProtectedRoute>}
       >
-        <Route index              element={<Navigate to="dashboard" replace />} />
-        <Route path="dashboard"   element={<AcademicDashboard />} />
+        <Route index  element={<Navigate to="dashboard" replace />} />
+        <Route path="dashboard" element={<AcademicDashboard />} />
         <Route path="evaluations" element={<AcademicEvaluationPage />} />
-        <Route path="scores"      element={<ScoreResultsPage />} />
+        <Route path="scores"    element={<ScoreResultsPage />} />
       </Route>
 
       {/* ── Administrator ── */}
       <Route
         path="/admin"
-        element={<ProtectedRoute roles={['administrator']}><MainLayout /></ProtectedRoute>}
-      >
-        <Route index             element={<Navigate to="dashboard" replace />} />
+        element={<ProtectedRoute roles={['administrator']}><MainLayout /></ProtectedRoute>}>
+        <Route index   element={<Navigate to="dashboard" replace />} />
         <Route path="dashboard"  element={<AdminDashboard />} />
-        <Route path="users"      element={<UserManagementPage />} />
+        <Route path="users"  element={<UserManagementPage />} />
         <Route path="placements" element={<PlacementManagementPage />} />
-        <Route path="reports"    element={<AdminStatisticsPage />} />
       </Route>
 
       {/* Catch-all */}

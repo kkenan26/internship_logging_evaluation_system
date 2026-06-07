@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import API from '../../Services/Api';
-import { useNavigate } from 'react-router-dom'; 
 
 export default function AdminDashboard() {
   const navigate = useNavigate();
   const [stats, setStats] = useState({
-    totalStudents:    0,
+    totalStudents: 0,
     activePlacements: 0,
-    logsThisWeek:     0,
-    pendingReviews:   0,
+    totalLogs: 0,
+    pendingReviews: 0,
   });
   const [loading, setLoading] = useState(true);
 
@@ -21,21 +21,24 @@ export default function AdminDashboard() {
           API.get('/logs/'),
         ]);
 
-        const users      = Array.isArray(usersRes.data)      ? usersRes.data      : usersRes.data.results      ?? [];
-        const placements = Array.isArray(placementsRes.data) ? placementsRes.data : placementsRes.data.results ?? [];
-        const logs       = Array.isArray(logsRes.data)       ? logsRes.data       : logsRes.data.results       ?? [];
+        const users = Array.isArray(usersRes.data) ? usersRes.data : usersRes.data.results || [];
+        const placements = Array.isArray(placementsRes.data) ? placementsRes.data : placementsRes.data.results || [];
+        const logs = Array.isArray(logsRes.data) ? logsRes.data : logsRes.data.results || [];
 
-        const now       = new Date();
-        const weekAgo   = new Date(now - 7 * 24 * 60 * 60 * 1000);
+        const now = new Date();
 
         setStats({
-          totalStudents:    users.filter(u => u.role === 'student').length,
-          activePlacements: placements.filter(p => new Date(p.start_date) <= now && new Date(p.end_date) >= now).length,
-          logsThisWeek:     logs.filter(l => new Date(l.created_at) >= weekAgo).length,
-          pendingReviews:   logs.filter(l => l.status === 'submitted').length,
+          totalStudents: users.filter(u => u.role === 'student').length,
+          activePlacements: placements.filter(p => {
+            const start = new Date(p.start_date);
+            const end = new Date(p.end_date);
+            return start <= now && end >= now;
+          }).length,
+          totalLogs: logs.length,
+          pendingReviews: logs.filter(l => l.status === 'submitted').length,
         });
       } catch (err) {
-        console.error('Dashboard fetch failed:', err.response?.status, err.message);
+        console.error('Dashboard error:', err);
       } finally {
         setLoading(false);
       }
@@ -43,40 +46,59 @@ export default function AdminDashboard() {
     fetchStats();
   }, []);
 
-  const cards = [
-    { label: 'Total Students',    value: stats.totalStudents,    icon: '🎓', color: '#dbeafe' },
-    { label: 'Active Placements', value: stats.activePlacements, icon: '🏢', color: '#dcfce7' },
-    { label: 'Logs This Week',    value: stats.logsThisWeek,     icon: '📓', color: '#fef9c3' },
-    { label: 'Pending Reviews',   value: stats.pendingReviews,   icon: '⏳', color: '#fee2e2' },
-  ];
+  if (loading) {
+    return <p style={{ padding: '32px', textAlign: 'center', color: '#666' }}>Loading dashboard...</p>;
+  }
 
   return (
     <div>
-      <h1 className="page-title">Administrator Dashboard</h1>
+      <h1>Admin Dashboard</h1>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: 16, marginBottom: 28 }}>
-        {cards.map((s) => (
-          <div key={s.label} className="card" style={{ background: s.color, border: 'none' }}>
-            <div style={{ fontSize: 28, marginBottom: 8 }}>{s.icon}</div>
-            <div style={{ fontSize: 28, fontWeight: 700 }}>
-              {loading ? '…' : s.value}
-            </div>
-            <div style={{ fontSize: 13, color: '#374151', marginTop: 4 }}>{s.label}</div>
-          </div>
-        ))}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '16px', marginBottom: '24px' }}>
+        <div style={{ background: '#e3f2fd', padding: '20px', borderRadius: '8px' }}>
+          <div style={{ fontSize: '28px', fontWeight: 'bold' }}>{stats.totalStudents}</div>
+          <div style={{ color: '#666' }}>Total Students</div>
+        </div>
+        <div style={{ background: '#e8f5e9', padding: '20px', borderRadius: '8px' }}>
+          <div style={{ fontSize: '28px', fontWeight: 'bold' }}>{stats.activePlacements}</div>
+          <div style={{ color: '#666' }}>Active Placements</div>
+        </div>
+        <div style={{ background: '#fff3e0', padding: '20px', borderRadius: '8px' }}>
+          <div style={{ fontSize: '28px', fontWeight: 'bold' }}>{stats.totalLogs}</div>
+          <div style={{ color: '#666' }}>Total Logs</div>
+        </div>
+        <div style={{ background: '#ffebee', padding: '20px', borderRadius: '8px' }}>
+          <div style={{ fontSize: '28px', fontWeight: 'bold' }}>{stats.pendingReviews}</div>
+          <div style={{ color: '#666' }}>Pending Reviews</div>
+        </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
-        <div className="card">
-          <h3 style={{ fontWeight: 700, marginBottom: 12 }}>Recent Activity</h3>
-          <p style={{ color: '#64748b' }}>No recent activity yet.</p>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+        <div style={{ background: '#fff', border: '1px solid #ddd', borderRadius: '8px', padding: '20px' }}>
+          <h3>Recent Activity</h3>
+          <p style={{ color: '#666', marginTop: '16px' }}>No recent activity to display.</p>
         </div>
-        <div className="card">
-          <h3 style={{ fontWeight: 700, marginBottom: 12 }}>Quick Actions</h3>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-            <button className="btn btn-primary"  onClick={() => navigate('/admin/placements')}>+ Assign Placement</button>
-            <button className="btn btn-outline"  onClick={() => navigate('/admin/users')}>👥 Manage Users</button>
-            <button className="btn btn-outline"  onClick={() => navigate('/admin/reports')}>📈 View Reports</button>
+        <div style={{ background: '#fff', border: '1px solid #ddd', borderRadius: '8px', padding: '20px' }}>
+          <h3>Quick Actions</h3>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '16px' }}>
+            <button
+              onClick={() => navigate('/admin/placements')}
+              style={{ background: '#1976d2', color: '#fff', border: 'none', padding: '10px', borderRadius: '4px', cursor: 'pointer' }}
+            >
+              Manage Placements
+            </button>
+            <button
+              onClick={() => navigate('/admin/users')}
+              style={{ background: '#fff', color: '#333', border: '1px solid #ddd', padding: '10px', borderRadius: '4px', cursor: 'pointer' }}
+            >
+              Manage Users
+            </button>
+            <button
+              onClick={() => navigate('/admin/reports')}
+              style={{ background: '#fff', color: '#333', border: '1px solid #ddd', padding: '10px', borderRadius: '4px', cursor: 'pointer' }}
+            >
+              View Reports
+            </button>
           </div>
         </div>
       </div>

@@ -1,9 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
-import {
-  BarChart, Bar, PieChart, Pie, Cell,
-  XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend
-} from 'recharts';
 import API from '../../Services/Api';
 
 export default function SupervisorDashboard() {
@@ -12,162 +8,117 @@ export default function SupervisorDashboard() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchDashboardData = async () => {
+    const fetchData = async () => {
       try {
-        // Only one call needed — /logs/dashboard/ returns everything
-        const logbookRes = await API.get('/logs/dashboard/');
-        const logbookData = logbookRes.data;
-
-        const studentPerformanceData = (logbookData.student_performance || []).map(student => ({
-          name: student.student.length > 10 ? student.student.substring(0, 10) + '...' : student.student,
-          totalLogs: student.total_logs,
-          approvedLogs: student.approved_logs,
-          approvalRate: student.approval_rate,
-        }));
-
-        const logStatusData = [
-          { name: 'Submitted', value: logbookData.workload?.pending_reviews || 0, color: '#f59e0b' },
-          { name: 'Reviewed',  value: logbookData.workload?.reviewed || 0,         color: '#3b82f6' },
-          { name: 'Approved',  value: logbookData.workload?.approved || 0,         color: '#22c55e' },
-        ];
+        const res = await API.get('/logs/dashboard/');
+        const data = res.data;
+        const workload = data.workload || {};
+        const studentPerformance = data.student_performance || [];
 
         setDashboardData({
-          stats: {
-            assignedInterns:      logbookData.workload?.total_students || 0,
-            pendingReviews:       logbookData.workload?.pending_reviews || 0,
-            reviewedThisWeek:     logbookData.workload?.reviewed || 0,
-            reviewCompletionRate: logbookData.workload?.review_completion_rate || 0,
-          },
-          charts: { studentPerformanceData, logStatusData },
+          totalStudents: workload.total_students || 0,
+          pendingReviews: workload.pending_reviews || 0,
+          reviewedCount: workload.reviewed || 0,
+          approvedCount: workload.approved || 0,
+          completionRate: workload.review_completion_rate || 0,
+          studentPerformance: studentPerformance,
         });
-      } catch (error) {
-        console.error('Supervisor dashboard error:', error);
-        setDashboardData(null);
+      } catch (err) {
+        console.error('Dashboard error:', err);
       } finally {
         setLoading(false);
       }
     };
-    fetchDashboardData();
+    fetchData();
   }, []);
 
-  if (loading) return <div style={styles.center}><p>Loading your dashboard...</p></div>;
-  if (!dashboardData) return <div style={styles.center}><p>Failed to load dashboard data. Please try again.</p></div>;
+  if (loading) {
+    return <p style={{ padding: '32px', textAlign: 'center', color: '#666' }}>Loading dashboard...</p>;
+  }
 
-  const { stats, charts } = dashboardData;
+  if (!dashboardData) {
+    return <p style={{ padding: '32px', textAlign: 'center', color: '#666' }}>Could not load dashboard.</p>;
+  }
+
+  const completionColor = dashboardData.completionRate >= 70 ? '#2e7d32' : dashboardData.completionRate >= 40 ? '#ed6c02' : '#c62828';
 
   return (
     <div>
-      <h1 style={styles.heading}>Supervisor Dashboard</h1>
+      <h1>Supervisor Dashboard</h1>
+      <p>Welcome, {user?.first_name || user?.username}</p>
 
-      <div style={styles.statsGrid}>
-        {[
-          { icon: '🎓', value: stats.assignedInterns,      label: 'Assigned Interns',    sub: 'Active students',          bg: '#dbeafe', subColor: '#3730a3' },
-          { icon: '⏳', value: stats.pendingReviews,       label: 'Pending Reviews',     sub: 'Require attention',        bg: '#fef9c3', subColor: '#92400e' },
-          { icon: '✅', value: stats.reviewedThisWeek,     label: 'Reviewed',            sub: `${stats.reviewCompletionRate}% completion`, bg: '#dcfce7', subColor: '#166534' },
-          { icon: '📊', value: `${stats.reviewCompletionRate}%`, label: 'Review Efficiency', sub: 'Overall performance', bg: '#f3e8ff', subColor: '#7c3aed' },
-        ].map((card, i) => (
-          <div key={i} style={{ ...styles.statCard, background: card.bg }}>
-            <div style={styles.statIcon}>{card.icon}</div>
-            <div style={styles.statValue}>{card.value}</div>
-            <div style={styles.statLabel}>{card.label}</div>
-            <div style={{ fontSize: 11, color: card.subColor, marginTop: 4 }}>{card.sub}</div>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '16px', marginBottom: '24px' }}>
+        <div style={{ background: '#e3f2fd', padding: '20px', borderRadius: '8px' }}>
+          <div style={{ fontSize: '28px', fontWeight: 'bold' }}>{dashboardData.totalStudents}</div>
+          <div style={{ color: '#666' }}>Assigned Students</div>
+        </div>
+        <div style={{ background: '#fff3e0', padding: '20px', borderRadius: '8px' }}>
+          <div style={{ fontSize: '28px', fontWeight: 'bold' }}>{dashboardData.pendingReviews}</div>
+          <div style={{ color: '#666' }}>Pending Reviews</div>
+        </div>
+        <div style={{ background: '#e8f5e9', padding: '20px', borderRadius: '8px' }}>
+          <div style={{ fontSize: '28px', fontWeight: 'bold' }}>{dashboardData.reviewedCount}</div>
+          <div style={{ color: '#666' }}>Reviewed</div>
+        </div>
+        <div style={{ background: '#f3e5f5', padding: '20px', borderRadius: '8px' }}>
+          <div style={{ fontSize: '28px', fontWeight: 'bold' }}>{dashboardData.approvedCount}</div>
+          <div style={{ color: '#666' }}>Approved</div>
+        </div>
+      </div>
+
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+        <div style={{ background: '#fff', border: '1px solid #ddd', borderRadius: '8px', padding: '20px' }}>
+          <h3>Review Progress</h3>
+          <div style={{ marginTop: '16px' }}>
+            <div style={{ marginBottom: '8px' }}>Completion Rate: {dashboardData.completionRate}%</div>
+            <div style={{ width: '100%', background: '#eee', borderRadius: '4px', overflow: 'hidden' }}>
+              <div style={{ width: `${dashboardData.completionRate}%`, height: '8px', background: completionColor }}></div>
+            </div>
           </div>
-        ))}
-      </div>
-
-      <div style={styles.chartsRow}>
-        <div style={styles.chartCard}>
-          <h3 style={styles.chartTitle}>Log Review Status</h3>
-          <ResponsiveContainer width="100%" height={280}>
-            <PieChart>
-              <Pie data={charts.logStatusData} cx="50%" cy="50%" outerRadius={90} dataKey="value"
-                label={({ name, value }) => value > 0 ? `${name}: ${value}` : ''}>
-                {charts.logStatusData.map((entry, i) => <Cell key={i} fill={entry.color} />)}
-              </Pie>
-              <Tooltip contentStyle={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 8 }} />
-            </PieChart>
-          </ResponsiveContainer>
-        </div>
-
-        <div style={styles.chartCard}>
-          <h3 style={styles.chartTitle}>Student Performance</h3>
-          {charts.studentPerformanceData.length > 0 ? (
-            <ResponsiveContainer width="100%" height={280}>
-              <BarChart data={charts.studentPerformanceData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" vertical={false} />
-                <XAxis dataKey="name" tick={{ fill: '#64748b', fontSize: 10 }} axisLine={false} tickLine={false} />
-                <YAxis tick={{ fill: '#64748b', fontSize: 12 }} axisLine={false} tickLine={false} />
-                <Tooltip contentStyle={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 8 }} />
-                <Legend wrapperStyle={{ color: '#64748b', fontSize: 12 }} />
-                <Bar dataKey="totalLogs"    fill="#3b82f6" radius={[4,4,0,0]} name="Total Logs" />
-                <Bar dataKey="approvedLogs" fill="#22c55e" radius={[4,4,0,0]} name="Approved" />
-              </BarChart>
-            </ResponsiveContainer>
-          ) : (
-            <div style={styles.empty}>No student data available yet.</div>
-          )}
-        </div>
-      </div>
-
-      <div style={styles.chartsRow}>
-        <div style={styles.chartCard}>
-          <h3 style={styles.chartTitle}>Student Approval Rates</h3>
-          {charts.studentPerformanceData.length > 0 ? (
-            <ResponsiveContainer width="100%" height={280}>
-              <BarChart data={charts.studentPerformanceData} layout="horizontal" margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" horizontal={false} />
-                <XAxis type="number" tick={{ fill: '#64748b', fontSize: 12 }} axisLine={false} tickLine={false} />
-                <YAxis type="category" dataKey="name" tick={{ fill: '#64748b', fontSize: 10 }} axisLine={false} tickLine={false} width={80} />
-                <Tooltip contentStyle={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 8 }}
-                  formatter={(v) => [`${v}%`, 'Approval Rate']} />
-                <Bar dataKey="approvalRate" fill="#f59e0b" radius={[0,4,4,0]} name="Approval Rate %" />
-              </BarChart>
-            </ResponsiveContainer>
-          ) : (
-            <div style={styles.empty}>No approval rate data available yet.</div>
-          )}
-        </div>
-
-        <div style={styles.chartCard}>
-          <h3 style={styles.chartTitle}>Workload Summary</h3>
-          <div style={{ padding: 20 }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 20 }}>
-              <div style={{ textAlign: 'center' }}>
-                <div style={{ fontSize: 32, fontWeight: 'bold', color: '#3b82f6', marginBottom: 8 }}>{stats.assignedInterns}</div>
-                <div style={{ fontSize: 12, color: '#64748b', textTransform: 'uppercase' }}>Total Students</div>
-              </div>
-              <div style={{ textAlign: 'center' }}>
-                <div style={{ fontSize: 32, fontWeight: 'bold', color: '#f59e0b', marginBottom: 8 }}>{stats.pendingReviews}</div>
-                <div style={{ fontSize: 12, color: '#64748b', textTransform: 'uppercase' }}>Pending Reviews</div>
-              </div>
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
-              <span style={{ fontSize: 14, color: '#64748b' }}>Review Completion</span>
-              <span style={{ fontSize: 14, fontWeight: 'bold' }}>{stats.reviewCompletionRate}%</span>
-            </div>
-            <div style={{ width: '100%', height: 12, background: '#e2e8f0', borderRadius: 6, overflow: 'hidden' }}>
-              <div style={{
-                width: `${stats.reviewCompletionRate}%`, height: '100%', borderRadius: 6,
-                background: stats.reviewCompletionRate > 75 ? '#22c55e' : stats.reviewCompletionRate > 50 ? '#3b82f6' : '#f59e0b',
-              }} />
+          <div style={{ marginTop: '20px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
+              <span>Pending: {dashboardData.pendingReviews}</span>
+              <span>Reviewed: {dashboardData.reviewedCount}</span>
+              <span>Approved: {dashboardData.approvedCount}</span>
             </div>
           </div>
         </div>
+
+        <div style={{ background: '#fff', border: '1px solid #ddd', borderRadius: '8px', padding: '20px' }}>
+          <h3>Quick Actions</h3>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '16px' }}>
+            <a href="/supervisor/reviews" style={{ background: '#1976d2', color: '#fff', textDecoration: 'none', padding: '10px', borderRadius: '4px', textAlign: 'center' }}>
+              View Pending Reviews
+            </a>
+          </div>
+        </div>
       </div>
+
+      {dashboardData.studentPerformance.length > 0 && (
+        <div style={{ background: '#fff', border: '1px solid #ddd', borderRadius: '8px', padding: '20px', marginTop: '20px' }}>
+          <h3>Student Performance</h3>
+          <table style={{ width: '100%', marginTop: '16px' }}>
+            <thead>
+              <tr style={{ borderBottom: '1px solid #ddd' }}>
+                <th style={{ padding: '8px', textAlign: 'left' }}>Student</th>
+                <th style={{ padding: '8px', textAlign: 'left' }}>Total Logs</th>
+                <th style={{ padding: '8px', textAlign: 'left' }}>Approved</th>
+                <th style={{ padding: '8px', textAlign: 'left' }}>Approval Rate</th>
+              </tr>
+            </thead>
+            <tbody>
+              {dashboardData.studentPerformance.map((student, idx) => (
+                <tr key={idx} style={{ borderBottom: '1px solid #eee' }}>
+                  <td style={{ padding: '8px' }}>{student.student}</td>
+                  <td style={{ padding: '8px' }}>{student.total_logs}</td>
+                  <td style={{ padding: '8px' }}>{student.approved_logs}</td>
+                  <td style={{ padding: '8px' }}>{student.approval_rate}%</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 }
-
-const styles = {
-  center:    { display: 'flex', justifyContent: 'center', alignItems: 'center', height: '50vh' },
-  heading:   { fontFamily: "'Syne', sans-serif", fontSize: 28, fontWeight: 700, color: '#1e293b', marginBottom: 24 },
-  statsGrid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: 16, marginBottom: 24 },
-  statCard:  { border: 'none', borderRadius: 12, padding: 24 },
-  statIcon:  { fontSize: 28, marginBottom: 8 },
-  statValue: { fontSize: 32, fontWeight: 700, lineHeight: 1, color: '#1e293b' },
-  statLabel: { fontSize: 13, color: '#64748b', marginTop: 4, textTransform: 'uppercase', letterSpacing: '0.5px' },
-  chartsRow: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 24 },
-  chartCard: { background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: 24, boxShadow: '0 1px 3px rgba(0,0,0,0.1)' },
-  chartTitle:{ fontFamily: "'Syne', sans-serif", fontSize: 16, fontWeight: 600, color: '#1e293b', marginBottom: 20 },
-  empty:     { padding: 40, textAlign: 'center', color: '#64748b' },
-};

@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 
-/* ── Nav items per role ── */
 const NAV = {
   student: [
     { to: '/student/dashboard',  label: 'Dashboard',    icon: '🏠' },
@@ -22,7 +21,6 @@ const NAV = {
     { to: '/admin/dashboard',   label: 'Dashboard',   icon: '🏠' },
     { to: '/admin/users',       label: 'Users',        icon: '👥' },
     { to: '/admin/placements',  label: 'Placements',   icon: '🏢' },
-    { to: '/admin/reports',     label: 'Reports',      icon: '📈' },
   ],
 };
 
