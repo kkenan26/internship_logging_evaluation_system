@@ -537,3 +537,115 @@ ERROR 2026-06-08 13:47:18,197 log 20400 3448 "GET /api/placements/admin/ HTTP/1.
 INFO 2026-06-08 13:47:18,231 log 20400 8576 "GET /api/users/ HTTP/1.1" 200 1155
 ERROR 2026-06-08 13:47:18,231 log 20400 3448 Internal Server Error: /api/placements/admin/
 ERROR 2026-06-08 13:47:18,232 log 20400 3448 "GET /api/placements/admin/ HTTP/1.1" 500 72
+INFO 2026-06-09 11:52:45,494 autoreload 4580 8508 Watching for file changes with StatReloader
+INFO 2026-06-09 11:53:33,991 log 4580 3400 "OPTIONS /api/auth/login/ HTTP/1.1" 200 0
+WARNING 2026-06-09 11:53:34,052 log 4580 3400 Unauthorized: /api/auth/login/
+WARNING 2026-06-09 11:53:34,053 log 4580 3400 "POST /api/auth/login/ HTTP/1.1" 401 84
+INFO 2026-06-09 11:53:34,060 log 4580 3400 "OPTIONS /api/token/refresh/ HTTP/1.1" 200 0
+WARNING 2026-06-09 11:53:34,130 log 4580 3400 Unauthorized: /api/token/refresh/
+WARNING 2026-06-09 11:53:34,130 log 4580 3400 "POST /api/token/refresh/ HTTP/1.1" 401 60
+INFO 2026-06-09 11:53:42,687 log 4580 3400 "POST /api/auth/login/ HTTP/1.1" 200 649
+INFO 2026-06-09 11:53:42,759 log 4580 3400 "OPTIONS /api/logs/dashboard/ HTTP/1.1" 200 0
+INFO 2026-06-09 11:53:42,759 log 4580 12900 "OPTIONS /api/student/placement/ HTTP/1.1" 200 0
+INFO 2026-06-09 11:53:42,762 log 4580 3400 "OPTIONS /api/evaluations/score/5/ HTTP/1.1" 200 0
+INFO 2026-06-09 11:53:42,763 log 4580 12900 "OPTIONS /api/logs/dashboard/ HTTP/1.1" 200 0
+INFO 2026-06-09 11:53:42,765 log 4580 3400 "OPTIONS /api/student/placement/ HTTP/1.1" 200 0
+INFO 2026-06-09 11:53:42,765 log 4580 12900 "OPTIONS /api/evaluations/score/5/ HTTP/1.1" 200 0
+INFO 2026-06-09 11:53:42,779 log 4580 3400 "GET /api/student/placement/ HTTP/1.1" 200 52
+INFO 2026-06-09 11:53:42,784 log 4580 12900 "GET /api/logs/dashboard/ HTTP/1.1" 200 180
+INFO 2026-06-09 11:53:42,790 log 4580 3400 "GET /api/evaluations/score/5/ HTTP/1.1" 200 121
+INFO 2026-06-09 11:53:42,795 log 4580 12900 "GET /api/student/placement/ HTTP/1.1" 200 52
+INFO 2026-06-09 11:53:42,808 log 4580 3400 "GET /api/logs/dashboard/ HTTP/1.1" 200 180
+INFO 2026-06-09 11:53:42,808 log 4580 12900 "GET /api/evaluations/score/5/ HTTP/1.1" 200 121
+INFO 2026-06-09 11:54:03,661 log 4580 12900 "POST /api/auth/login/ HTTP/1.1" 200 706
+ERROR 2026-06-09 11:54:03,769 log 4580 12900 Internal Server Error: /api/logs/dashboard/
+ERROR 2026-06-09 11:54:03,770 log 4580 12900 "GET /api/logs/dashboard/ HTTP/1.1" 500 72
+ERROR 2026-06-09 11:54:03,783 log 4580 3400 Internal Server Error: /api/logs/dashboard/
+ERROR 2026-06-09 11:54:03,784 log 4580 3400 "GET /api/logs/dashboard/ HTTP/1.1" 500 72
+INFO 2026-06-09 11:54:08,016 log 4580 3400 "OPTIONS /api/supervisor/reviews/ HTTP/1.1" 200 0
+INFO 2026-06-09 11:54:08,018 log 4580 12900 "OPTIONS /api/supervisor/reviews/ HTTP/1.1" 200 0
+INFO 2026-06-09 11:54:08,027 log 4580 12900 "GET /api/supervisor/reviews/ HTTP/1.1" 200 34
+INFO 2026-06-09 11:54:08,033 log 4580 3400 "GET /api/supervisor/reviews/ HTTP/1.1" 200 34
+ERROR 2026-06-09 11:54:09,698 log 4580 3400 Internal Server Error: /api/logs/dashboard/
+ERROR 2026-06-09 11:54:09,698 log 4580 3400 "GET /api/logs/dashboard/ HTTP/1.1" 500 72
+ERROR 2026-06-09 11:54:09,708 log 4580 12900 Internal Server Error: /api/logs/dashboard/
+ERROR 2026-06-09 11:54:09,708 log 4580 12900 "GET /api/logs/dashboard/ HTTP/1.1" 500 72
+INFO 2026-06-09 11:54:19,063 log 4580 12900 "POST /api/auth/login/ HTTP/1.1" 200 639
+INFO 2026-06-09 11:54:19,089 log 4580 12900 "OPTIONS /api/users/ HTTP/1.1" 200 0
+INFO 2026-06-09 11:54:19,093 log 4580 3400 "OPTIONS /api/placements/ HTTP/1.1" 200 0
+INFO 2026-06-09 11:54:19,094 log 4580 7212 "OPTIONS /api/logs/ HTTP/1.1" 200 0
+INFO 2026-06-09 11:54:19,096 log 4580 9816 "OPTIONS /api/users/ HTTP/1.1" 200 0
+INFO 2026-06-09 11:54:19,097 log 4580 6284 "OPTIONS /api/placements/ HTTP/1.1" 200 0
+INFO 2026-06-09 11:54:19,097 log 4580 11308 "OPTIONS /api/logs/ HTTP/1.1" 200 0
+INFO 2026-06-09 11:54:19,109 log 4580 12900 "GET /api/users/ HTTP/1.1" 200 1155
+ERROR 2026-06-09 11:54:19,116 log 4580 11308 Internal Server Error: /api/placements/
+ERROR 2026-06-09 11:54:19,117 log 4580 11308 "GET /api/placements/ HTTP/1.1" 500 72
+ERROR 2026-06-09 11:54:19,123 log 4580 6284 Internal Server Error: /api/logs/
+ERROR 2026-06-09 11:54:19,125 log 4580 6284 "GET /api/logs/ HTTP/1.1" 500 72
+INFO 2026-06-09 11:54:19,132 log 4580 9816 "GET /api/users/ HTTP/1.1" 200 1155
+ERROR 2026-06-09 11:54:19,136 log 4580 12900 Internal Server Error: /api/placements/
+ERROR 2026-06-09 11:54:19,138 log 4580 12900 "GET /api/placements/ HTTP/1.1" 500 72
+ERROR 2026-06-09 11:54:19,141 log 4580 11308 Internal Server Error: /api/logs/
+ERROR 2026-06-09 11:54:19,141 log 4580 11308 "GET /api/logs/ HTTP/1.1" 500 72
+INFO 2026-06-09 11:54:23,138 log 4580 11308 "OPTIONS /api/placements/admin/ HTTP/1.1" 200 0
+INFO 2026-06-09 11:54:23,141 log 4580 12900 "OPTIONS /api/admin/users/ HTTP/1.1" 200 0
+INFO 2026-06-09 11:54:23,142 log 4580 6284 "OPTIONS /api/admin/users/ HTTP/1.1" 200 0
+INFO 2026-06-09 11:54:23,142 log 4580 9816 "OPTIONS /api/placements/admin/ HTTP/1.1" 200 0
+ERROR 2026-06-09 11:54:23,157 log 4580 11308 Internal Server Error: /api/placements/admin/
+INFO 2026-06-09 11:54:23,157 log 4580 6284 "GET /api/admin/users/ HTTP/1.1" 200 1155
+ERROR 2026-06-09 11:54:23,157 log 4580 11308 "GET /api/placements/admin/ HTTP/1.1" 500 72
+INFO 2026-06-09 11:54:23,170 log 4580 9816 "GET /api/admin/users/ HTTP/1.1" 200 1155
+ERROR 2026-06-09 11:54:23,172 log 4580 12900 Internal Server Error: /api/placements/admin/
+ERROR 2026-06-09 11:54:23,173 log 4580 12900 "GET /api/placements/admin/ HTTP/1.1" 500 72
+INFO 2026-06-09 11:56:49,397 log 4580 12900 "POST /api/auth/login/ HTTP/1.1" 200 639
+ERROR 2026-06-09 11:56:49,436 log 4580 9816 Internal Server Error: /api/placements/
+INFO 2026-06-09 11:56:49,437 log 4580 12900 "GET /api/users/ HTTP/1.1" 200 1155
+ERROR 2026-06-09 11:56:49,438 log 4580 9816 "GET /api/placements/ HTTP/1.1" 500 72
+ERROR 2026-06-09 11:56:49,446 log 4580 11308 Internal Server Error: /api/logs/
+ERROR 2026-06-09 11:56:49,448 log 4580 11308 "GET /api/logs/ HTTP/1.1" 500 72
+ERROR 2026-06-09 11:56:49,456 log 4580 7212 Internal Server Error: /api/placements/
+ERROR 2026-06-09 11:56:49,460 log 4580 7212 "GET /api/placements/ HTTP/1.1" 500 72
+INFO 2026-06-09 11:56:49,461 log 4580 6284 "GET /api/users/ HTTP/1.1" 200 1155
+ERROR 2026-06-09 11:56:49,464 log 4580 9816 Internal Server Error: /api/logs/
+ERROR 2026-06-09 11:56:49,465 log 4580 9816 "GET /api/logs/ HTTP/1.1" 500 72
+INFO 2026-06-09 11:57:17,962 log 4580 6284 "GET /api/admin/users/ HTTP/1.1" 200 1155
+ERROR 2026-06-09 11:57:17,966 log 4580 9816 Internal Server Error: /api/placements/admin/
+ERROR 2026-06-09 11:57:17,966 log 4580 9816 "GET /api/placements/admin/ HTTP/1.1" 500 72
+INFO 2026-06-09 11:57:17,978 log 4580 7212 "GET /api/admin/users/ HTTP/1.1" 200 1155
+ERROR 2026-06-09 11:57:17,981 log 4580 6284 Internal Server Error: /api/placements/admin/
+ERROR 2026-06-09 11:57:17,982 log 4580 6284 "GET /api/placements/admin/ HTTP/1.1" 500 72
+INFO 2026-06-09 11:58:26,176 log 4580 6284 "POST /api/auth/login/ HTTP/1.1" 200 649
+INFO 2026-06-09 11:58:26,216 log 4580 7212 "GET /api/student/placement/ HTTP/1.1" 200 52
+INFO 2026-06-09 11:58:26,224 log 4580 9816 "GET /api/evaluations/score/5/ HTTP/1.1" 200 121
+INFO 2026-06-09 11:58:26,229 log 4580 11308 "GET /api/student/placement/ HTTP/1.1" 200 52
+INFO 2026-06-09 11:58:26,230 log 4580 6284 "GET /api/logs/dashboard/ HTTP/1.1" 200 180
+INFO 2026-06-09 11:58:26,235 log 4580 7212 "GET /api/evaluations/score/5/ HTTP/1.1" 200 121
+INFO 2026-06-09 11:58:26,240 log 4580 11308 "GET /api/logs/dashboard/ HTTP/1.1" 200 180
+ERROR 2026-06-09 11:58:30,498 log 4580 11308 Internal Server Error: /api/placements/
+ERROR 2026-06-09 11:58:30,499 log 4580 11308 "GET /api/placements/ HTTP/1.1" 500 72
+ERROR 2026-06-09 11:58:30,507 log 4580 7212 Internal Server Error: /api/placements/
+ERROR 2026-06-09 11:58:30,508 log 4580 7212 "GET /api/placements/ HTTP/1.1" 500 72
+INFO 2026-06-09 11:59:08,283 log 4580 7212 "OPTIONS /api/placements/my-placement/ HTTP/1.1" 200 0
+INFO 2026-06-09 11:59:08,284 log 4580 11308 "OPTIONS /api/placements/my-placement/ HTTP/1.1" 200 0
+INFO 2026-06-09 11:59:08,293 log 4580 11308 "GET /api/placements/my-placement/ HTTP/1.1" 200 52
+INFO 2026-06-09 11:59:08,297 log 4580 7212 "GET /api/placements/my-placement/ HTTP/1.1" 200 52
+ERROR 2026-06-09 11:59:30,041 log 4580 7212 Internal Server Error: /api/placements/my-placement/
+ERROR 2026-06-09 11:59:30,042 log 4580 7212 "POST /api/placements/my-placement/ HTTP/1.1" 500 72
+ERROR 2026-06-09 11:59:34,255 log 4580 7212 Internal Server Error: /api/placements/my-placement/
+ERROR 2026-06-09 11:59:34,255 log 4580 7212 "POST /api/placements/my-placement/ HTTP/1.1" 500 72
+INFO 2026-06-09 12:00:12,944 log 4580 7212 "POST /api/auth/login/ HTTP/1.1" 200 706
+ERROR 2026-06-09 12:00:12,980 log 4580 7212 Internal Server Error: /api/logs/dashboard/
+ERROR 2026-06-09 12:00:12,980 log 4580 7212 "GET /api/logs/dashboard/ HTTP/1.1" 500 72
+ERROR 2026-06-09 12:00:12,991 log 4580 11308 Internal Server Error: /api/logs/dashboard/
+ERROR 2026-06-09 12:00:12,991 log 4580 11308 "GET /api/logs/dashboard/ HTTP/1.1" 500 72
+INFO 2026-06-09 12:00:18,377 log 4580 11308 "GET /api/supervisor/reviews/ HTTP/1.1" 200 34
+INFO 2026-06-09 12:00:18,383 log 4580 7212 "GET /api/supervisor/reviews/ HTTP/1.1" 200 34
+ERROR 2026-06-09 12:00:22,622 log 4580 7212 Internal Server Error: /api/logs/dashboard/
+ERROR 2026-06-09 12:00:22,622 log 4580 7212 "GET /api/logs/dashboard/ HTTP/1.1" 500 72
+ERROR 2026-06-09 12:00:22,631 log 4580 11308 Internal Server Error: /api/logs/dashboard/
+ERROR 2026-06-09 12:00:22,631 log 4580 11308 "GET /api/logs/dashboard/ HTTP/1.1" 500 72
+INFO 2026-06-09 12:00:55,136 log 4580 11308 "POST /api/auth/login/ HTTP/1.1" 200 701
+ERROR 2026-06-09 12:00:59,338 log 4580 11308 Internal Server Error: /api/placements/
+ERROR 2026-06-09 12:00:59,339 log 4580 11308 "GET /api/placements/ HTTP/1.1" 500 72
+ERROR 2026-06-09 12:00:59,347 log 4580 7212 Internal Server Error: /api/placements/
+ERROR 2026-06-09 12:00:59,348 log 4580 7212 "GET /api/placements/ HTTP/1.1" 500 72
