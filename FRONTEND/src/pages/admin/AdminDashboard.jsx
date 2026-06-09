@@ -11,7 +11,7 @@ export default function AdminDashboard() {
     const fetchStats = async () => {
       try {
         const [usersRes, placementsRes, logsRes] = await Promise.all([
-          API.get('/users/'),
+          API.get('/admin/users/'),
           API.get('/placements/'),
           API.get('/logs/'),
         ]);
@@ -40,17 +40,17 @@ export default function AdminDashboard() {
     <div>
       <h1>Admin Dashboard</h1>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '16px', marginBottom: '24px' }}>
-        <div style={{ background: '#e3f2fd', padding: '20px', borderRadius: '4px' }}><div style={{ fontSize: '28px', fontWeight: 'bold' }}>{stats.totalStudents}</div><div>Total Students</div></div>
-        <div style={{ background: '#d0f0d0', padding: '20px', borderRadius: '4px' }}><div style={{ fontSize: '28px', fontWeight: 'bold' }}>{stats.activePlacements}</div><div>Active Placements</div></div>
-        <div style={{ background: '#fff0d0', padding: '20px', borderRadius: '4px' }}><div style={{ fontSize: '28px', fontWeight: 'bold' }}>{stats.totalLogs}</div><div>Total Logs</div></div>
-        <div style={{ background: '#ffe0e0', padding: '20px', borderRadius: '4px' }}><div style={{ fontSize: '28px', fontWeight: 'bold' }}>{stats.pendingReviews}</div><div>Pending Reviews</div></div>
+        <div style={{ background: '#fff', border: '1px solid #ddd', padding: '20px', borderRadius: '4px' }}><div style={{ fontSize: '28px', fontWeight: 'bold' }}>{stats.totalStudents}</div><div>Total Students</div></div>
+        <div style={{ background: '#fff', border: '1px solid #ddd', padding: '20px', borderRadius: '4px' }}><div style={{ fontSize: '28px', fontWeight: 'bold' }}>{stats.activePlacements}</div><div>Active Placements</div></div>
+        <div style={{ background: '#fff', border: '1px solid #ddd', padding: '20px', borderRadius: '4px' }}><div style={{ fontSize: '28px', fontWeight: 'bold' }}>{stats.totalLogs}</div><div>Total Logs</div></div>
+        <div style={{ background: '#fff', border: '1px solid #ddd', padding: '20px', borderRadius: '4px' }}><div style={{ fontSize: '28px', fontWeight: 'bold' }}>{stats.pendingReviews}</div><div>Pending Reviews</div></div>
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
         <div style={{ background: '#fff', border: '1px solid #ddd', borderRadius: '4px', padding: '20px' }}><h3>Recent Activity</h3><p>No recent activity.</p></div>
         <div style={{ background: '#fff', border: '1px solid #ddd', borderRadius: '4px', padding: '20px' }}>
           <h3>Quick Actions</h3>
-          <button onClick={() => navigate('/admin/placements')} style={{ background: '#333', color: '#fff', border: 'none', padding: '10px', width: '100%', borderRadius: '4px', cursor: 'pointer', marginBottom: '10px' }}>Manage Placements</button>
-          <button onClick={() => navigate('/admin/users')} style={{ background: '#fff', color: '#333', border: '1px solid #ddd', padding: '10px', width: '100%', borderRadius: '4px', cursor: 'pointer' }}>Manage Users</button>
+          <button onClick={() => navigate('/admin/placements')} style={{ background: '#eee', border: '1px solid #ddd', padding: '10px', width: '100%', borderRadius: '4px', cursor: 'pointer', marginBottom: '10px' }}>Manage Placements</button>
+          <button onClick={() => navigate('/admin/users')} style={{ background: '#eee', border: '1px solid #ddd', padding: '10px', width: '100%', borderRadius: '4px', cursor: 'pointer' }}>Manage Users</button>
         </div>
       </div>
     </div>

@@ -157,24 +157,13 @@ class AcademicEvaluationListCreateView(generics.ListCreateAPIView):
 
     def get_queryset(self):
         user = self.request.user
-        queryset = AcademicEvaluation.objects.select_related(
-            'placement',
-            'placement__student',
-            'academic_supervisor'
-        )
-        
-        if user.role == 'admin':
-            return queryset
-        elif user.role == 'academic_supervisor':
-            return queryset.filter(academic_supervisor=user)
-        elif user.role == 'student':
-            return queryset.filter(placement__student=user)
+        if user.role in ['admin', 'administrator']:
+            return AcademicEvaluation.objects.all()
+        if user.role == 'academic_supervisor':
+            return AcademicEvaluation.objects.filter(evaluator=user)
+        if user.role == 'student':
+            return AcademicEvaluation.objects.filter(placement__student=user)
         return AcademicEvaluation.objects.none()
-
-    def get_permissions(self):
-        if self.request.method == 'POST':
-            return [permissions.IsAuthenticated(), IsAcademicSupervisorOrAdmin()]
-        return [permissions.IsAuthenticated()]
 
     def perform_create(self, serializer):
         placement_id = self.request.data.get('placement')
@@ -182,12 +171,9 @@ class AcademicEvaluationListCreateView(generics.ListCreateAPIView):
             placement = InternshipPlacement.objects.get(pk=placement_id)
         except InternshipPlacement.DoesNotExist:
             raise NotFound("Placement not found.")
-
-        if (self.request.user.role == 'academic_supervisor' and
-                placement.academic_supervisor != self.request.user):
+        if self.request.user.role == 'academic_supervisor' and placement.academic_supervisor != self.request.user:
             raise PermissionDenied("You are not assigned to this placement.")
-
-        serializer.save(academic_supervisor=self.request.user)
+        serializer.save(evaluator=self.request.user, student=placement.student)
 
 
 class AcademicEvaluationDetailView(generics.RetrieveUpdateAPIView):
@@ -339,10 +325,8 @@ class AdminReportView(APIView):
             }
         })
 
+from .models import AcademicEvaluation  # ensure this import is present
 
-# ============================================================
-# STUDENT TOTAL SCORE VIEW (NEW - FIXED)
-# ============================================================
 class StudentScoreView(generics.RetrieveAPIView):
     serializer_class = StudentTotalScoreSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -350,24 +334,17 @@ class StudentScoreView(generics.RetrieveAPIView):
     def get_object(self):
         student_id = self.kwargs.get('student_id')
         user = self.request.user
-
-        # Security: Students can only view their own score
         if user.role == 'student' and user.id != int(student_id):
             raise PermissionDenied("You can only view your own evaluation score.")
-
-        # Get the student
         try:
             student = CustomUser.objects.get(id=student_id, role='student')
         except CustomUser.DoesNotExist:
             raise NotFound(f"Student with ID {student_id} not found.")
 
-        # Get all evaluations for this student
-        evaluations = Evaluation.objects.filter(student=student)
 
-        # Calculate total weighted score
+        evaluations = Evaluation.objects.filter(student=student)
         total_weighted = 0
         breakdown = []
-
         for eval_item in evaluations:
             if eval_item.score and eval_item.criteria.weight:
                 weighted = round((eval_item.score / 100) * eval_item.criteria.weight, 2)
@@ -379,16 +356,25 @@ class StudentScoreView(generics.RetrieveAPIView):
                     'weighted_score': weighted
                 })
 
-        evaluations_count = evaluations.count()
+        # Academic evaluation
+        try:
+            academic_eval = AcademicEvaluation.objects.get(student=student)
+            academic_score = float(academic_eval.score)
+        except AcademicEvaluation.DoesNotExist:
+            academic_score = 0
 
-        # Determine grade
-        if total_weighted >= 90:
+        # Combine: 70% criteria sum + 30% academic
+        final_score = (total_weighted * 0.7) + (academic_score * 0.3)
+        final_score = round(final_score, 2)
+
+        # Grade mapping
+        if final_score >= 90:
             grade = 'A'
-        elif total_weighted >= 80:
+        elif final_score >= 80:
             grade = 'B'
-        elif total_weighted >= 70:
+        elif final_score >= 70:
             grade = 'C'
-        elif total_weighted >= 60:
+        elif final_score >= 60:
             grade = 'D'
         else:
             grade = 'F'
@@ -396,18 +382,16 @@ class StudentScoreView(generics.RetrieveAPIView):
         return {
             'student_id': student.id,
             'student_name': student.username,
-            'total_weighted_score': round(total_weighted, 2),
+            'total_weighted_score': final_score,
             'grade': grade,
-            'evaluations_count': evaluations_count,
+            'evaluations_count': evaluations.count(),
             'breakdown': breakdown
         }
 
     def get(self, request, *args, **kwargs):
         data = self.get_object()
         serializer = self.get_serializer(data)
-    
         return Response(serializer.data)
-
 
 # ============================================================
 # COMPREHENSIVE DASHBOARD VIEW

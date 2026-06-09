@@ -68,6 +68,30 @@ class ProfileView(APIView):
             return Response({'user': serializer.data, 'message': 'Profile updated.'})
         return Response(serializer.errors, status=400)
 
+class ChangePasswordView(APIView):
+    permission_classes = [IsAuthenticated]
+    def post(self, request):
+        user = request.user
+        old = request.data.get('old_password')
+        new = request.data.get('new_password')
+        confirm = request.data.get('confirm_password')
+        if not old or not new or not confirm:
+            return Response({'error': 'All fields required.'}, status=400)
+        if not user.check_password(old):
+            return Response({'error': 'Old password incorrect.'}, status=400)
+        if new != confirm:
+            return Response({'error': 'Passwords do not match.'}, status=400)
+        if old == new:
+            return Response({'error': 'New password must be different.'}, status=400)
+        user.set_password(new)
+        user.save()
+        refresh = RefreshToken.for_user(user)
+        return Response({
+            'message': 'Password changed successfully.',
+            'refresh': str(refresh),
+            'access': str(refresh.access_token)
+        }, status=200)
+
 class AdminUserListView(generics.ListAPIView):
     serializer_class = UserSerializer
     permission_classes = [IsAuthenticated, IsAdminOnly]
@@ -92,3 +116,32 @@ class AdminUserListView(generics.ListAPIView):
             'admins': CustomUser.objects.filter(role='admin').count(),
         }
         return Response({'statistics': stats, 'count': qs.count(), 'results': serializer.data})
+
+class AdminUserDetailView(generics.RetrieveUpdateAPIView):
+    serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated, IsAdminOnly]
+    queryset = CustomUser.objects.all()
+
+class AdminUserActivateView(APIView):
+    permission_classes = [IsAuthenticated, IsAdminOnly]
+    def post(self, request, pk):
+        try:
+            user = CustomUser.objects.get(pk=pk)
+        except:
+            return Response({'error': 'User not found.'}, status=404)
+        if user == request.user:
+            return Response({'error': 'Cannot deactivate yourself.'}, status=400)
+        user.is_active = not user.is_active
+        user.save()
+        action = 'activated' if user.is_active else 'deactivated'
+        return Response({'message': f'User {user.username} {action}.'}, status=200)
+
+class UsersByRoleView(generics.ListAPIView):
+    serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated, IsAdminOnly]
+    def get_queryset(self):
+        role = self.request.query_params.get('role', '')
+        valid = ['student', 'workplace_supervisor', 'academic_supervisor', 'admin']
+        if role not in valid:
+            return CustomUser.objects.none()
+        return CustomUser.objects.filter(role=role, is_active=True).order_by('username')

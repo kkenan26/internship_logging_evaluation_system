@@ -649,3 +649,1504 @@ ERROR 2026-06-09 12:00:59,338 log 4580 11308 Internal Server Error: /api/placeme
 ERROR 2026-06-09 12:00:59,339 log 4580 11308 "GET /api/placements/ HTTP/1.1" 500 72
 ERROR 2026-06-09 12:00:59,347 log 4580 7212 Internal Server Error: /api/placements/
 ERROR 2026-06-09 12:00:59,348 log 4580 7212 "GET /api/placements/ HTTP/1.1" 500 72
+INFO 2026-06-09 12:31:32,608 autoreload 3372 6288 Watching for file changes with StatReloader
+WARNING 2026-06-09 12:31:43,565 log 3372 944 Unauthorized: /api/placements/
+WARNING 2026-06-09 12:31:43,565 log 3372 944 "GET /api/placements/ HTTP/1.1" 401 84
+WARNING 2026-06-09 12:31:43,570 log 3372 944 Unauthorized: /api/placements/
+WARNING 2026-06-09 12:31:43,570 log 3372 944 "GET /api/placements/ HTTP/1.1" 401 84
+ERROR 2026-06-09 12:31:43,592 log 3372 944 Internal Server Error: /api/token/refresh/
+ERROR 2026-06-09 12:31:43,593 log 3372 944 "POST /api/token/refresh/ HTTP/1.1" 500 72
+ERROR 2026-06-09 12:31:43,600 log 3372 944 Internal Server Error: /api/token/refresh/
+ERROR 2026-06-09 12:31:43,600 log 3372 944 "POST /api/token/refresh/ HTTP/1.1" 500 72
+INFO 2026-06-09 12:31:51,731 log 3372 944 "POST /api/auth/login/ HTTP/1.1" 200 635
+INFO 2026-06-09 12:31:51,768 log 3372 15636 "OPTIONS /api/evaluations/score/1/ HTTP/1.1" 200 0
+INFO 2026-06-09 12:31:51,768 log 3372 4876 "OPTIONS /api/evaluations/score/1/ HTTP/1.1" 200 0
+INFO 2026-06-09 12:31:51,778 log 3372 4012 "GET /api/student/placement/ HTTP/1.1" 200 52
+INFO 2026-06-09 12:31:51,781 log 3372 944 "GET /api/logs/dashboard/ HTTP/1.1" 200 95
+INFO 2026-06-09 12:31:51,787 log 3372 4876 "GET /api/evaluations/score/1/ HTTP/1.1" 200 119
+INFO 2026-06-09 12:31:51,788 log 3372 15636 "GET /api/student/placement/ HTTP/1.1" 200 52
+INFO 2026-06-09 12:31:51,794 log 3372 4012 "GET /api/logs/dashboard/ HTTP/1.1" 200 95
+INFO 2026-06-09 12:31:51,795 log 3372 944 "GET /api/evaluations/score/1/ HTTP/1.1" 200 119
+INFO 2026-06-09 12:32:05,940 log 3372 4012 "GET /api/placements/my-placement/ HTTP/1.1" 200 52
+INFO 2026-06-09 12:32:05,945 log 3372 944 "GET /api/placements/my-placement/ HTTP/1.1" 200 52
+INFO 2026-06-09 12:32:15,070 log 3372 944 "POST /api/placements/my-placement/ HTTP/1.1" 201 357
+INFO 2026-06-09 12:32:28,794 log 3372 944 "POST /api/auth/login/ HTTP/1.1" 200 635
+INFO 2026-06-09 12:32:28,836 log 3372 15636 "GET /api/evaluations/score/1/ HTTP/1.1" 200 119
+INFO 2026-06-09 12:32:28,839 log 3372 4012 "GET /api/student/placement/ HTTP/1.1" 200 409
+INFO 2026-06-09 12:32:28,841 log 3372 944 "GET /api/logs/dashboard/ HTTP/1.1" 200 95
+INFO 2026-06-09 12:32:28,848 log 3372 4876 "GET /api/evaluations/score/1/ HTTP/1.1" 200 119
+INFO 2026-06-09 12:32:28,854 log 3372 4012 "GET /api/logs/dashboard/ HTTP/1.1" 200 95
+INFO 2026-06-09 12:32:28,857 log 3372 15636 "GET /api/student/placement/ HTTP/1.1" 200 409
+WARNING 2026-06-09 12:32:40,229 log 3372 15636 Unauthorized: /api/auth/login/
+WARNING 2026-06-09 12:32:40,229 log 3372 15636 "POST /api/auth/login/ HTTP/1.1" 401 32
+WARNING 2026-06-09 12:32:40,236 log 3372 15636 Bad Request: /api/token/refresh/
+WARNING 2026-06-09 12:32:40,236 log 3372 15636 "POST /api/token/refresh/ HTTP/1.1" 400 160
+WARNING 2026-06-09 12:32:42,788 log 3372 15636 Unauthorized: /api/auth/login/
+WARNING 2026-06-09 12:32:42,789 log 3372 15636 "POST /api/auth/login/ HTTP/1.1" 401 32
+WARNING 2026-06-09 12:32:42,795 log 3372 15636 Bad Request: /api/token/refresh/
+WARNING 2026-06-09 12:32:42,796 log 3372 15636 "POST /api/token/refresh/ HTTP/1.1" 400 160
+WARNING 2026-06-09 12:32:44,679 log 3372 15636 Unauthorized: /api/auth/login/
+WARNING 2026-06-09 12:32:44,679 log 3372 15636 "POST /api/auth/login/ HTTP/1.1" 401 32
+WARNING 2026-06-09 12:32:44,686 log 3372 15636 Bad Request: /api/token/refresh/
+WARNING 2026-06-09 12:32:44,686 log 3372 15636 "POST /api/token/refresh/ HTTP/1.1" 400 160
+INFO 2026-06-09 12:32:51,771 log 3372 15636 "POST /api/auth/login/ HTTP/1.1" 200 635
+INFO 2026-06-09 12:32:51,809 log 3372 15636 "GET /api/logs/dashboard/ HTTP/1.1" 200 95
+INFO 2026-06-09 12:32:51,815 log 3372 4876 "GET /api/evaluations/score/1/ HTTP/1.1" 200 119
+INFO 2026-06-09 12:32:51,817 log 3372 4012 "GET /api/student/placement/ HTTP/1.1" 200 409
+INFO 2026-06-09 12:32:51,827 log 3372 15636 "GET /api/evaluations/score/1/ HTTP/1.1" 200 119
+INFO 2026-06-09 12:32:51,830 log 3372 944 "GET /api/logs/dashboard/ HTTP/1.1" 200 95
+INFO 2026-06-09 12:32:51,830 log 3372 4876 "GET /api/student/placement/ HTTP/1.1" 200 409
+INFO 2026-06-09 12:32:54,456 log 3372 4876 "GET /api/placements/my-placement/ HTTP/1.1" 200 409
+INFO 2026-06-09 12:32:54,465 log 3372 944 "GET /api/placements/my-placement/ HTTP/1.1" 200 409
+INFO 2026-06-09 12:34:42,364 log 3372 944 "OPTIONS /api/auth/register/ HTTP/1.1" 200 0
+INFO 2026-06-09 12:34:43,326 log 3372 944 "POST /api/auth/register/ HTTP/1.1" 201 627
+INFO 2026-06-09 12:34:50,326 log 3372 944 "POST /api/auth/login/ HTTP/1.1" 200 632
+INFO 2026-06-09 12:34:50,368 log 3372 4876 "GET /api/placements/ HTTP/1.1" 200 381
+INFO 2026-06-09 12:34:50,369 log 3372 15636 "GET /api/logs/ HTTP/1.1" 200 24
+INFO 2026-06-09 12:34:50,376 log 3372 944 "GET /api/users/ HTTP/1.1" 200 340
+INFO 2026-06-09 12:34:50,380 log 3372 4012 "GET /api/logs/ HTTP/1.1" 200 24
+INFO 2026-06-09 12:34:50,387 log 3372 15636 "GET /api/placements/ HTTP/1.1" 200 381
+INFO 2026-06-09 12:34:50,392 log 3372 4876 "GET /api/users/ HTTP/1.1" 200 340
+INFO 2026-06-09 12:34:58,659 log 3372 15636 "GET /api/admin/users/ HTTP/1.1" 200 340
+INFO 2026-06-09 12:34:58,660 log 3372 4876 "GET /api/placements/admin/ HTTP/1.1" 200 447
+INFO 2026-06-09 12:34:58,673 log 3372 4012 "GET /api/admin/users/ HTTP/1.1" 200 340
+INFO 2026-06-09 12:34:58,675 log 3372 944 "GET /api/placements/admin/ HTTP/1.1" 200 447
+INFO 2026-06-09 12:35:16,842 log 3372 944 "OPTIONS /api/placements/1/ HTTP/1.1" 200 0
+INFO 2026-06-09 12:35:16,857 log 3372 944 "PUT /api/placements/1/ HTTP/1.1" 200 357
+INFO 2026-06-09 12:35:16,876 log 3372 944 "GET /api/placements/admin/ HTTP/1.1" 200 447
+INFO 2026-06-09 12:35:16,876 log 3372 4012 "GET /api/admin/users/ HTTP/1.1" 200 340
+ERROR 2026-06-09 12:35:51,978 log 3372 4012 Internal Server Error: /api/placements/
+ERROR 2026-06-09 12:35:51,979 log 3372 4012 "POST /api/placements/ HTTP/1.1" 500 72
+INFO 2026-06-09 12:52:54,807 log 3372 16100 "OPTIONS /api/auth/login/ HTTP/1.1" 200 0
+INFO 2026-06-09 12:52:55,689 log 3372 16100 "POST /api/auth/login/ HTTP/1.1" 200 632
+INFO 2026-06-09 12:52:55,722 log 3372 16100 "OPTIONS /api/admin/users/ HTTP/1.1" 200 0
+INFO 2026-06-09 12:52:55,722 log 3372 7560 "OPTIONS /api/placements/ HTTP/1.1" 200 0
+INFO 2026-06-09 12:52:55,725 log 3372 16100 "OPTIONS /api/logs/ HTTP/1.1" 200 0
+INFO 2026-06-09 12:52:55,725 log 3372 7560 "OPTIONS /api/admin/users/ HTTP/1.1" 200 0
+INFO 2026-06-09 12:52:55,728 log 3372 7560 "OPTIONS /api/logs/ HTTP/1.1" 200 0
+INFO 2026-06-09 12:52:55,728 log 3372 16100 "OPTIONS /api/placements/ HTTP/1.1" 200 0
+INFO 2026-06-09 12:52:55,738 log 3372 7560 "GET /api/placements/ HTTP/1.1" 200 381
+INFO 2026-06-09 12:52:55,741 log 3372 16100 "GET /api/admin/users/ HTTP/1.1" 200 340
+INFO 2026-06-09 12:52:55,746 log 3372 7560 "GET /api/logs/ HTTP/1.1" 200 24
+INFO 2026-06-09 12:52:55,752 log 3372 16100 "GET /api/placements/ HTTP/1.1" 200 381
+INFO 2026-06-09 12:52:55,761 log 3372 7560 "GET /api/admin/users/ HTTP/1.1" 200 340
+INFO 2026-06-09 12:52:55,761 log 3372 16100 "GET /api/logs/ HTTP/1.1" 200 24
+INFO 2026-06-09 12:53:03,005 log 3372 7560 "OPTIONS /api/placements/admin/ HTTP/1.1" 200 0
+INFO 2026-06-09 12:53:03,005 log 3372 8696 "OPTIONS /api/placements/admin/ HTTP/1.1" 200 0
+INFO 2026-06-09 12:53:03,013 log 3372 16100 "GET /api/admin/users/ HTTP/1.1" 200 340
+INFO 2026-06-09 12:53:03,024 log 3372 8696 "GET /api/placements/admin/ HTTP/1.1" 200 447
+INFO 2026-06-09 12:53:03,027 log 3372 7560 "GET /api/admin/users/ HTTP/1.1" 200 340
+INFO 2026-06-09 12:53:03,036 log 3372 16100 "GET /api/placements/admin/ HTTP/1.1" 200 447
+INFO 2026-06-09 12:53:08,883 log 3372 16100 "OPTIONS /api/placements/1/ HTTP/1.1" 200 0
+INFO 2026-06-09 12:53:08,903 log 3372 16100 "DELETE /api/placements/1/ HTTP/1.1" 204 0
+INFO 2026-06-09 12:53:08,921 log 3372 16100 "GET /api/placements/admin/ HTTP/1.1" 200 90
+INFO 2026-06-09 12:53:08,922 log 3372 7560 "GET /api/admin/users/ HTTP/1.1" 200 340
+WARNING 2026-06-09 12:53:22,132 log 3372 7560 Unauthorized: /api/auth/login/
+WARNING 2026-06-09 12:53:22,132 log 3372 7560 "POST /api/auth/login/ HTTP/1.1" 401 32
+INFO 2026-06-09 12:53:22,139 log 3372 7560 "OPTIONS /api/token/refresh/ HTTP/1.1" 200 0
+WARNING 2026-06-09 12:53:22,142 log 3372 7560 Bad Request: /api/token/refresh/
+WARNING 2026-06-09 12:53:22,143 log 3372 7560 "POST /api/token/refresh/ HTTP/1.1" 400 160
+WARNING 2026-06-09 12:53:24,945 log 3372 7560 Unauthorized: /api/auth/login/
+WARNING 2026-06-09 12:53:24,946 log 3372 7560 "POST /api/auth/login/ HTTP/1.1" 401 32
+WARNING 2026-06-09 12:53:24,953 log 3372 7560 Bad Request: /api/token/refresh/
+WARNING 2026-06-09 12:53:24,953 log 3372 7560 "POST /api/token/refresh/ HTTP/1.1" 400 160
+INFO 2026-06-09 12:54:10,917 log 3372 7560 "OPTIONS /api/auth/register/ HTTP/1.1" 200 0
+INFO 2026-06-09 12:54:11,836 log 3372 7560 "POST /api/auth/register/ HTTP/1.1" 201 637
+INFO 2026-06-09 12:54:16,117 log 3372 7560 "POST /api/auth/login/ HTTP/1.1" 200 642
+INFO 2026-06-09 12:54:16,147 log 3372 7560 "OPTIONS /api/logs/dashboard/ HTTP/1.1" 200 0
+INFO 2026-06-09 12:54:16,147 log 3372 16100 "OPTIONS /api/student/placement/ HTTP/1.1" 200 0
+INFO 2026-06-09 12:54:16,147 log 3372 8696 "OPTIONS /api/evaluations/score/3/ HTTP/1.1" 200 0
+INFO 2026-06-09 12:54:16,151 log 3372 7560 "OPTIONS /api/logs/dashboard/ HTTP/1.1" 200 0
+INFO 2026-06-09 12:54:16,151 log 3372 16100 "OPTIONS /api/student/placement/ HTTP/1.1" 200 0
+INFO 2026-06-09 12:54:16,152 log 3372 8696 "OPTIONS /api/evaluations/score/3/ HTTP/1.1" 200 0
+INFO 2026-06-09 12:54:16,162 log 3372 16100 "GET /api/student/placement/ HTTP/1.1" 200 52
+INFO 2026-06-09 12:54:16,164 log 3372 8696 "GET /api/evaluations/score/3/ HTTP/1.1" 200 121
+INFO 2026-06-09 12:54:16,172 log 3372 16100 "GET /api/student/placement/ HTTP/1.1" 200 52
+INFO 2026-06-09 12:54:16,172 log 3372 7560 "GET /api/logs/dashboard/ HTTP/1.1" 200 95
+INFO 2026-06-09 12:54:16,176 log 3372 8696 "GET /api/evaluations/score/3/ HTTP/1.1" 200 121
+INFO 2026-06-09 12:54:16,180 log 3372 16100 "GET /api/logs/dashboard/ HTTP/1.1" 200 95
+INFO 2026-06-09 12:54:19,745 log 3372 16100 "GET /api/placements/ HTTP/1.1" 200 24
+INFO 2026-06-09 12:54:19,752 log 3372 8696 "GET /api/placements/ HTTP/1.1" 200 24
+INFO 2026-06-09 12:54:19,756 log 3372 16100 "GET /api/logs/ HTTP/1.1" 200 24
+INFO 2026-06-09 12:54:19,761 log 3372 8696 "GET /api/logs/ HTTP/1.1" 200 24
+INFO 2026-06-09 12:54:23,707 log 3372 8696 "OPTIONS /api/placements/my-placement/ HTTP/1.1" 200 0
+INFO 2026-06-09 12:54:23,709 log 3372 16100 "OPTIONS /api/placements/my-placement/ HTTP/1.1" 200 0
+INFO 2026-06-09 12:54:23,716 log 3372 16100 "GET /api/placements/my-placement/ HTTP/1.1" 200 52
+INFO 2026-06-09 12:54:23,720 log 3372 8696 "GET /api/placements/my-placement/ HTTP/1.1" 200 52
+INFO 2026-06-09 12:54:43,700 log 3372 8696 "POST /api/placements/my-placement/ HTTP/1.1" 201 346
+INFO 2026-06-09 12:54:51,241 log 3372 8696 "GET /api/placements/ HTTP/1.1" 200 370
+INFO 2026-06-09 12:54:51,249 log 3372 16100 "GET /api/placements/ HTTP/1.1" 200 370
+INFO 2026-06-09 12:54:51,253 log 3372 8696 "GET /api/logs/ HTTP/1.1" 200 24
+INFO 2026-06-09 12:54:51,259 log 3372 16100 "GET /api/logs/ HTTP/1.1" 200 24
+INFO 2026-06-09 12:54:53,231 log 3372 16100 "GET /api/logs/dashboard/ HTTP/1.1" 200 95
+INFO 2026-06-09 12:54:53,231 log 3372 8696 "GET /api/student/placement/ HTTP/1.1" 200 398
+INFO 2026-06-09 12:54:53,231 log 3372 7560 "GET /api/evaluations/score/3/ HTTP/1.1" 200 121
+INFO 2026-06-09 12:54:53,246 log 3372 9092 "GET /api/evaluations/score/3/ HTTP/1.1" 200 121
+INFO 2026-06-09 12:54:53,248 log 3372 13296 "GET /api/student/placement/ HTTP/1.1" 200 398
+INFO 2026-06-09 12:54:53,249 log 3372 5844 "GET /api/logs/dashboard/ HTTP/1.1" 200 95
+INFO 2026-06-09 12:55:04,536 log 3372 5844 "POST /api/auth/login/ HTTP/1.1" 200 632
+INFO 2026-06-09 12:55:04,580 log 3372 13296 "GET /api/placements/ HTTP/1.1" 200 370
+INFO 2026-06-09 12:55:04,581 log 3372 9092 "GET /api/logs/ HTTP/1.1" 200 24
+INFO 2026-06-09 12:55:04,585 log 3372 5844 "GET /api/admin/users/ HTTP/1.1" 200 451
+INFO 2026-06-09 12:55:04,594 log 3372 7560 "GET /api/placements/ HTTP/1.1" 200 370
+INFO 2026-06-09 12:55:04,595 log 3372 13296 "GET /api/logs/ HTTP/1.1" 200 24
+INFO 2026-06-09 12:55:04,599 log 3372 9092 "GET /api/admin/users/ HTTP/1.1" 200 451
+INFO 2026-06-09 12:55:07,624 log 3372 13296 "GET /api/admin/users/ HTTP/1.1" 200 451
+INFO 2026-06-09 12:55:07,626 log 3372 9092 "GET /api/placements/admin/ HTTP/1.1" 200 436
+INFO 2026-06-09 12:55:07,637 log 3372 7560 "GET /api/admin/users/ HTTP/1.1" 200 451
+INFO 2026-06-09 12:55:07,639 log 3372 13296 "GET /api/placements/admin/ HTTP/1.1" 200 436
+ERROR 2026-06-09 12:55:49,017 log 3372 13296 Internal Server Error: /api/placements/
+ERROR 2026-06-09 12:55:49,018 log 3372 13296 "POST /api/placements/ HTTP/1.1" 500 72
+INFO 2026-06-09 12:56:43,178 log 3372 13296 "POST /api/auth/login/ HTTP/1.1" 200 642
+INFO 2026-06-09 12:56:43,221 log 3372 7560 "GET /api/student/placement/ HTTP/1.1" 200 398
+INFO 2026-06-09 12:56:43,222 log 3372 9092 "GET /api/evaluations/score/3/ HTTP/1.1" 200 121
+INFO 2026-06-09 12:56:43,227 log 3372 13296 "GET /api/logs/dashboard/ HTTP/1.1" 200 95
+INFO 2026-06-09 12:56:43,237 log 3372 8696 "GET /api/evaluations/score/3/ HTTP/1.1" 200 121
+INFO 2026-06-09 12:56:43,238 log 3372 5844 "GET /api/student/placement/ HTTP/1.1" 200 398
+INFO 2026-06-09 12:56:43,242 log 3372 9092 "GET /api/logs/dashboard/ HTTP/1.1" 200 95
+INFO 2026-06-09 12:56:46,494 log 3372 9092 "GET /api/placements/my-placement/ HTTP/1.1" 200 398
+INFO 2026-06-09 12:56:46,502 log 3372 5844 "GET /api/placements/my-placement/ HTTP/1.1" 200 398
+INFO 2026-06-09 13:02:19,331 autoreload 3372 6288 C:\Users\kkena\internship_logging_evaluation_system\BACKEND\placements\views.py changed, reloading.
+INFO 2026-06-09 13:02:20,367 autoreload 7188 8336 Watching for file changes with StatReloader
+INFO 2026-06-09 13:04:01,713 autoreload 7188 8336 C:\Users\kkena\internship_logging_evaluation_system\BACKEND\placements\urls.py changed, reloading.
+INFO 2026-06-09 13:04:02,718 autoreload 16180 4876 Watching for file changes with StatReloader
+INFO 2026-06-09 13:04:26,129 log 16180 5156 "GET /api/placements/my-placement/ HTTP/1.1" 200 398
+INFO 2026-06-09 13:04:26,138 log 16180 5156 "GET /api/placements/my-placement/ HTTP/1.1" 200 398
+INFO 2026-06-09 13:04:36,090 log 16180 5156 "POST /api/auth/login/ HTTP/1.1" 200 632
+INFO 2026-06-09 13:04:36,131 log 16180 5668 "GET /api/placements/ HTTP/1.1" 200 370
+INFO 2026-06-09 13:04:36,132 log 16180 4124 "GET /api/logs/ HTTP/1.1" 200 24
+INFO 2026-06-09 13:04:36,139 log 16180 5156 "GET /api/admin/users/ HTTP/1.1" 200 451
+INFO 2026-06-09 13:04:36,146 log 16180 5668 "GET /api/placements/ HTTP/1.1" 200 370
+INFO 2026-06-09 13:04:36,148 log 16180 4124 "GET /api/logs/ HTTP/1.1" 200 24
+INFO 2026-06-09 13:04:36,154 log 16180 5156 "GET /api/admin/users/ HTTP/1.1" 200 451
+INFO 2026-06-09 13:04:38,787 log 16180 5156 "GET /api/placements/admin/ HTTP/1.1" 200 436
+INFO 2026-06-09 13:04:38,790 log 16180 4124 "GET /api/admin/users/ HTTP/1.1" 200 451
+INFO 2026-06-09 13:04:38,801 log 16180 5668 "GET /api/placements/admin/ HTTP/1.1" 200 436
+INFO 2026-06-09 13:04:38,802 log 16180 5156 "GET /api/admin/users/ HTTP/1.1" 200 451
+INFO 2026-06-09 13:04:41,983 log 16180 5156 "OPTIONS /api/placements/2/status/ HTTP/1.1" 200 0
+INFO 2026-06-09 13:04:42,013 log 16180 5156 "PATCH /api/placements/2/status/ HTTP/1.1" 200 38
+INFO 2026-06-09 13:04:42,034 log 16180 5668 "GET /api/admin/users/ HTTP/1.1" 200 451
+INFO 2026-06-09 13:04:42,034 log 16180 5156 "GET /api/placements/admin/ HTTP/1.1" 200 435
+INFO 2026-06-09 13:04:56,043 log 16180 5156 "POST /api/auth/login/ HTTP/1.1" 200 642
+INFO 2026-06-09 13:04:56,104 log 16180 5668 "GET /api/student/placement/ HTTP/1.1" 200 397
+INFO 2026-06-09 13:04:56,104 log 16180 4124 "GET /api/evaluations/score/3/ HTTP/1.1" 200 121
+INFO 2026-06-09 13:04:56,108 log 16180 5156 "GET /api/logs/dashboard/ HTTP/1.1" 200 95
+INFO 2026-06-09 13:04:56,117 log 16180 7676 "GET /api/student/placement/ HTTP/1.1" 200 397
+INFO 2026-06-09 13:04:56,122 log 16180 5668 "GET /api/evaluations/score/3/ HTTP/1.1" 200 121
+INFO 2026-06-09 13:04:56,124 log 16180 4124 "GET /api/logs/dashboard/ HTTP/1.1" 200 95
+INFO 2026-06-09 13:05:01,775 log 16180 4124 "GET /api/placements/ HTTP/1.1" 200 369
+INFO 2026-06-09 13:05:01,783 log 16180 5668 "GET /api/placements/ HTTP/1.1" 200 369
+INFO 2026-06-09 13:05:01,787 log 16180 4124 "GET /api/logs/ HTTP/1.1" 200 24
+INFO 2026-06-09 13:05:01,792 log 16180 5668 "GET /api/logs/ HTTP/1.1" 200 24
+INFO 2026-06-09 13:05:05,468 log 16180 5668 "GET /api/placements/my-placement/ HTTP/1.1" 200 397
+INFO 2026-06-09 13:05:05,475 log 16180 4124 "GET /api/placements/my-placement/ HTTP/1.1" 200 397
+INFO 2026-06-09 13:06:35,110 log 16180 4124 "GET /api/placements/ HTTP/1.1" 200 369
+INFO 2026-06-09 13:06:35,119 log 16180 5668 "GET /api/placements/ HTTP/1.1" 200 369
+INFO 2026-06-09 13:06:35,123 log 16180 4124 "GET /api/logs/ HTTP/1.1" 200 24
+INFO 2026-06-09 13:06:35,129 log 16180 5668 "GET /api/logs/ HTTP/1.1" 200 24
+INFO 2026-06-09 13:07:14,726 log 16180 5668 "POST /api/logs/ HTTP/1.1" 201 394
+INFO 2026-06-09 13:08:23,262 log 16180 5668 "OPTIONS /api/logs/1/ HTTP/1.1" 200 0
+INFO 2026-06-09 13:08:23,287 log 16180 5668 "PUT /api/logs/1/ HTTP/1.1" 200 425
+WARNING 2026-06-09 13:08:41,850 log 16180 5668 Unauthorized: /api/auth/login/
+WARNING 2026-06-09 13:08:41,852 log 16180 5668 "POST /api/auth/login/ HTTP/1.1" 401 32
+WARNING 2026-06-09 13:08:41,863 log 16180 5668 Bad Request: /api/token/refresh/
+WARNING 2026-06-09 13:08:41,863 log 16180 5668 "POST /api/token/refresh/ HTTP/1.1" 400 160
+WARNING 2026-06-09 13:08:45,596 log 16180 5668 Unauthorized: /api/auth/login/
+WARNING 2026-06-09 13:08:45,596 log 16180 5668 "POST /api/auth/login/ HTTP/1.1" 401 32
+WARNING 2026-06-09 13:08:45,603 log 16180 5668 Bad Request: /api/token/refresh/
+WARNING 2026-06-09 13:08:45,604 log 16180 5668 "POST /api/token/refresh/ HTTP/1.1" 400 160
+WARNING 2026-06-09 13:08:50,985 log 16180 5668 Unauthorized: /api/auth/login/
+WARNING 2026-06-09 13:08:50,986 log 16180 5668 "POST /api/auth/login/ HTTP/1.1" 401 32
+WARNING 2026-06-09 13:08:50,993 log 16180 5668 Bad Request: /api/token/refresh/
+WARNING 2026-06-09 13:08:50,994 log 16180 5668 "POST /api/token/refresh/ HTTP/1.1" 400 160
+WARNING 2026-06-09 13:08:52,912 log 16180 5668 Unauthorized: /api/auth/login/
+WARNING 2026-06-09 13:08:52,912 log 16180 5668 "POST /api/auth/login/ HTTP/1.1" 401 32
+WARNING 2026-06-09 13:08:52,921 log 16180 5668 Bad Request: /api/token/refresh/
+WARNING 2026-06-09 13:08:52,921 log 16180 5668 "POST /api/token/refresh/ HTTP/1.1" 400 160
+INFO 2026-06-09 13:10:59,536 log 16180 5668 "POST /api/auth/register/ HTTP/1.1" 201 658
+INFO 2026-06-09 13:11:04,718 log 16180 5668 "POST /api/auth/login/ HTTP/1.1" 200 663
+INFO 2026-06-09 13:11:04,752 log 16180 5668 "GET /api/logs/dashboard/ HTTP/1.1" 200 124
+INFO 2026-06-09 13:11:04,759 log 16180 4124 "GET /api/logs/dashboard/ HTTP/1.1" 200 124
+INFO 2026-06-09 13:11:07,855 log 16180 4124 "OPTIONS /api/supervisor/reviews/ HTTP/1.1" 200 0
+INFO 2026-06-09 13:11:07,855 log 16180 5668 "OPTIONS /api/supervisor/reviews/ HTTP/1.1" 200 0
+INFO 2026-06-09 13:11:07,865 log 16180 5668 "GET /api/supervisor/reviews/ HTTP/1.1" 200 34
+INFO 2026-06-09 13:11:07,871 log 16180 4124 "GET /api/supervisor/reviews/ HTTP/1.1" 200 34
+INFO 2026-06-09 13:11:09,579 log 16180 4124 "GET /api/logs/dashboard/ HTTP/1.1" 200 124
+INFO 2026-06-09 13:11:09,586 log 16180 5668 "GET /api/logs/dashboard/ HTTP/1.1" 200 124
+INFO 2026-06-09 13:11:12,237 log 16180 5668 "GET /api/supervisor/reviews/ HTTP/1.1" 200 34
+INFO 2026-06-09 13:11:12,243 log 16180 4124 "GET /api/supervisor/reviews/ HTTP/1.1" 200 34
+INFO 2026-06-09 13:11:15,828 log 16180 4124 "GET /api/logs/dashboard/ HTTP/1.1" 200 124
+INFO 2026-06-09 13:11:15,835 log 16180 5668 "GET /api/logs/dashboard/ HTTP/1.1" 200 124
+INFO 2026-06-09 13:11:26,115 log 16180 5668 "POST /api/auth/login/ HTTP/1.1" 200 632
+INFO 2026-06-09 13:11:26,154 log 16180 4124 "GET /api/placements/ HTTP/1.1" 200 369
+INFO 2026-06-09 13:11:26,159 log 16180 5668 "GET /api/admin/users/ HTTP/1.1" 200 581
+INFO 2026-06-09 13:11:26,167 log 16180 4124 "GET /api/logs/ HTTP/1.1" 200 449
+INFO 2026-06-09 13:11:26,172 log 16180 5668 "GET /api/placements/ HTTP/1.1" 200 369
+INFO 2026-06-09 13:11:26,182 log 16180 4124 "GET /api/admin/users/ HTTP/1.1" 200 581
+INFO 2026-06-09 13:11:26,186 log 16180 5668 "GET /api/logs/ HTTP/1.1" 200 449
+INFO 2026-06-09 13:11:28,656 log 16180 5668 "GET /api/admin/users/ HTTP/1.1" 200 581
+INFO 2026-06-09 13:11:28,664 log 16180 4124 "GET /api/admin/users/ HTTP/1.1" 200 581
+INFO 2026-06-09 13:11:45,600 log 16180 4124 "OPTIONS /api/users/2/ HTTP/1.1" 200 0
+INFO 2026-06-09 13:11:45,614 log 16180 4124 "PATCH /api/users/2/ HTTP/1.1" 200 104
+INFO 2026-06-09 13:11:45,628 log 16180 4124 "GET /api/admin/users/ HTTP/1.1" 200 581
+INFO 2026-06-09 13:11:57,951 log 16180 5668 "GET /api/placements/ HTTP/1.1" 200 369
+INFO 2026-06-09 13:11:57,955 log 16180 16992 "GET /api/logs/ HTTP/1.1" 200 449
+INFO 2026-06-09 13:11:57,958 log 16180 4124 "GET /api/admin/users/ HTTP/1.1" 200 581
+INFO 2026-06-09 13:11:57,971 log 16180 12768 "GET /api/placements/ HTTP/1.1" 200 369
+INFO 2026-06-09 13:11:57,976 log 16180 5668 "GET /api/logs/ HTTP/1.1" 200 449
+INFO 2026-06-09 13:11:57,979 log 16180 16992 "GET /api/admin/users/ HTTP/1.1" 200 581
+INFO 2026-06-09 13:13:46,900 log 16180 16992 "GET /api/placements/admin/ HTTP/1.1" 200 435
+INFO 2026-06-09 13:13:46,903 log 16180 5668 "GET /api/admin/users/ HTTP/1.1" 200 581
+INFO 2026-06-09 13:13:46,915 log 16180 12768 "GET /api/placements/admin/ HTTP/1.1" 200 435
+INFO 2026-06-09 13:13:46,917 log 16180 16992 "GET /api/admin/users/ HTTP/1.1" 200 581
+INFO 2026-06-09 13:13:50,635 log 16180 16992 "PATCH /api/placements/2/status/ HTTP/1.1" 200 41
+INFO 2026-06-09 13:13:50,654 log 16180 16992 "GET /api/placements/admin/ HTTP/1.1" 200 438
+INFO 2026-06-09 13:13:50,654 log 16180 12768 "GET /api/admin/users/ HTTP/1.1" 200 581
+INFO 2026-06-09 13:20:54,937 log 16180 14348 "GET /api/admin/users/ HTTP/1.1" 200 581
+INFO 2026-06-09 13:20:54,937 log 16180 13264 "GET /api/placements/admin/ HTTP/1.1" 200 438
+INFO 2026-06-09 13:20:54,952 log 16180 14348 "GET /api/admin/users/ HTTP/1.1" 200 581
+INFO 2026-06-09 13:20:54,953 log 16180 13264 "GET /api/placements/admin/ HTTP/1.1" 200 438
+INFO 2026-06-09 13:22:51,229 autoreload 16180 4876 C:\Users\kkena\internship_logging_evaluation_system\BACKEND\placements\models.py changed, reloading.
+INFO 2026-06-09 13:22:52,265 autoreload 6972 15980 Watching for file changes with StatReloader
+INFO 2026-06-09 13:23:31,751 autoreload 17616 17556 Watching for file changes with StatReloader
+INFO 2026-06-09 13:23:50,075 log 17616 1632 "GET /api/admin/users/ HTTP/1.1" 200 581
+INFO 2026-06-09 13:23:50,092 log 17616 1632 "GET /api/admin/users/ HTTP/1.1" 200 581
+INFO 2026-06-09 13:23:50,099 log 17616 17708 "GET /api/placements/admin/ HTTP/1.1" 200 438
+INFO 2026-06-09 13:23:50,112 log 17616 1632 "GET /api/placements/admin/ HTTP/1.1" 200 438
+INFO 2026-06-09 13:23:56,268 log 17616 1632 "POST /api/auth/login/ HTTP/1.1" 200 632
+INFO 2026-06-09 13:23:56,311 log 17616 17708 "GET /api/placements/ HTTP/1.1" 200 372
+INFO 2026-06-09 13:23:56,318 log 17616 1632 "GET /api/admin/users/ HTTP/1.1" 200 581
+INFO 2026-06-09 13:23:56,318 log 17616 17020 "GET /api/logs/ HTTP/1.1" 200 449
+INFO 2026-06-09 13:23:56,327 log 17616 144 "GET /api/placements/ HTTP/1.1" 200 372
+INFO 2026-06-09 13:23:56,333 log 17616 17708 "GET /api/logs/ HTTP/1.1" 200 449
+INFO 2026-06-09 13:23:56,337 log 17616 17020 "GET /api/admin/users/ HTTP/1.1" 200 581
+INFO 2026-06-09 13:25:37,583 log 17616 17020 "GET /api/placements/admin/ HTTP/1.1" 200 438
+INFO 2026-06-09 13:25:37,587 log 17616 17708 "GET /api/admin/users/ HTTP/1.1" 200 581
+INFO 2026-06-09 13:25:37,597 log 17616 144 "GET /api/placements/admin/ HTTP/1.1" 200 438
+INFO 2026-06-09 13:25:37,599 log 17616 17020 "GET /api/admin/users/ HTTP/1.1" 200 581
+ERROR 2026-06-09 13:26:26,555 log 17616 17020 Internal Server Error: /api/placements/
+ERROR 2026-06-09 13:26:26,555 log 17616 17020 "POST /api/placements/ HTTP/1.1" 500 72
+INFO 2026-06-09 13:28:17,124 log 17616 17020 "POST /api/auth/login/ HTTP/1.1" 200 663
+INFO 2026-06-09 13:28:17,159 log 17616 17020 "GET /api/logs/dashboard/ HTTP/1.1" 200 124
+INFO 2026-06-09 13:28:17,166 log 17616 144 "GET /api/logs/dashboard/ HTTP/1.1" 200 124
+INFO 2026-06-09 13:28:20,131 log 17616 144 "GET /api/supervisor/reviews/ HTTP/1.1" 200 34
+INFO 2026-06-09 13:28:20,136 log 17616 17020 "GET /api/supervisor/reviews/ HTTP/1.1" 200 34
+INFO 2026-06-09 13:28:21,315 log 17616 17020 "GET /api/logs/dashboard/ HTTP/1.1" 200 124
+INFO 2026-06-09 13:28:21,326 log 17616 144 "GET /api/logs/dashboard/ HTTP/1.1" 200 124
+INFO 2026-06-09 13:28:25,373 log 17616 144 "GET /api/supervisor/reviews/ HTTP/1.1" 200 34
+INFO 2026-06-09 13:28:25,380 log 17616 17020 "GET /api/supervisor/reviews/ HTTP/1.1" 200 34
+INFO 2026-06-09 13:41:57,674 log 17616 15268 "GET /api/supervisor/reviews/ HTTP/1.1" 200 34
+INFO 2026-06-09 13:41:57,688 log 17616 15268 "GET /api/supervisor/reviews/ HTTP/1.1" 200 34
+INFO 2026-06-09 13:42:01,532 log 17616 15268 "GET /api/supervisor/reviews/ HTTP/1.1" 200 34
+INFO 2026-06-09 13:42:01,539 log 17616 18048 "GET /api/supervisor/reviews/ HTTP/1.1" 200 34
+INFO 2026-06-09 13:42:10,512 log 17616 18048 "POST /api/auth/login/ HTTP/1.1" 200 632
+INFO 2026-06-09 13:42:10,560 log 17616 15268 "GET /api/placements/ HTTP/1.1" 200 372
+INFO 2026-06-09 13:42:10,562 log 17616 17820 "GET /api/logs/ HTTP/1.1" 200 449
+INFO 2026-06-09 13:42:10,567 log 17616 18048 "GET /api/admin/users/ HTTP/1.1" 200 581
+INFO 2026-06-09 13:42:10,575 log 17616 15268 "GET /api/placements/ HTTP/1.1" 200 372
+INFO 2026-06-09 13:42:10,581 log 17616 17820 "GET /api/logs/ HTTP/1.1" 200 449
+INFO 2026-06-09 13:42:10,585 log 17616 18048 "GET /api/admin/users/ HTTP/1.1" 200 581
+INFO 2026-06-09 13:42:12,825 log 17616 18048 "GET /api/placements/admin/ HTTP/1.1" 200 438
+INFO 2026-06-09 13:42:12,826 log 17616 17820 "GET /api/admin/users/ HTTP/1.1" 200 581
+INFO 2026-06-09 13:42:12,840 log 17616 7228 "GET /api/admin/users/ HTTP/1.1" 200 581
+INFO 2026-06-09 13:42:12,841 log 17616 15268 "GET /api/placements/admin/ HTTP/1.1" 200 438
+INFO 2026-06-09 13:43:20,547 log 17616 15268 "POST /api/auth/register/ HTTP/1.1" 201 634
+INFO 2026-06-09 13:43:26,069 log 17616 15268 "POST /api/auth/login/ HTTP/1.1" 200 639
+INFO 2026-06-09 13:43:36,483 log 17616 15268 "POST /api/auth/login/ HTTP/1.1" 200 632
+INFO 2026-06-09 13:43:36,529 log 17616 7228 "GET /api/placements/ HTTP/1.1" 200 372
+INFO 2026-06-09 13:43:36,529 log 17616 17820 "GET /api/logs/ HTTP/1.1" 200 449
+INFO 2026-06-09 13:43:36,534 log 17616 15268 "GET /api/admin/users/ HTTP/1.1" 200 694
+INFO 2026-06-09 13:43:36,543 log 17616 18048 "GET /api/placements/ HTTP/1.1" 200 372
+INFO 2026-06-09 13:43:36,549 log 17616 7228 "GET /api/logs/ HTTP/1.1" 200 449
+INFO 2026-06-09 13:43:36,552 log 17616 17820 "GET /api/admin/users/ HTTP/1.1" 200 694
+INFO 2026-06-09 13:43:38,805 log 17616 17820 "GET /api/placements/admin/ HTTP/1.1" 200 438
+INFO 2026-06-09 13:43:38,810 log 17616 7228 "GET /api/admin/users/ HTTP/1.1" 200 694
+INFO 2026-06-09 13:43:38,820 log 17616 18048 "GET /api/placements/admin/ HTTP/1.1" 200 438
+INFO 2026-06-09 13:43:38,823 log 17616 17820 "GET /api/admin/users/ HTTP/1.1" 200 694
+ERROR 2026-06-09 13:44:09,758 log 17616 17820 Internal Server Error: /api/placements/
+ERROR 2026-06-09 13:44:09,759 log 17616 17820 "POST /api/placements/ HTTP/1.1" 500 72
+INFO 2026-06-09 13:47:42,039 autoreload 17332 17592 Watching for file changes with StatReloader
+INFO 2026-06-09 13:47:53,035 log 17332 17652 "GET /api/admin/users/ HTTP/1.1" 200 694
+INFO 2026-06-09 13:47:53,048 log 17332 17652 "GET /api/admin/users/ HTTP/1.1" 200 694
+INFO 2026-06-09 13:47:53,056 log 17332 17604 "GET /api/placements/admin/ HTTP/1.1" 200 438
+INFO 2026-06-09 13:47:53,066 log 17332 17652 "GET /api/placements/admin/ HTTP/1.1" 200 438
+ERROR 2026-06-09 13:48:19,460 log 17332 17652 Internal Server Error: /api/placements/
+ERROR 2026-06-09 13:48:19,461 log 17332 17652 "POST /api/placements/ HTTP/1.1" 500 72
+INFO 2026-06-09 13:52:59,865 autoreload 17332 17592 C:\Users\kkena\internship_logging_evaluation_system\BACKEND\iles_project\settings.py changed, reloading.
+INFO 2026-06-09 13:53:00,930 autoreload 13620 9748 Watching for file changes with StatReloader
+INFO 2026-06-09 13:53:02,435 autoreload 13620 9748 C:\Users\kkena\internship_logging_evaluation_system\BACKEND\iles_project\settings.py changed, reloading.
+INFO 2026-06-09 13:53:03,479 autoreload 2512 13780 Watching for file changes with StatReloader
+INFO 2026-06-09 13:53:20,668 autoreload 428 8312 Watching for file changes with StatReloader
+INFO 2026-06-09 13:53:29,610 log 428 7088 "GET /api/admin/users/ HTTP/1.1" 200 694
+INFO 2026-06-09 13:53:29,621 log 428 7088 "GET /api/admin/users/ HTTP/1.1" 200 694
+INFO 2026-06-09 13:53:29,627 log 428 14004 "GET /api/placements/admin/ HTTP/1.1" 200 438
+INFO 2026-06-09 13:53:29,636 log 428 7088 "GET /api/placements/admin/ HTTP/1.1" 200 438
+ERROR 2026-06-09 13:54:00,569 log 428 7088 Internal Server Error: /api/placements/
+Traceback (most recent call last):
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: NOT NULL constraint failed: placements_internshipplacement.student_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\generics.py", line 246, in post
+    return self.create(request, *args, **kwargs)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\kkena\internship_logging_evaluation_system\BACKEND\placements\views.py", line 51, in perform_create
+    serializer.save(status='pending')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\serializers.py", line 210, in save
+    self.instance = self.create(validated_data)
+                    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\serializers.py", line 991, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\query.py", line 669, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\base.py", line 874, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\base.py", line 966, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, insert_fields, returning_fields, raw
+    )
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\base.py", line 1220, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\query.py", line 1918, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\sql\compiler.py", line 1925, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: NOT NULL constraint failed: placements_internshipplacement.student_id
+ERROR 2026-06-09 13:54:00,579 log 428 7088 "POST /api/placements/ HTTP/1.1" 500 23034
+INFO 2026-06-09 13:56:11,115 autoreload 428 8312 C:\Users\kkena\internship_logging_evaluation_system\BACKEND\iles_project\settings.py changed, reloading.
+INFO 2026-06-09 13:56:12,226 autoreload 17492 17960 Watching for file changes with StatReloader
+INFO 2026-06-09 13:57:20,959 autoreload 17492 17960 C:\Users\kkena\internship_logging_evaluation_system\BACKEND\placements\serializers.py changed, reloading.
+INFO 2026-06-09 13:57:22,053 autoreload 4068 18140 Watching for file changes with StatReloader
+INFO 2026-06-09 13:58:32,128 autoreload 7576 17344 Watching for file changes with StatReloader
+WARNING 2026-06-09 14:27:07,562 log 7576 21056 Unauthorized: /api/placements/admin/
+WARNING 2026-06-09 14:27:07,562 log 7576 21060 Unauthorized: /api/admin/users/
+WARNING 2026-06-09 14:27:07,563 log 7576 21056 "GET /api/placements/admin/ HTTP/1.1" 401 84
+WARNING 2026-06-09 14:27:07,563 log 7576 21060 "GET /api/admin/users/ HTTP/1.1" 401 84
+WARNING 2026-06-09 14:27:07,570 log 7576 21056 Unauthorized: /api/placements/admin/
+WARNING 2026-06-09 14:27:07,571 log 7576 21060 Unauthorized: /api/admin/users/
+WARNING 2026-06-09 14:27:07,572 log 7576 21056 "GET /api/placements/admin/ HTTP/1.1" 401 84
+WARNING 2026-06-09 14:27:07,572 log 7576 21060 "GET /api/admin/users/ HTTP/1.1" 401 84
+INFO 2026-06-09 14:27:07,581 log 7576 21056 "POST /api/token/refresh/ HTTP/1.1" 200 244
+INFO 2026-06-09 14:27:07,581 log 7576 21060 "POST /api/token/refresh/ HTTP/1.1" 200 244
+INFO 2026-06-09 14:27:07,590 log 7576 21056 "POST /api/token/refresh/ HTTP/1.1" 200 244
+INFO 2026-06-09 14:27:07,590 log 7576 21060 "POST /api/token/refresh/ HTTP/1.1" 200 244
+INFO 2026-06-09 14:27:07,607 log 7576 21060 "GET /api/admin/users/ HTTP/1.1" 200 694
+INFO 2026-06-09 14:27:07,619 log 7576 21060 "GET /api/admin/users/ HTTP/1.1" 200 694
+INFO 2026-06-09 14:27:07,624 log 7576 21056 "GET /api/placements/admin/ HTTP/1.1" 200 438
+INFO 2026-06-09 14:27:07,632 log 7576 21060 "GET /api/placements/admin/ HTTP/1.1" 200 438
+INFO 2026-06-09 14:27:38,694 log 7576 21060 "POST /api/placements/ HTTP/1.1" 201 414
+INFO 2026-06-09 14:27:38,714 log 7576 21056 "GET /api/admin/users/ HTTP/1.1" 200 694
+INFO 2026-06-09 14:27:38,717 log 7576 21060 "GET /api/placements/admin/ HTTP/1.1" 200 853
+INFO 2026-06-09 14:27:45,844 log 7576 21060 "OPTIONS /api/placements/3/status/ HTTP/1.1" 200 0
+INFO 2026-06-09 14:27:45,869 log 7576 21060 "PATCH /api/placements/3/status/ HTTP/1.1" 200 38
+INFO 2026-06-09 14:27:45,887 log 7576 21056 "GET /api/admin/users/ HTTP/1.1" 200 694
+INFO 2026-06-09 14:27:45,890 log 7576 21060 "GET /api/placements/admin/ HTTP/1.1" 200 852
+INFO 2026-06-09 14:27:58,579 log 7576 21060 "POST /api/auth/login/ HTTP/1.1" 200 642
+INFO 2026-06-09 14:27:58,621 log 7576 21064 "GET /api/evaluations/score/3/ HTTP/1.1" 200 121
+INFO 2026-06-09 14:27:58,628 log 7576 21060 "GET /api/logs/dashboard/ HTTP/1.1" 200 95
+INFO 2026-06-09 14:27:58,635 log 7576 21056 "GET /api/student/placement/ HTTP/1.1" 200 814
+INFO 2026-06-09 14:27:58,638 log 7576 21068 "GET /api/evaluations/score/3/ HTTP/1.1" 200 121
+INFO 2026-06-09 14:27:58,645 log 7576 21064 "GET /api/logs/dashboard/ HTTP/1.1" 200 95
+INFO 2026-06-09 14:27:58,650 log 7576 21060 "GET /api/student/placement/ HTTP/1.1" 200 814
+INFO 2026-06-09 14:28:54,820 log 7576 21060 "GET /api/placements/ HTTP/1.1" 200 786
+INFO 2026-06-09 14:28:54,830 log 7576 21064 "GET /api/placements/ HTTP/1.1" 200 786
+INFO 2026-06-09 14:28:54,836 log 7576 21060 "GET /api/logs/ HTTP/1.1" 200 449
+INFO 2026-06-09 14:28:54,843 log 7576 21064 "GET /api/logs/ HTTP/1.1" 200 449
+WARNING 2026-06-09 14:29:04,906 log 7576 21064 Bad Request: /api/logs/1/
+WARNING 2026-06-09 14:29:04,907 log 7576 21064 "PUT /api/logs/1/ HTTP/1.1" 400 42
+WARNING 2026-06-09 14:29:06,316 log 7576 21064 Bad Request: /api/logs/1/
+WARNING 2026-06-09 14:29:06,316 log 7576 21064 "PUT /api/logs/1/ HTTP/1.1" 400 42
+INFO 2026-06-09 14:29:07,927 log 7576 21064 "GET /api/placements/my-placement/ HTTP/1.1" 200 814
+INFO 2026-06-09 14:29:07,935 log 7576 21060 "GET /api/placements/my-placement/ HTTP/1.1" 200 814
+INFO 2026-06-09 14:29:33,043 log 7576 21060 "POST /api/auth/login/ HTTP/1.1" 200 663
+INFO 2026-06-09 14:29:33,077 log 7576 21060 "GET /api/logs/dashboard/ HTTP/1.1" 200 124
+INFO 2026-06-09 14:29:33,084 log 7576 21064 "GET /api/logs/dashboard/ HTTP/1.1" 200 124
+INFO 2026-06-09 14:30:13,340 log 7576 21064 "GET /api/supervisor/reviews/ HTTP/1.1" 200 34
+INFO 2026-06-09 14:30:13,349 log 7576 21060 "GET /api/supervisor/reviews/ HTTP/1.1" 200 34
+INFO 2026-06-09 14:30:15,452 log 7576 21060 "GET /api/logs/dashboard/ HTTP/1.1" 200 124
+INFO 2026-06-09 14:30:15,461 log 7576 21064 "GET /api/logs/dashboard/ HTTP/1.1" 200 124
+INFO 2026-06-09 14:30:19,644 log 7576 21064 "GET /api/supervisor/reviews/ HTTP/1.1" 200 34
+INFO 2026-06-09 14:30:19,650 log 7576 21060 "GET /api/supervisor/reviews/ HTTP/1.1" 200 34
+INFO 2026-06-09 14:31:48,239 log 7576 21060 "GET /api/logs/dashboard/ HTTP/1.1" 200 124
+INFO 2026-06-09 14:31:48,246 log 7576 21064 "GET /api/logs/dashboard/ HTTP/1.1" 200 124
+INFO 2026-06-09 14:49:29,633 autoreload 17248 18080 Watching for file changes with StatReloader
+INFO 2026-06-09 14:50:33,226 log 17248 7620 "GET /api/logs/dashboard/ HTTP/1.1" 200 124
+INFO 2026-06-09 14:50:33,234 log 17248 7620 "GET /api/logs/dashboard/ HTTP/1.1" 200 124
+INFO 2026-06-09 14:51:06,225 log 17248 7620 "POST /api/auth/login/ HTTP/1.1" 200 632
+INFO 2026-06-09 14:51:06,268 log 17248 7620 "GET /api/logs/dashboard/ HTTP/1.1" 200 124
+INFO 2026-06-09 14:51:06,278 log 17248 20268 "GET /api/logs/dashboard/ HTTP/1.1" 200 124
+INFO 2026-06-09 14:51:13,129 log 17248 20268 "GET /api/supervisor/reviews/ HTTP/1.1" 200 459
+INFO 2026-06-09 14:51:13,147 log 17248 7620 "GET /api/supervisor/reviews/ HTTP/1.1" 200 459
+INFO 2026-06-09 14:52:42,689 log 17248 7620 "OPTIONS /api/logs/1/review/ HTTP/1.1" 200 0
+WARNING 2026-06-09 14:52:42,738 log 17248 7620 Bad Request: /api/logs/1/review/
+WARNING 2026-06-09 14:52:42,739 log 17248 7620 "POST /api/logs/1/review/ HTTP/1.1" 400 322
+WARNING 2026-06-09 14:52:47,030 log 17248 7620 Bad Request: /api/logs/1/review/
+WARNING 2026-06-09 14:52:47,031 log 17248 7620 "POST /api/logs/1/review/ HTTP/1.1" 400 322
+WARNING 2026-06-09 14:56:44,856 log 17248 7620 Bad Request: /api/logs/1/review/
+WARNING 2026-06-09 14:56:44,857 log 17248 7620 "POST /api/logs/1/review/ HTTP/1.1" 400 322
+INFO 2026-06-09 15:01:55,067 autoreload 16212 14060 Watching for file changes with StatReloader
+INFO 2026-06-09 15:02:08,897 log 16212 18804 "GET /api/supervisor/reviews/ HTTP/1.1" 200 459
+INFO 2026-06-09 15:02:08,910 log 16212 18804 "GET /api/supervisor/reviews/ HTTP/1.1" 200 459
+INFO 2026-06-09 15:02:29,401 log 16212 18804 "GET /api/supervisor/reviews/ HTTP/1.1" 200 459
+INFO 2026-06-09 15:02:29,412 log 16212 18328 "GET /api/supervisor/reviews/ HTTP/1.1" 200 459
+INFO 2026-06-09 15:09:07,900 log 16212 19424 "GET /api/supervisor/reviews/ HTTP/1.1" 200 459
+INFO 2026-06-09 15:10:26,398 autoreload 16212 14060 C:\Users\kkena\internship_logging_evaluation_system\BACKEND\logbook\views.py changed, reloading.
+INFO 2026-06-09 15:10:27,360 autoreload 3216 5976 Watching for file changes with StatReloader
+INFO 2026-06-09 15:10:32,020 autoreload 3216 5976 C:\Users\kkena\internship_logging_evaluation_system\BACKEND\logbook\views.py changed, reloading.
+INFO 2026-06-09 15:10:33,030 autoreload 18872 18616 Watching for file changes with StatReloader
+INFO 2026-06-09 15:11:13,313 autoreload 19556 9440 Watching for file changes with StatReloader
+INFO 2026-06-09 15:11:34,070 log 19556 15268 "OPTIONS /api/supervisor/reviews/ HTTP/1.1" 200 0
+INFO 2026-06-09 15:11:34,071 log 19556 2420 "OPTIONS /api/supervisor/reviews/ HTTP/1.1" 200 0
+INFO 2026-06-09 15:11:34,126 log 19556 2420 "GET /api/supervisor/reviews/ HTTP/1.1" 200 459
+INFO 2026-06-09 15:11:34,138 log 19556 15268 "GET /api/supervisor/reviews/ HTTP/1.1" 200 459
+INFO 2026-06-09 15:11:48,740 log 19556 15268 "GET /api/supervisor/reviews/ HTTP/1.1" 200 459
+INFO 2026-06-09 15:11:48,750 log 19556 2420 "GET /api/supervisor/reviews/ HTTP/1.1" 200 459
+WARNING 2026-06-09 15:11:54,356 log 19556 2420 Bad Request: /api/logs/1/review/
+WARNING 2026-06-09 15:11:54,356 log 19556 2420 "POST /api/logs/1/review/ HTTP/1.1" 400 322
+WARNING 2026-06-09 15:12:11,781 log 19556 2420 Bad Request: /api/logs/1/review/
+WARNING 2026-06-09 15:12:11,782 log 19556 2420 "POST /api/logs/1/review/ HTTP/1.1" 400 148
+WARNING 2026-06-09 15:12:18,270 log 19556 2420 Bad Request: /api/logs/1/review/
+WARNING 2026-06-09 15:12:18,270 log 19556 2420 "POST /api/logs/1/review/ HTTP/1.1" 400 148
+INFO 2026-06-09 15:15:41,631 autoreload 19556 9440 C:\Users\kkena\internship_logging_evaluation_system\BACKEND\logbook\serializers.py changed, reloading.
+INFO 2026-06-09 15:15:42,699 autoreload 10208 19820 Watching for file changes with StatReloader
+INFO 2026-06-09 15:16:15,605 autoreload 13332 18012 Watching for file changes with StatReloader
+INFO 2026-06-09 15:16:39,014 log 13332 11352 "GET /api/supervisor/reviews/ HTTP/1.1" 200 459
+INFO 2026-06-09 15:16:39,028 log 13332 11352 "GET /api/supervisor/reviews/ HTTP/1.1" 200 459
+INFO 2026-06-09 15:16:46,792 log 13332 11352 "POST /api/logs/1/review/ HTTP/1.1" 201 104
+INFO 2026-06-09 15:17:42,031 log 13332 11352 "OPTIONS /api/auth/login/ HTTP/1.1" 200 0
+INFO 2026-06-09 15:17:42,941 log 13332 11352 "POST /api/auth/login/ HTTP/1.1" 200 639
+INFO 2026-06-09 15:17:51,183 log 13332 11352 "OPTIONS /api/placements/ HTTP/1.1" 200 0
+INFO 2026-06-09 15:17:51,187 log 13332 11352 "OPTIONS /api/placements/ HTTP/1.1" 200 0
+INFO 2026-06-09 15:17:51,195 log 13332 11352 "GET /api/placements/ HTTP/1.1" 200 437
+INFO 2026-06-09 15:17:51,203 log 13332 11352 "GET /api/placements/ HTTP/1.1" 200 437
+INFO 2026-06-09 15:20:13,098 log 13332 11352 "GET /api/placements/ HTTP/1.1" 200 437
+INFO 2026-06-09 15:20:13,107 log 13332 11352 "GET /api/placements/ HTTP/1.1" 200 437
+INFO 2026-06-09 15:26:28,908 log 13332 1736 "GET /api/placements/ HTTP/1.1" 200 437
+INFO 2026-06-09 15:31:43,381 autoreload 13332 18012 C:\Users\kkena\internship_logging_evaluation_system\BACKEND\evaluations\urls.py changed, reloading.
+INFO 2026-06-09 15:31:44,408 autoreload 20168 19312 Watching for file changes with StatReloader
+INFO 2026-06-09 15:35:13,935 log 20168 19208 "GET /api/placements/ HTTP/1.1" 200 437
+INFO 2026-06-09 15:35:44,822 autoreload 8716 11828 Watching for file changes with StatReloader
+INFO 2026-06-09 15:35:49,090 log 8716 8552 "GET /api/placements/ HTTP/1.1" 200 437
+INFO 2026-06-09 15:35:49,097 log 8716 8552 "GET /api/placements/ HTTP/1.1" 200 437
+INFO 2026-06-09 15:36:03,528 log 8716 8552 "OPTIONS /api/evaluations/academic/ HTTP/1.1" 200 0
+ERROR 2026-06-09 15:36:03,558 log 8716 8552 Internal Server Error: /api/evaluations/academic/
+ERROR 2026-06-09 15:36:03,559 log 8716 8552 "POST /api/evaluations/academic/ HTTP/1.1" 500 72
+ERROR 2026-06-09 15:36:05,628 log 8716 8552 Internal Server Error: /api/evaluations/academic/
+ERROR 2026-06-09 15:36:05,628 log 8716 8552 "POST /api/evaluations/academic/ HTTP/1.1" 500 72
+ERROR 2026-06-09 15:37:39,405 log 8716 8552 Internal Server Error: /api/evaluations/academic/
+ERROR 2026-06-09 15:37:39,406 log 8716 8552 "POST /api/evaluations/academic/ HTTP/1.1" 500 72
+INFO 2026-06-09 15:38:05,827 log 8716 8552 "GET /api/placements/ HTTP/1.1" 200 437
+INFO 2026-06-09 15:38:05,865 log 8716 8552 "GET /api/placements/ HTTP/1.1" 200 437
+ERROR 2026-06-09 15:40:39,730 log 8716 8552 Internal Server Error: /api/evaluations/academic/
+ERROR 2026-06-09 15:40:39,731 log 8716 8552 "POST /api/evaluations/academic/ HTTP/1.1" 500 72
+INFO 2026-06-09 15:42:57,914 autoreload 8716 11828 C:\Users\kkena\internship_logging_evaluation_system\BACKEND\evaluations\serializers.py changed, reloading.
+INFO 2026-06-09 15:42:58,951 autoreload 16392 20876 Watching for file changes with StatReloader
+INFO 2026-06-09 15:44:06,704 autoreload 16392 20876 C:\Users\kkena\internship_logging_evaluation_system\BACKEND\evaluations\views.py changed, reloading.
+INFO 2026-06-09 15:44:07,676 autoreload 17020 10680 Watching for file changes with StatReloader
+INFO 2026-06-09 15:44:09,220 autoreload 17020 10680 C:\Users\kkena\internship_logging_evaluation_system\BACKEND\evaluations\views.py changed, reloading.
+INFO 2026-06-09 15:44:10,192 autoreload 152 17028 Watching for file changes with StatReloader
+INFO 2026-06-09 15:44:12,724 autoreload 152 17028 C:\Users\kkena\internship_logging_evaluation_system\BACKEND\evaluations\views.py changed, reloading.
+INFO 2026-06-09 15:44:13,759 autoreload 19940 18572 Watching for file changes with StatReloader
+INFO 2026-06-09 15:45:19,762 autoreload 19172 8312 Watching for file changes with StatReloader
+INFO 2026-06-09 15:45:27,572 log 19172 20784 "GET /api/placements/ HTTP/1.1" 200 437
+INFO 2026-06-09 15:45:27,579 log 19172 20784 "GET /api/placements/ HTTP/1.1" 200 437
+ERROR 2026-06-09 15:45:38,326 log 19172 20784 Internal Server Error: /api/evaluations/academic/
+ERROR 2026-06-09 15:45:38,327 log 19172 20784 "POST /api/evaluations/academic/ HTTP/1.1" 500 72
+ERROR 2026-06-09 15:45:41,369 log 19172 20784 Internal Server Error: /api/evaluations/academic/
+ERROR 2026-06-09 15:45:41,370 log 19172 20784 "POST /api/evaluations/academic/ HTTP/1.1" 500 72
+INFO 2026-06-09 15:47:13,955 autoreload 19172 8312 C:\Users\kkena\internship_logging_evaluation_system\BACKEND\iles_project\settings.py changed, reloading.
+INFO 2026-06-09 15:47:14,907 autoreload 10820 17496 Watching for file changes with StatReloader
+ERROR 2026-06-09 15:47:23,052 log 10820 17632 Internal Server Error: /api/evaluations/academic/
+Traceback (most recent call last):
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\generics.py", line 246, in post
+    return self.create(request, *args, **kwargs)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\mixins.py", line 18, in create
+    serializer.is_valid(raise_exception=True)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\serializers.py", line 225, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\serializers.py", line 444, in run_validation
+    value = self.to_internal_value(data)
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\serializers.py", line 497, in to_internal_value
+    for field in fields:
+                 ^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\serializers.py", line 380, in _writable_fields
+    for field in self.fields.values():
+                 ^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\serializers.py", line 374, in fields
+    for key, value in self.get_fields().items():
+                      ~~~~~~~~~~~~~~~^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\serializers.py", line 1105, in get_fields
+    field_class, field_kwargs = self.build_field(
+                                ~~~~~~~~~~~~~~~~^
+        source, info, model, depth
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\serializers.py", line 1251, in build_field
+    return self.build_unknown_field(field_name, model_class)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\serializers.py", line 1369, in build_unknown_field
+    raise ImproperlyConfigured(
+    ...<2 lines>...
+    )
+django.core.exceptions.ImproperlyConfigured: Field name `feedback` is not valid for model `AcademicEvaluation` in `evaluations.serializers.AcademicEvaluationSerializer`.
+ERROR 2026-06-09 15:47:23,057 log 10820 17632 "POST /api/evaluations/academic/ HTTP/1.1" 500 20924
+INFO 2026-06-09 15:49:50,714 autoreload 10820 17496 C:\Users\kkena\internship_logging_evaluation_system\BACKEND\evaluations\serializers.py changed, reloading.
+INFO 2026-06-09 15:49:51,728 autoreload 20360 9092 Watching for file changes with StatReloader
+INFO 2026-06-09 15:50:13,257 autoreload 20360 9092 C:\Users\kkena\internship_logging_evaluation_system\BACKEND\evaluations\serializers.py changed, reloading.
+INFO 2026-06-09 15:50:14,233 autoreload 17020 19920 Watching for file changes with StatReloader
+INFO 2026-06-09 15:51:23,159 autoreload 19260 20396 Watching for file changes with StatReloader
+WARNING 2026-06-09 15:51:35,618 log 19260 12748 Unauthorized: /api/placements/
+WARNING 2026-06-09 15:51:35,619 log 19260 12748 "GET /api/placements/ HTTP/1.1" 401 172
+WARNING 2026-06-09 15:51:35,623 log 19260 12748 Unauthorized: /api/placements/
+WARNING 2026-06-09 15:51:35,624 log 19260 12748 "GET /api/placements/ HTTP/1.1" 401 172
+INFO 2026-06-09 15:51:35,633 log 19260 12748 "OPTIONS /api/token/refresh/ HTTP/1.1" 200 0
+INFO 2026-06-09 15:51:35,639 log 19260 12748 "OPTIONS /api/token/refresh/ HTTP/1.1" 200 0
+INFO 2026-06-09 15:51:35,656 log 19260 12748 "POST /api/token/refresh/ HTTP/1.1" 200 244
+INFO 2026-06-09 15:51:35,664 log 19260 12748 "POST /api/token/refresh/ HTTP/1.1" 200 244
+INFO 2026-06-09 15:51:35,693 log 19260 12748 "GET /api/placements/ HTTP/1.1" 200 437
+INFO 2026-06-09 15:51:35,708 log 19260 12748 "GET /api/placements/ HTTP/1.1" 200 437
+ERROR 2026-06-09 15:51:47,149 log 19260 12748 Internal Server Error: /api/evaluations/academic/
+Traceback (most recent call last):
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: NOT NULL constraint failed: evaluations_academicevaluation.student_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\generics.py", line 246, in post
+    return self.create(request, *args, **kwargs)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\kkena\internship_logging_evaluation_system\BACKEND\evaluations\views.py", line 184, in perform_create
+    serializer.save(evaluator=self.request.user)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\serializers.py", line 210, in save
+    self.instance = self.create(validated_data)
+                    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\serializers.py", line 991, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\query.py", line 669, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\base.py", line 874, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\base.py", line 966, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, insert_fields, returning_fields, raw
+    )
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\base.py", line 1220, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\query.py", line 1918, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\sql\compiler.py", line 1925, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: NOT NULL constraint failed: evaluations_academicevaluation.student_id
+ERROR 2026-06-09 15:51:47,157 log 19260 12748 "POST /api/evaluations/academic/ HTTP/1.1" 500 23120
+ERROR 2026-06-09 15:51:49,918 log 19260 12748 Internal Server Error: /api/evaluations/academic/
+Traceback (most recent call last):
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: NOT NULL constraint failed: evaluations_academicevaluation.student_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\generics.py", line 246, in post
+    return self.create(request, *args, **kwargs)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\kkena\internship_logging_evaluation_system\BACKEND\evaluations\views.py", line 184, in perform_create
+    serializer.save(evaluator=self.request.user)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\serializers.py", line 210, in save
+    self.instance = self.create(validated_data)
+                    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\serializers.py", line 991, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\query.py", line 669, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\base.py", line 874, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\base.py", line 966, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, insert_fields, returning_fields, raw
+    )
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\base.py", line 1220, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\query.py", line 1918, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\sql\compiler.py", line 1925, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: NOT NULL constraint failed: evaluations_academicevaluation.student_id
+ERROR 2026-06-09 15:51:49,923 log 19260 12748 "POST /api/evaluations/academic/ HTTP/1.1" 500 23120
+INFO 2026-06-09 15:53:18,168 autoreload 19260 20396 C:\Users\kkena\internship_logging_evaluation_system\BACKEND\evaluations\serializers.py changed, reloading.
+INFO 2026-06-09 15:53:19,203 autoreload 17128 13192 Watching for file changes with StatReloader
+INFO 2026-06-09 15:53:54,388 autoreload 17128 13192 C:\Users\kkena\internship_logging_evaluation_system\BACKEND\evaluations\views.py changed, reloading.
+INFO 2026-06-09 15:53:55,412 autoreload 2480 16496 Watching for file changes with StatReloader
+INFO 2026-06-09 15:54:22,951 log 2480 17904 "GET /api/placements/ HTTP/1.1" 200 437
+INFO 2026-06-09 15:54:38,893 autoreload 19004 4048 Watching for file changes with StatReloader
+INFO 2026-06-09 15:54:43,869 log 19004 18544 "GET /api/placements/ HTTP/1.1" 200 437
+INFO 2026-06-09 15:54:43,876 log 19004 18544 "GET /api/placements/ HTTP/1.1" 200 437
+ERROR 2026-06-09 15:54:54,601 log 19004 18544 Internal Server Error: /api/evaluations/academic/
+Traceback (most recent call last):
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: NOT NULL constraint failed: evaluations_academicevaluation.student_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\generics.py", line 246, in post
+    return self.create(request, *args, **kwargs)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\kkena\internship_logging_evaluation_system\BACKEND\evaluations\views.py", line 176, in perform_create
+    serializer.save(evaluator=self.request.user)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\serializers.py", line 210, in save
+    self.instance = self.create(validated_data)
+                    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\serializers.py", line 991, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\query.py", line 669, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\base.py", line 874, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\base.py", line 966, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, insert_fields, returning_fields, raw
+    )
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\base.py", line 1220, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\query.py", line 1918, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\sql\compiler.py", line 1925, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: NOT NULL constraint failed: evaluations_academicevaluation.student_id
+ERROR 2026-06-09 15:54:54,609 log 19004 18544 "POST /api/evaluations/academic/ HTTP/1.1" 500 23120
+ERROR 2026-06-09 15:54:57,229 log 19004 18544 Internal Server Error: /api/evaluations/academic/
+Traceback (most recent call last):
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: NOT NULL constraint failed: evaluations_academicevaluation.student_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\generics.py", line 246, in post
+    return self.create(request, *args, **kwargs)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\kkena\internship_logging_evaluation_system\BACKEND\evaluations\views.py", line 176, in perform_create
+    serializer.save(evaluator=self.request.user)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\serializers.py", line 210, in save
+    self.instance = self.create(validated_data)
+                    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\serializers.py", line 991, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\query.py", line 669, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\base.py", line 874, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\base.py", line 966, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, insert_fields, returning_fields, raw
+    )
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\base.py", line 1220, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\query.py", line 1918, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\sql\compiler.py", line 1925, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: NOT NULL constraint failed: evaluations_academicevaluation.student_id
+ERROR 2026-06-09 15:54:57,234 log 19004 18544 "POST /api/evaluations/academic/ HTTP/1.1" 500 23120
+ERROR 2026-06-09 15:54:57,776 log 19004 18544 Internal Server Error: /api/evaluations/academic/
+Traceback (most recent call last):
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: NOT NULL constraint failed: evaluations_academicevaluation.student_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\generics.py", line 246, in post
+    return self.create(request, *args, **kwargs)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\kkena\internship_logging_evaluation_system\BACKEND\evaluations\views.py", line 176, in perform_create
+    serializer.save(evaluator=self.request.user)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\serializers.py", line 210, in save
+    self.instance = self.create(validated_data)
+                    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\serializers.py", line 991, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\query.py", line 669, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\base.py", line 874, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\base.py", line 966, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, insert_fields, returning_fields, raw
+    )
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\base.py", line 1220, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\query.py", line 1918, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\sql\compiler.py", line 1925, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: NOT NULL constraint failed: evaluations_academicevaluation.student_id
+ERROR 2026-06-09 15:54:57,780 log 19004 18544 "POST /api/evaluations/academic/ HTTP/1.1" 500 23120
+ERROR 2026-06-09 15:54:58,031 log 19004 18544 Internal Server Error: /api/evaluations/academic/
+Traceback (most recent call last):
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: NOT NULL constraint failed: evaluations_academicevaluation.student_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\generics.py", line 246, in post
+    return self.create(request, *args, **kwargs)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\kkena\internship_logging_evaluation_system\BACKEND\evaluations\views.py", line 176, in perform_create
+    serializer.save(evaluator=self.request.user)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\serializers.py", line 210, in save
+    self.instance = self.create(validated_data)
+                    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\serializers.py", line 991, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\query.py", line 669, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\base.py", line 874, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\base.py", line 966, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, insert_fields, returning_fields, raw
+    )
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\base.py", line 1220, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\query.py", line 1918, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\sql\compiler.py", line 1925, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: NOT NULL constraint failed: evaluations_academicevaluation.student_id
+ERROR 2026-06-09 15:54:58,036 log 19004 18544 "POST /api/evaluations/academic/ HTTP/1.1" 500 23120
+ERROR 2026-06-09 15:54:58,265 log 19004 18544 Internal Server Error: /api/evaluations/academic/
+Traceback (most recent call last):
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: NOT NULL constraint failed: evaluations_academicevaluation.student_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\generics.py", line 246, in post
+    return self.create(request, *args, **kwargs)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\kkena\internship_logging_evaluation_system\BACKEND\evaluations\views.py", line 176, in perform_create
+    serializer.save(evaluator=self.request.user)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\serializers.py", line 210, in save
+    self.instance = self.create(validated_data)
+                    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\rest_framework\serializers.py", line 991, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\query.py", line 669, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\base.py", line 874, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\base.py", line 966, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, insert_fields, returning_fields, raw
+    )
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\base.py", line 1220, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\query.py", line 1918, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\models\sql\compiler.py", line 1925, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\kkena\ILES\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: NOT NULL constraint failed: evaluations_academicevaluation.student_id
+ERROR 2026-06-09 15:54:58,269 log 19004 18544 "POST /api/evaluations/academic/ HTTP/1.1" 500 23120
+INFO 2026-06-09 15:56:56,833 autoreload 19004 4048 C:\Users\kkena\internship_logging_evaluation_system\BACKEND\evaluations\serializers.py changed, reloading.
+INFO 2026-06-09 15:56:57,819 autoreload 9128 11116 Watching for file changes with StatReloader
+INFO 2026-06-09 15:58:17,013 autoreload 9128 11116 C:\Users\kkena\internship_logging_evaluation_system\BACKEND\evaluations\views.py changed, reloading.
+INFO 2026-06-09 15:58:18,026 autoreload 5136 19700 Watching for file changes with StatReloader
+INFO 2026-06-09 15:58:28,892 autoreload 19956 9952 Watching for file changes with StatReloader
+INFO 2026-06-09 15:58:40,173 log 19956 11056 "GET /api/placements/ HTTP/1.1" 200 437
+INFO 2026-06-09 15:58:40,180 log 19956 11056 "GET /api/placements/ HTTP/1.1" 200 437
+INFO 2026-06-09 15:58:48,313 log 19956 11056 "POST /api/evaluations/academic/ HTTP/1.1" 201 165
+INFO 2026-06-09 16:00:30,776 log 19956 11056 "POST /api/auth/login/ HTTP/1.1" 200 642
+INFO 2026-06-09 16:00:30,808 log 19956 11056 "OPTIONS /api/logs/dashboard/ HTTP/1.1" 200 0
+INFO 2026-06-09 16:00:30,812 log 19956 11056 "OPTIONS /api/student/placement/ HTTP/1.1" 200 0
+INFO 2026-06-09 16:00:30,813 log 19956 11056 "OPTIONS /api/evaluations/score/3/ HTTP/1.1" 200 0
+INFO 2026-06-09 16:00:30,815 log 19956 11056 "OPTIONS /api/logs/dashboard/ HTTP/1.1" 200 0
+INFO 2026-06-09 16:00:30,819 log 19956 11056 "OPTIONS /api/student/placement/ HTTP/1.1" 200 0
+INFO 2026-06-09 16:00:30,821 log 19956 11056 "OPTIONS /api/evaluations/score/3/ HTTP/1.1" 200 0
+INFO 2026-06-09 16:00:30,827 log 19956 11056 "GET /api/logs/dashboard/ HTTP/1.1" 200 95
+INFO 2026-06-09 16:00:30,837 log 19956 11056 "GET /api/student/placement/ HTTP/1.1" 200 849
+INFO 2026-06-09 16:00:30,843 log 19956 11056 "GET /api/evaluations/score/3/ HTTP/1.1" 200 121
+INFO 2026-06-09 16:00:30,850 log 19956 11056 "GET /api/logs/dashboard/ HTTP/1.1" 200 95
+INFO 2026-06-09 16:00:30,860 log 19956 11056 "GET /api/student/placement/ HTTP/1.1" 200 849
+INFO 2026-06-09 16:00:30,866 log 19956 11056 "GET /api/evaluations/score/3/ HTTP/1.1" 200 121
+INFO 2026-06-09 16:02:37,908 autoreload 19956 9952 C:\Users\kkena\internship_logging_evaluation_system\BACKEND\evaluations\views.py changed, reloading.
+INFO 2026-06-09 16:02:38,866 autoreload 18440 18908 Watching for file changes with StatReloader
+INFO 2026-06-09 16:03:14,350 autoreload 11112 17832 Watching for file changes with StatReloader

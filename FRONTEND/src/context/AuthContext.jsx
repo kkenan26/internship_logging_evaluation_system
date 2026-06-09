@@ -29,8 +29,8 @@ export const AuthProvider = ({ children }) => {
 
     // Normalize role names from backend → frontend expected values
     const roleMap = {
-      admin:                'administrator',
-      student:              'student',
+      admin: 'administrator',
+      student: 'student',
       workplace_supervisor: 'workplace_supervisor',
       academic_supervisor:  'academic_supervisor',
     };

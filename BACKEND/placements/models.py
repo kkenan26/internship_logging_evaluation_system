@@ -6,7 +6,7 @@ class InternshipPlacement(models.Model):
     STATUS_CHOICES = [
         ('pending', 'Pending'),
         ('active', 'Active'),
-        ('completed', 'Completed'),
+        ('completed', 'Finished'),
         ('cancelled', 'Cancelled'),
     ]
     student = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='placements', limit_choices_to={'role': 'student'})

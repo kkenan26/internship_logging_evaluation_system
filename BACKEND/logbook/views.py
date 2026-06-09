@@ -98,19 +98,14 @@ class SubmitLogView(APIView):
 
 class SupervisorReviewView(generics.CreateAPIView):
     serializer_class = SupervisorReviewSerializer
-    permission_classes = [permissions.IsAuthenticated, IsSupervisorOrAdmin]
+    permission_classes = [permissions.IsAuthenticated]
+
     def perform_create(self, serializer):
         log_id = self.kwargs.get('log_id')
-        try:
-            log = WeeklyLog.objects.get(pk=log_id)
-        except:
-            raise NotFound("Log not found.")
+        log = WeeklyLog.objects.get(pk=log_id)
         if log.status != 'submitted':
-            raise ValidationError(f"Only submitted logs can be reviewed. Current: {log.status}")
-        if not is_supervisor_for_placement(self.request.user, log.placement):
-            raise PermissionDenied("You are not assigned as supervisor for this placement.")
-        if hasattr(log, 'review'):
-            raise ValidationError("This log already has a review.")
+            raise ValidationError('Log must be submitted')
+        
         serializer.save(supervisor=self.request.user, log=log)
         log.status = 'reviewed'
         log.reviewed_at = timezone.now()

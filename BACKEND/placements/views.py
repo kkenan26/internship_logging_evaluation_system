@@ -75,24 +75,24 @@ class PlacementDetailView(generics.RetrieveUpdateDestroyAPIView):
             return Response({'error': 'Cannot delete active placement.'}, status=400)
         return super().destroy(request, *args, **kwargs)
 
+
+
 class PlacementStatusUpdateView(APIView):
-    permission_classes = [permissions.IsAuthenticated, IsAdminOnly]
-    VALID_TRANSITIONS = {'pending': ['active', 'cancelled'], 'active': ['completed', 'cancelled'], 'completed': [], 'cancelled': []}
+    permission_classes = [permissions.IsAuthenticated]
+
     def patch(self, request, pk):
+        if request.user.role not in ['admin', 'administrator']:
+            return Response({'error': 'Only admin can update status'}, status=403)
         try:
             placement = InternshipPlacement.objects.get(pk=pk)
-        except:
-            return Response({'error': 'Placement not found.'}, status=404)
+        except InternshipPlacement.DoesNotExist:
+            return Response({'error': 'Placement not found'}, status=404)
         new_status = request.data.get('status')
-        if not new_status:
-            return Response({'error': 'status field required.'}, status=400)
         if new_status not in ['pending', 'active', 'completed', 'cancelled']:
-            return Response({'error': 'Invalid status.'}, status=400)
-        if new_status not in self.VALID_TRANSITIONS.get(placement.status, []):
-            return Response({'error': f'Cannot transition from {placement.status} to {new_status}.'}, status=400)
+            return Response({'error': 'Invalid status'}, status=400)
         placement.status = new_status
         placement.save()
-        return Response({'message': f'Status updated to {new_status}.'}, status=200)
+        return Response({'message': f'Status updated to {new_status}'})
 
 class AdminPlacementListView(generics.ListAPIView):
     serializer_class = InternshipPlacementSerializer
@@ -168,3 +168,10 @@ class StudentPlacementRequestView(generics.CreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
     def perform_create(self, serializer):
         serializer.save(student=self.request.user, status='pending')
+
+class AdminApprovePlacementView(generics.UpdateAPIView):
+    queryset = InternshipPlacement.objects.all()
+    serializer_class = InternshipPlacementSerializer
+    permission_classes = [permissions.IsAuthenticated, IsAdminOnly]
+    def perform_update(self, serializer):
+        serializer.save(status='active')

@@ -22,7 +22,7 @@ class InternshipPlacementSerializer(serializers.ModelSerializer):
             'duration_weeks', 'is_active', 'days_remaining',
             'status', 'created_at'
         ]
-        read_only_fields = ['created_at', 'status', 'student', 'student_name', 'student_email',
+        read_only_fields = ['created_at', 'status', 'student_name', 'student_email',
                            'workplace_supervisor_name', 'academic_supervisor_name',
                            'duration_weeks', 'is_active', 'days_remaining']
         extra_kwargs = {'student': {'required': False}}

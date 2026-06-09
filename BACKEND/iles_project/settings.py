@@ -141,7 +141,7 @@ REST_FRAMEWORK = {
         'rest_framework.filters.SearchFilter',
         'rest_framework.filters.OrderingFilter',
     ],
-    'EXCEPTION_HANDLER': 'iles_project.exceptions.custom_exception_handler',
+    #'EXCEPTION_HANDLER': 'iles_project.exceptions.custom_exception_handler',
 }
 
 SIMPLE_JWT = {

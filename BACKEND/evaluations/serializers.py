@@ -139,51 +139,21 @@ class EvaluationSerializer(serializers.ModelSerializer):
                 )
         return attrs
 
-
 class AcademicEvaluationSerializer(serializers.ModelSerializer):
-    """
-    Serializer for AcademicEvaluation model.
-    Handles the final academic evaluation given by academic supervisors.
-    """
-    student_name = serializers.CharField(
-        source='placement.student.username',
-        read_only=True
-    )
-    student_email = serializers.CharField(
-        source='placement.student.email',
-        read_only=True
-    )
-    supervisor_name = serializers.CharField(
-        source='academic_supervisor.username',
-        read_only=True
-    )
-    company_name = serializers.CharField(
-        source='placement.company_name',
-        read_only=True
-    )
+    student_name = serializers.CharField(source='placement.student.username', read_only=True)
+    evaluator_name = serializers.CharField(source='evaluator.username', read_only=True)
+    company_name = serializers.CharField(source='placement.company_name', read_only=True)
     grade = serializers.SerializerMethodField()
 
     class Meta:
         model = AcademicEvaluation
         fields = [
-            'id',
-            'placement',
-            'student_name',
-            'student_email',
-            'company_name',
-            'academic_supervisor',
-            'supervisor_name',
-            'score',
-            'grade',
-            'feedback',
+            'id', 'placement','student', 'student_name', 'company_name',
+            'evaluator', 'evaluator_name', 'score', 'grade', 'comments',
         ]
-        read_only_fields = ['academic_supervisor']
+        read_only_fields = ['evaluator', 'student']
 
     def get_grade(self, obj):
-        """
-        Converts numeric score to letter grade.
-        90-100 = A, 80-89 = B, 70-79 = C, 60-69 = D, below 60 = F
-        """
         score = obj.score
         if score >= 90:
             return 'A'
@@ -197,21 +167,14 @@ class AcademicEvaluationSerializer(serializers.ModelSerializer):
             return 'F'
 
     def validate_score(self, value):
-        """Ensure score is between 0 and 100."""
         if value < 0 or value > 100:
-            raise serializers.ValidationError(
-                "Score must be between 0 and 100."
-            )
+            raise serializers.ValidationError("Score between 0 and 100.")
         return value
 
-    def validate_feedback(self, value):
-        """Ensure feedback is not empty."""
-        if not value.strip():
-            raise serializers.ValidationError(
-                "Feedback cannot be empty."
-            )
+    def validate_comments(self, value):
+        if value is not None and len(value.strip()) == 0:
+            raise serializers.ValidationError("Comments cannot be empty.")
         return value
-
 
 class StudentTotalScoreSerializer(serializers.Serializer):
     """

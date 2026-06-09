@@ -1,9 +1,3 @@
-"""
-URLs for the Evaluations App
-This module defines all API endpoints related to student evaluations,
-academic evaluations, criteria management, and reporting.
-"""
-
 from django.urls import path
 from . import views
 

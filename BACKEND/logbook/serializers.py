@@ -4,52 +4,12 @@ from .models import WeeklyLog, SupervisorReview
 
 
 class SupervisorReviewSerializer(serializers.ModelSerializer):
-  
-    supervisor_name = serializers.CharField(
-        source='supervisor.username',
-        read_only=True
-    )
-    supervisor_role = serializers.CharField(
-        source='supervisor.role',
-        read_only=True
-    )
-    log_week_number = serializers.IntegerField(
-        source='log.week_number',
-        read_only=True
-    )
-    log_student_name = serializers.CharField(
-        source='log.student.username',
-        read_only=True
-    )
-
+    supervisor_name = serializers.CharField(source='supervisor.username', read_only=True)
     class Meta:
         model = SupervisorReview
-        fields = [
-            'id',
-            'log',
-            'log_week_number',
-            'log_student_name',
-            'supervisor',
-            'supervisor_name',
-            'supervisor_role',
-            'comments',
-            'approved',
-        ]
-        read_only_fields = ['supervisor']
-
-    def validate_comments(self, value):
-        """Ensure comments are not empty."""
-        if not value.strip():
-            raise serializers.ValidationError(
-                "Review comments cannot be empty."
-            )
-        if len(value) < 10:
-            raise serializers.ValidationError(
-                "Review comments must be at least 10 characters long."
-            )
-        return value
-
-
+        fields = ['id', 'log', 'supervisor', 'supervisor_name', 'comments', 'approved']
+        read_only_fields = ['supervisor', 'log']   
+        
 class WeeklyLogSerializer(serializers.ModelSerializer):
     student_name = serializers.CharField(
         source='student.username',
