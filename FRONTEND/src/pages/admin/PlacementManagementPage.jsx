@@ -30,8 +30,8 @@ const PlacementManagementPage = () => {
   setLoading(true);
   try {
     const [p, u] = await Promise.all([
-      API.get("/placements/"),
-      API.get("/users/"),
+      API.get("/placements/admin/"),
+      API.get("admin/users/"),
     ]);
 
     const placementList = Array.isArray(p.data) ? p.data : p.data.results ?? [];

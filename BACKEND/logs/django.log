@@ -427,3 +427,113 @@ ERROR 2026-06-07 23:19:36,191 log 17752 20248 Internal Server Error: /api/placem
 ERROR 2026-06-07 23:19:36,191 log 17752 20248 "GET /api/placements/ HTTP/1.1" 500 72
 ERROR 2026-06-07 23:19:36,200 log 17752 18512 Internal Server Error: /api/placements/
 ERROR 2026-06-07 23:19:36,201 log 17752 18512 "GET /api/placements/ HTTP/1.1" 500 72
+INFO 2026-06-08 11:28:53,788 autoreload 9112 5208 Watching for file changes with StatReloader
+INFO 2026-06-08 11:29:03,201 log 9112 6704 "OPTIONS /api/auth/login/ HTTP/1.1" 200 0
+INFO 2026-06-08 11:29:04,225 log 9112 6704 "POST /api/auth/login/ HTTP/1.1" 200 649
+INFO 2026-06-08 11:29:04,310 log 9112 6704 "OPTIONS /api/logs/dashboard/ HTTP/1.1" 200 0
+INFO 2026-06-08 11:29:04,310 log 9112 6768 "OPTIONS /api/student/placement/ HTTP/1.1" 200 0
+INFO 2026-06-08 11:29:04,314 log 9112 6704 "OPTIONS /api/evaluations/score/5/ HTTP/1.1" 200 0
+INFO 2026-06-08 11:29:04,314 log 9112 6768 "OPTIONS /api/logs/dashboard/ HTTP/1.1" 200 0
+INFO 2026-06-08 11:29:04,318 log 9112 6768 "OPTIONS /api/evaluations/score/5/ HTTP/1.1" 200 0
+INFO 2026-06-08 11:29:04,318 log 9112 6704 "OPTIONS /api/student/placement/ HTTP/1.1" 200 0
+INFO 2026-06-08 11:29:04,331 log 9112 6704 "GET /api/student/placement/ HTTP/1.1" 200 52
+INFO 2026-06-08 11:29:04,340 log 9112 6768 "GET /api/logs/dashboard/ HTTP/1.1" 200 180
+INFO 2026-06-08 11:29:04,342 log 9112 6704 "GET /api/evaluations/score/5/ HTTP/1.1" 200 121
+INFO 2026-06-08 11:29:04,351 log 9112 6768 "GET /api/student/placement/ HTTP/1.1" 200 52
+INFO 2026-06-08 11:29:04,357 log 9112 6704 "GET /api/logs/dashboard/ HTTP/1.1" 200 180
+INFO 2026-06-08 11:29:04,359 log 9112 6768 "GET /api/evaluations/score/5/ HTTP/1.1" 200 121
+INFO 2026-06-08 11:29:13,082 log 9112 6768 "OPTIONS /api/placements/ HTTP/1.1" 200 0
+INFO 2026-06-08 11:29:13,083 log 9112 6704 "OPTIONS /api/placements/ HTTP/1.1" 200 0
+ERROR 2026-06-08 11:29:13,217 log 9112 6704 Internal Server Error: /api/placements/
+ERROR 2026-06-08 11:29:13,217 log 9112 6704 "GET /api/placements/ HTTP/1.1" 500 72
+ERROR 2026-06-08 11:29:13,226 log 9112 6768 Internal Server Error: /api/placements/
+ERROR 2026-06-08 11:29:13,227 log 9112 6768 "GET /api/placements/ HTTP/1.1" 500 72
+INFO 2026-06-08 11:29:31,216 log 9112 6768 "POST /api/auth/login/ HTTP/1.1" 200 639
+INFO 2026-06-08 11:35:45,157 autoreload 9592 17096 Watching for file changes with StatReloader
+INFO 2026-06-08 11:35:51,717 log 9592 14660 "POST /api/auth/login/ HTTP/1.1" 200 639
+INFO 2026-06-08 11:44:16,391 autoreload 2432 10132 Watching for file changes with StatReloader
+INFO 2026-06-08 11:48:18,328 log 2432 10820 "POST /api/auth/login/ HTTP/1.1" 200 639
+INFO 2026-06-08 12:18:28,256 autoreload 18340 3004 Watching for file changes with StatReloader
+WARNING 2026-06-08 12:18:41,106 log 18340 3264 Unauthorized: /api/auth/login/
+WARNING 2026-06-08 12:18:41,106 log 18340 3264 "POST /api/auth/login/ HTTP/1.1" 401 84
+INFO 2026-06-08 12:18:41,115 log 18340 3264 "OPTIONS /api/token/refresh/ HTTP/1.1" 200 0
+INFO 2026-06-08 12:18:41,126 log 18340 3264 "POST /api/token/refresh/ HTTP/1.1" 200 244
+INFO 2026-06-08 12:18:42,102 log 18340 3264 "POST /api/auth/login/ HTTP/1.1" 200 639
+INFO 2026-06-08 12:18:42,150 log 18340 18176 "OPTIONS /api/users/ HTTP/1.1" 200 0
+INFO 2026-06-08 12:18:42,153 log 18340 18176 "OPTIONS /api/logs/ HTTP/1.1" 200 0
+INFO 2026-06-08 12:18:42,157 log 18340 18176 "OPTIONS /api/users/ HTTP/1.1" 200 0
+INFO 2026-06-08 12:18:42,160 log 18340 18176 "OPTIONS /api/logs/ HTTP/1.1" 200 0
+ERROR 2026-06-08 12:18:42,169 log 18340 3264 Internal Server Error: /api/placements/
+ERROR 2026-06-08 12:18:42,170 log 18340 3264 "GET /api/placements/ HTTP/1.1" 500 72
+INFO 2026-06-08 12:18:42,176 log 18340 18176 "GET /api/users/ HTTP/1.1" 200 1155
+ERROR 2026-06-08 12:18:42,188 log 18340 3264 Internal Server Error: /api/logs/
+ERROR 2026-06-08 12:18:42,189 log 18340 3264 "GET /api/logs/ HTTP/1.1" 500 72
+ERROR 2026-06-08 12:18:42,209 log 18340 18176 Internal Server Error: /api/placements/
+ERROR 2026-06-08 12:18:42,210 log 18340 18176 "GET /api/placements/ HTTP/1.1" 500 72
+INFO 2026-06-08 12:18:42,220 log 18340 3264 "GET /api/users/ HTTP/1.1" 200 1155
+ERROR 2026-06-08 12:18:42,224 log 18340 18176 Internal Server Error: /api/logs/
+ERROR 2026-06-08 12:18:42,225 log 18340 18176 "GET /api/logs/ HTTP/1.1" 500 72
+INFO 2026-06-08 12:19:19,339 log 18340 18176 "POST /api/auth/login/ HTTP/1.1" 200 639
+ERROR 2026-06-08 12:19:19,384 log 18340 3264 Internal Server Error: /api/placements/
+INFO 2026-06-08 12:19:19,385 log 18340 18176 "GET /api/users/ HTTP/1.1" 200 1155
+ERROR 2026-06-08 12:19:19,388 log 18340 3264 "GET /api/placements/ HTTP/1.1" 500 72
+ERROR 2026-06-08 12:19:19,394 log 18340 8088 Internal Server Error: /api/logs/
+ERROR 2026-06-08 12:19:19,395 log 18340 8088 "GET /api/logs/ HTTP/1.1" 500 72
+ERROR 2026-06-08 12:19:19,409 log 18340 5536 Internal Server Error: /api/placements/
+INFO 2026-06-08 12:19:19,410 log 18340 14276 "GET /api/users/ HTTP/1.1" 200 1155
+ERROR 2026-06-08 12:19:19,410 log 18340 5536 "GET /api/placements/ HTTP/1.1" 500 72
+ERROR 2026-06-08 12:19:19,415 log 18340 3264 Internal Server Error: /api/logs/
+ERROR 2026-06-08 12:19:19,416 log 18340 3264 "GET /api/logs/ HTTP/1.1" 500 72
+ERROR 2026-06-08 12:19:56,515 log 18340 3264 Internal Server Error: /api/placements/
+ERROR 2026-06-08 12:19:56,520 log 18340 3264 "GET /api/placements/ HTTP/1.1" 500 72
+INFO 2026-06-08 12:19:56,521 log 18340 5536 "GET /api/users/ HTTP/1.1" 200 1155
+ERROR 2026-06-08 12:19:56,533 log 18340 14276 Internal Server Error: /api/placements/
+ERROR 2026-06-08 12:19:56,537 log 18340 14276 "GET /api/placements/ HTTP/1.1" 500 72
+INFO 2026-06-08 12:19:56,538 log 18340 3264 "GET /api/users/ HTTP/1.1" 200 1155
+INFO 2026-06-08 13:39:19,380 autoreload 20400 16024 Watching for file changes with StatReloader
+INFO 2026-06-08 13:39:24,660 log 20400 17844 "OPTIONS /api/placements/admin/ HTTP/1.1" 200 0
+INFO 2026-06-08 13:39:24,662 log 20400 5076 "OPTIONS /api/placements/admin/ HTTP/1.1" 200 0
+WARNING 2026-06-08 13:39:24,692 log 20400 19960 Unauthorized: /api/users/
+WARNING 2026-06-08 13:39:24,694 log 20400 5076 Unauthorized: /api/placements/admin/
+WARNING 2026-06-08 13:39:24,694 log 20400 19960 "GET /api/users/ HTTP/1.1" 401 84
+WARNING 2026-06-08 13:39:24,695 log 20400 5076 "GET /api/placements/admin/ HTTP/1.1" 401 84
+WARNING 2026-06-08 13:39:24,705 log 20400 19960 Unauthorized: /api/users/
+WARNING 2026-06-08 13:39:24,709 log 20400 5076 Unauthorized: /api/placements/admin/
+WARNING 2026-06-08 13:39:24,710 log 20400 19960 "GET /api/users/ HTTP/1.1" 401 84
+WARNING 2026-06-08 13:39:24,710 log 20400 5076 "GET /api/placements/admin/ HTTP/1.1" 401 84
+INFO 2026-06-08 13:39:24,718 log 20400 17844 "POST /api/token/refresh/ HTTP/1.1" 200 244
+INFO 2026-06-08 13:39:24,719 log 20400 19960 "POST /api/token/refresh/ HTTP/1.1" 200 244
+INFO 2026-06-08 13:39:24,735 log 20400 19960 "POST /api/token/refresh/ HTTP/1.1" 200 244
+INFO 2026-06-08 13:39:24,740 log 20400 17844 "POST /api/token/refresh/ HTTP/1.1" 200 244
+INFO 2026-06-08 13:39:24,749 log 20400 5076 "GET /api/users/ HTTP/1.1" 200 1155
+INFO 2026-06-08 13:39:24,762 log 20400 17844 "GET /api/users/ HTTP/1.1" 200 1155
+ERROR 2026-06-08 13:39:24,836 log 20400 19960 Internal Server Error: /api/placements/admin/
+ERROR 2026-06-08 13:39:24,836 log 20400 19960 "GET /api/placements/admin/ HTTP/1.1" 500 72
+ERROR 2026-06-08 13:39:24,850 log 20400 17844 Internal Server Error: /api/placements/admin/
+ERROR 2026-06-08 13:39:24,850 log 20400 17844 "GET /api/placements/admin/ HTTP/1.1" 500 72
+INFO 2026-06-08 13:39:29,703 log 20400 17844 "OPTIONS /api/auth/login/ HTTP/1.1" 200 0
+INFO 2026-06-08 13:39:30,580 log 20400 17844 "POST /api/auth/login/ HTTP/1.1" 200 639
+INFO 2026-06-08 13:39:30,613 log 20400 18648 "OPTIONS /api/placements/ HTTP/1.1" 200 0
+INFO 2026-06-08 13:39:30,613 log 20400 5076 "OPTIONS /api/placements/ HTTP/1.1" 200 0
+INFO 2026-06-08 13:39:30,627 log 20400 17844 "GET /api/users/ HTTP/1.1" 200 1155
+INFO 2026-06-08 13:39:30,638 log 20400 18648 "GET /api/users/ HTTP/1.1" 200 1155
+ERROR 2026-06-08 13:39:30,643 log 20400 19960 Internal Server Error: /api/logs/
+ERROR 2026-06-08 13:39:30,644 log 20400 19960 "GET /api/logs/ HTTP/1.1" 500 72
+ERROR 2026-06-08 13:39:30,651 log 20400 5076 Internal Server Error: /api/placements/
+ERROR 2026-06-08 13:39:30,652 log 20400 5076 "GET /api/placements/ HTTP/1.1" 500 72
+ERROR 2026-06-08 13:39:30,658 log 20400 18648 Internal Server Error: /api/logs/
+ERROR 2026-06-08 13:39:30,659 log 20400 18648 "GET /api/logs/ HTTP/1.1" 500 72
+ERROR 2026-06-08 13:39:30,664 log 20400 19960 Internal Server Error: /api/placements/
+ERROR 2026-06-08 13:39:30,665 log 20400 19960 "GET /api/placements/ HTTP/1.1" 500 72
+ERROR 2026-06-08 13:39:50,684 log 20400 19960 Internal Server Error: /api/placements/admin/
+INFO 2026-06-08 13:39:50,685 log 20400 18648 "GET /api/users/ HTTP/1.1" 200 1155
+ERROR 2026-06-08 13:39:50,687 log 20400 19960 "GET /api/placements/admin/ HTTP/1.1" 500 72
+INFO 2026-06-08 13:39:50,702 log 20400 5076 "GET /api/users/ HTTP/1.1" 200 1155
+ERROR 2026-06-08 13:39:50,703 log 20400 17844 Internal Server Error: /api/placements/admin/
+ERROR 2026-06-08 13:39:50,704 log 20400 17844 "GET /api/placements/admin/ HTTP/1.1" 500 72
+ERROR 2026-06-08 13:47:18,192 log 20400 3448 Internal Server Error: /api/placements/admin/
+INFO 2026-06-08 13:47:18,197 log 20400 8576 "GET /api/users/ HTTP/1.1" 200 1155
+ERROR 2026-06-08 13:47:18,197 log 20400 3448 "GET /api/placements/admin/ HTTP/1.1" 500 72
+INFO 2026-06-08 13:47:18,231 log 20400 8576 "GET /api/users/ HTTP/1.1" 200 1155
+ERROR 2026-06-08 13:47:18,231 log 20400 3448 Internal Server Error: /api/placements/admin/
+ERROR 2026-06-08 13:47:18,232 log 20400 3448 "GET /api/placements/admin/ HTTP/1.1" 500 72
