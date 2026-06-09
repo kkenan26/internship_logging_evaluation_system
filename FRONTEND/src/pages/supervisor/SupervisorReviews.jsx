@@ -3,22 +3,21 @@ import { useNavigate } from 'react-router-dom';
 import API from '../../Services/Api';
 
 export default function SupervisorReviews() {
-  const [logs, setLogs]       = useState([]);
+  const [logs, setLogs] = useState([]);
   const [selected, setSelected] = useState(null);
   const [comment, setComment] = useState('');
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
-  const [error, setError]     = useState('');
+  const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const navigate = useNavigate();
 
-  // Fetch pending logs on mount
   useEffect(() => {
     const fetchLogs = async () => {
       try {
         const res = await API.get('/supervisor/reviews/');
         setLogs(res.data.results || []);
-      } catch (err) {
+      } catch {
         setError('Failed to load pending reviews.');
       } finally {
         setLoading(false);
@@ -27,184 +26,63 @@ export default function SupervisorReviews() {
     fetchLogs();
   }, []);
 
-  const handleSelect = (log) => {
-    setSelected(log);
-    setComment(log.supervisor_comment || '');
-    setSuccess('');
-    setError('');
-  };
-
-  const handleReview = async (newStatus) => {
+  const handleReview = async () => {
     if (!selected) return;
     setSubmitting(true);
     setError('');
     setSuccess('');
     try {
-      await API.patch(`/logs/${selected.id}/`, {
-        status: newStatus,
-        supervisor_comment: comment,
-      });
-      setSuccess(`Log marked as "${newStatus}" successfully.`);
-      // Remove from pending list
-      setLogs((prev) => prev.filter((l) => l.id !== selected.id));
+      await API.post(`/logs/${selected.id}/review/`, { comments: comment });
+      setSuccess(`Log reviewed successfully.`);
+      setLogs(logs.filter(l => l.id !== selected.id));
       setSelected(null);
       setComment('');
     } catch (err) {
-      setError(err.response?.data?.error || 'Failed to update log.');
+      setError(err.response?.data?.error || 'Failed to review log.');
     } finally {
       setSubmitting(false);
     }
   };
 
+  if (loading) return <p>Loading...</p>;
+
   return (
     <div>
-      <h1 className="page-title">Log Reviews</h1>
-
-      {success && (
-        <div style={styles.successBanner}>{success}</div>
-      )}
-      {error && (
-        <div style={styles.errorBanner}>{error}</div>
-      )}
-
-      <div style={{ display: 'grid', gridTemplateColumns: selected ? '1fr 1fr' : '1fr', gap: 24 }}>
-        {/* List */}
-        <div className="card">
-          <h3 style={{ fontWeight: 700, marginBottom: 16 }}>
-            Pending Reviews ({logs.length})
-          </h3>
-
-          {loading && <p style={{ color: '#64748b' }}>Loading...</p>}
-
-          {!loading && logs.length === 0 && (
-            <p style={{ color: '#64748b' }}>All logs reviewed. Great work! ✅</p>
-          )}
-
-          {logs.map((log) => (
-            <div
-              key={log.id}
-              onClick={() => handleSelect(log)}
-              style={{
-                padding: '14px',
-                borderRadius: 8,
-                border: `1.5px solid ${selected?.id === log.id ? '#1a56db' : '#e2e8f0'}`,
-                marginBottom: 10,
-                cursor: 'pointer',
-                background: selected?.id === log.id ? '#e8effd' : '#fff',
-                transition: 'all 0.15s',
-              }}
-            >
-              <div style={{ fontWeight: 600 }}>
-                {log.student_name || log.student}
-              </div>
-              <div style={{ fontSize: 13, color: '#64748b' }}>
-                Week {log.week_number}
-              </div>
-              <div style={{ fontSize: 12, color: '#94a3b8', marginTop: 4 }}>
-                Submitted: {log.submitted_at
-                  ? new Date(log.submitted_at).toLocaleDateString()
-                  : '—'}
-              </div>
+      <h1>Log Reviews</h1>
+      {success && <div style={{ background: '#d0f0d0', padding: '10px', borderRadius: '4px', marginBottom: '16px' }}>{success}</div>}
+      {error && <div style={{ background: '#ffe0e0', padding: '10px', borderRadius: '4px', marginBottom: '16px' }}>{error}</div>}
+      <div style={{ display: 'grid', gridTemplateColumns: selected ? '1fr 1fr' : '1fr', gap: '24px' }}>
+        <div style={{ background: '#fff', border: '1px solid #ddd', borderRadius: '4px', padding: '20px' }}>
+          <h3>Pending Reviews ({logs.length})</h3>
+          {logs.length === 0 && <p>All logs reviewed. Great work!</p>}
+          {logs.map(log => (
+            <div key={log.id} onClick={() => setSelected(log)} style={{ padding: '14px', border: `1px solid ${selected?.id === log.id ? '#333' : '#ddd'}`, marginBottom: '10px', cursor: 'pointer', background: selected?.id === log.id ? '#f0f0f0' : '#fff' }}>
+              <div style={{ fontWeight: 600 }}>{log.student_name || log.student}</div>
+              <div>Week {log.week_number}</div>
+              <div>Submitted: {log.submitted_at ? new Date(log.submitted_at).toLocaleDateString() : '—'}</div>
             </div>
           ))}
         </div>
-
-        {/* Review panel */}
         {selected && (
-          <div className="card">
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 16 }}>
-              <div>
-                <h3 style={{ fontWeight: 700, marginBottom: 4 }}>
-                  {selected.student_name || selected.student}
-                </h3>
-                <p style={{ color: '#64748b' }}>Week {selected.week_number}</p>
-              </div>
-              {/* Open full detail page */}
-              <button
-                onClick={() => navigate(`/supervisor/logs/${selected.id}`)}
-                style={styles.viewFullBtn}
-              >
-                View Full Log →
-              </button>
+          <div style={{ background: '#fff', border: '1px solid #ddd', borderRadius: '4px', padding: '20px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '16px' }}>
+              <div><h3>{selected.student_name || selected.student}</h3><p>Week {selected.week_number}</p></div>
+              <button onClick={() => navigate(`/supervisor/logs/${selected.id}`)} style={{ background: '#fff', border: '1px solid #ddd', padding: '6px 12px', borderRadius: '4px', cursor: 'pointer' }}>View Full Log →</button>
             </div>
-
-            {/* Log content preview */}
-            <div style={styles.contentBox}>
-              <p style={styles.contentLabel}>Activities</p>
-              <p style={styles.contentText}>{selected.activities || 'No activities recorded.'}</p>
-
-              {selected.skills_learned && (
-                <>
-                  <p style={{ ...styles.contentLabel, marginTop: 12 }}>Skills Learned</p>
-                  <p style={styles.contentText}>{selected.skills_learned}</p>
-                </>
-              )}
-
-              {selected.challenges && (
-                <>
-                  <p style={{ ...styles.contentLabel, marginTop: 12 }}>Challenges</p>
-                  <p style={styles.contentText}>{selected.challenges}</p>
-                </>
-              )}
+            <div style={{ background: '#f9f9f9', padding: '16px', marginBottom: '20px', border: '1px solid #eee' }}>
+              <p><strong>Activities</strong><br />{selected.activities || 'No activities.'}</p>
+              {selected.skills_learned && <p><strong>Skills Learned</strong><br />{selected.skills_learned}</p>}
+              {selected.challenges && <p><strong>Challenges</strong><br />{selected.challenges}</p>}
             </div>
-
             <div className="form-group">
               <label>Review Comment</label>
-              <textarea
-                className="form-control"
-                rows={4}
-                value={comment}
-                onChange={(e) => setComment(e.target.value)}
-                placeholder="Write your review comment..."
-                disabled={submitting}
-              />
+              <textarea rows={4} value={comment} onChange={(e) => setComment(e.target.value)} placeholder="Write your review comment..." disabled={submitting} style={{ width: '100%', padding: '8px', border: '1px solid #ddd', borderRadius: '4px' }} />
             </div>
-
-            <div style={{ display: 'flex', gap: 10 }}>
-              <button
-                className="btn btn-success"
-                onClick={() => handleReview('reviewed')}
-                disabled={submitting}
-              >
-                {submitting ? 'Saving...' : '✅ Mark Reviewed'}
-              </button>
-              <button
-                className="btn btn-outline"
-                onClick={() => { setSelected(null); setComment(''); }}
-                disabled={submitting}
-              >
-                Cancel
-              </button>
-            </div>
+            <button onClick={handleReview} disabled={submitting} style={{ background: '#333', color: '#fff', border: 'none', padding: '10px 20px', borderRadius: '4px', cursor: 'pointer', marginRight: '10px' }}>{submitting ? 'Saving...' : 'Mark Reviewed'}</button>
+            <button onClick={() => { setSelected(null); setComment(''); }} style={{ background: '#fff', border: '1px solid #ddd', padding: '10px 20px', borderRadius: '4px', cursor: 'pointer' }}>Cancel</button>
           </div>
         )}
       </div>
     </div>
   );
 }
-
-const styles = {
-  successBanner: {
-    background: '#f0fdf4', border: '1px solid #16a34a', color: '#15803d',
-    borderRadius: 8, padding: '10px 16px', marginBottom: 16, fontSize: 14,
-  },
-  errorBanner: {
-    background: '#fef2f2', border: '1px solid #dc2626', color: '#dc2626',
-    borderRadius: 8, padding: '10px 16px', marginBottom: 16, fontSize: 14,
-  },
-  contentBox: {
-    background: '#f8fafc', borderRadius: 8, padding: 16, marginBottom: 20,
-    border: '1px solid #e2e8f0',
-  },
-  contentLabel: {
-    fontSize: 11, fontWeight: 600, color: '#94a3b8',
-    textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 4,
-  },
-  contentText: {
-    fontSize: 14, color: '#334155', lineHeight: 1.6, whiteSpace: 'pre-wrap',
-  },
-  viewFullBtn: {
-    background: 'transparent', border: '1px solid #e2e8f0', borderRadius: 6,
-    padding: '6px 12px', fontSize: 12, color: '#1a56db', cursor: 'pointer',
-  },
-};

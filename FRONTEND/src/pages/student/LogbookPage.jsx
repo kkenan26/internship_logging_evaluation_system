@@ -1,27 +1,13 @@
 import { useState, useEffect } from 'react';
 import API from '../../Services/Api';
 
-const STATUS_STYLES = {
-  approved:  { background: '#e8f5e9', color: '#2e7d32' },
-  reviewed:  { background: '#fff3e0', color: '#ed6c02' },
-  submitted: { background: '#e3f2fd', color: '#1565c0' },
-  draft:     { background: '#f5f5f5', color: '#616161' },
-};
-
-const EMPTY_FORM = {
-  week_number: '',
-  activities: '',
-  skills_learned: '',
-  challenges: '',
-};
-
 export default function LogbookPage() {
   const [logs, setLogs] = useState([]);
   const [placement, setPlacement] = useState(null);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [editingLog, setEditingLog] = useState(null);
-  const [form, setForm] = useState(EMPTY_FORM);
+  const [form, setForm] = useState({ week_number: '', activities: '', skills_learned: '', challenges: '' });
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
 
@@ -36,7 +22,6 @@ export default function LogbookPage() {
       const placements = Array.isArray(placementRes.data) ? placementRes.data : placementRes.data.results || [];
       const activePlacement = placements.find(p => p.status === 'active') || placements[0] || null;
       setPlacement(activePlacement);
-
       const logsRes = await API.get('/logs/');
       setLogs(Array.isArray(logsRes.data) ? logsRes.data : logsRes.data.results || []);
     } catch {
@@ -46,9 +31,7 @@ export default function LogbookPage() {
     }
   };
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleNewLog = () => {
     if (!placement) {
@@ -56,7 +39,7 @@ export default function LogbookPage() {
       return;
     }
     setEditingLog(null);
-    setForm(EMPTY_FORM);
+    setForm({ week_number: '', activities: '', skills_learned: '', challenges: '' });
     setError('');
     setShowForm(true);
   };
@@ -77,7 +60,6 @@ export default function LogbookPage() {
     e.preventDefault();
     setSaving(true);
     setError('');
-
     const payload = {
       placement: placement.id,
       week_number: parseInt(form.week_number, 10),
@@ -86,7 +68,6 @@ export default function LogbookPage() {
       challenges: form.challenges,
       status: submitNow ? 'submitted' : 'draft',
     };
-
     try {
       if (editingLog) {
         const res = await API.put(`/logs/${editingLog.id}/`, payload);
@@ -96,7 +77,7 @@ export default function LogbookPage() {
         setLogs([res.data, ...logs]);
       }
       setShowForm(false);
-      setForm(EMPTY_FORM);
+      setForm({ week_number: '', activities: '', skills_learned: '', challenges: '' });
       setEditingLog(null);
     } catch (err) {
       const data = err.response?.data;
@@ -108,163 +89,80 @@ export default function LogbookPage() {
 
   const handleCancel = () => {
     setShowForm(false);
-    setForm(EMPTY_FORM);
+    setForm({ week_number: '', activities: '', skills_learned: '', challenges: '' });
     setEditingLog(null);
     setError('');
   };
 
   const getStatusStyle = (status) => {
-    return STATUS_STYLES[status] || STATUS_STYLES.draft;
+    switch (status) {
+      case 'approved': return { background: '#d0f0d0', color: '#2e7d32' };
+      case 'reviewed': return { background: '#fff0d0', color: '#ed6c02' };
+      case 'submitted': return { background: '#d0e0ff', color: '#1565c0' };
+      default: return { background: '#f0f0f0', color: '#616161' };
+    }
   };
 
-  if (loading) {
-    return <p style={{ padding: '32px', color: '#666' }}>Loading logs...</p>;
-  }
+  if (loading) return <p style={{ padding: '32px', color: '#666' }}>Loading logs...</p>;
 
   return (
     <div>
       <h1>Weekly Logbook</h1>
-
       {!placement && (
-        <div style={{ background: '#fff3e0', padding: '12px', borderRadius: '4px', marginBottom: '16px' }}>
+        <div style={{ background: '#fff0d0', padding: '12px', borderRadius: '4px', marginBottom: '16px' }}>
           You need an active placement before adding log entries. Contact your administrator.
         </div>
       )}
-
       {placement && !showForm && (
-        <button
-          onClick={handleNewLog}
-          style={{ background: '#1976d2', color: '#fff', border: 'none', padding: '10px 20px', borderRadius: '4px', cursor: 'pointer', marginBottom: '20px' }}
-        >
+        <button onClick={handleNewLog} style={{ background: '#333', color: '#fff', border: 'none', padding: '10px 20px', borderRadius: '4px', cursor: 'pointer', marginBottom: '20px', marginLeft: '10px' }}>
           New Log Entry
         </button>
       )}
-
-      {error && !showForm && (
-        <div style={{ background: '#ffebee', color: '#c62828', padding: '10px', borderRadius: '4px', marginBottom: '16px' }}>
-          {error}
-        </div>
-      )}
-
+      {error && !showForm && <div style={{ background: '#ffe0e0', color: '#c62828', padding: '10px', borderRadius: '4px', marginBottom: '16px' }}>{error}</div>}
       {showForm && (
-        <div style={{ background: '#fff', border: '1px solid #ddd', borderRadius: '8px', padding: '24px', marginBottom: '24px' }}>
+        <div style={{ background: '#fff', border: '1px solid #ddd', borderRadius: '4px', padding: '24px', marginBottom: '24px' }}>
           <h3>{editingLog ? `Edit Week ${editingLog.week_number}` : 'New Weekly Log'}</h3>
-          {error && (
-            <div style={{ background: '#ffebee', color: '#c62828', padding: '10px', borderRadius: '4px', marginBottom: '16px' }}>
-              {error}
-            </div>
-          )}
+          {error && <div style={{ background: '#ffe0e0', color: '#c62828', padding: '10px', borderRadius: '4px', marginBottom: '16px' }}>{error}</div>}
           <form onSubmit={(e) => handleSubmit(e, false)}>
-            <div style={{ marginBottom: '16px' }}>
-              <label style={{ display: 'block', marginBottom: '4px', fontWeight: 'bold' }}>Week Number</label>
-              <input
-                type="number"
-                name="week_number"
-                value={form.week_number}
-                onChange={handleChange}
-                min="1"
-                style={{ width: '100%', padding: '8px', border: '1px solid #ddd', borderRadius: '4px' }}
-                required
-              />
-            </div>
-            <div style={{ marginBottom: '16px' }}>
-              <label style={{ display: 'block', marginBottom: '4px', fontWeight: 'bold' }}>Activities</label>
-              <textarea
-                name="activities"
-                value={form.activities}
-                onChange={handleChange}
-                rows={4}
-                style={{ width: '100%', padding: '8px', border: '1px solid #ddd', borderRadius: '4px' }}
-                required
-              />
-            </div>
-            <div style={{ marginBottom: '16px' }}>
-              <label style={{ display: 'block', marginBottom: '4px', fontWeight: 'bold' }}>Skills Learned</label>
-              <textarea
-                name="skills_learned"
-                value={form.skills_learned}
-                onChange={handleChange}
-                rows={2}
-                style={{ width: '100%', padding: '8px', border: '1px solid #ddd', borderRadius: '4px' }}
-              />
-            </div>
-            <div style={{ marginBottom: '16px' }}>
-              <label style={{ display: 'block', marginBottom: '4px', fontWeight: 'bold' }}>Challenges</label>
-              <textarea
-                name="challenges"
-                value={form.challenges}
-                onChange={handleChange}
-                rows={2}
-                style={{ width: '100%', padding: '8px', border: '1px solid #ddd', borderRadius: '4px' }}
-              />
-            </div>
-            <div style={{ display: 'flex', gap: '10px' }}>
-              <button
-                type="submit"
-                disabled={saving}
-                style={{ background: '#fff', color: '#333', border: '1px solid #ddd', padding: '8px 16px', borderRadius: '4px', cursor: 'pointer' }}
-              >
-                {saving ? 'Saving...' : 'Save as Draft'}
-              </button>
-              <button
-                type="button"
-                onClick={(e) => handleSubmit(e, true)}
-                disabled={saving}
-                style={{ background: '#1976d2', color: '#fff', border: 'none', padding: '8px 16px', borderRadius: '4px', cursor: 'pointer' }}
-              >
-                {saving ? 'Submitting...' : 'Submit Log'}
-              </button>
-              <button
-                type="button"
-                onClick={handleCancel}
-                disabled={saving}
-                style={{ background: '#fff', color: '#333', border: '1px solid #ddd', padding: '8px 16px', borderRadius: '4px', cursor: 'pointer' }}
-              >
-                Cancel
-              </button>
+            <div style={{ marginBottom: '16px' }}><label style={{ display: 'block', marginBottom: '4px', fontWeight: 'bold' }}>Week Number</label>
+            <input type="number" name="week_number" value={form.week_number} onChange={handleChange} min="1" style={{ width: '100%', padding: '8px', border: '1px solid #ddd', borderRadius: '4px' }} required /></div>
+            <div style={{ marginBottom: '16px' }}><label style={{ display: 'block', marginBottom: '4px', fontWeight: 'bold' }}>Activities</label>
+            <textarea name="activities" value={form.activities} onChange={handleChange} rows={4} style={{ width: '100%', padding: '8px', border: '1px solid #ddd', borderRadius: '4px' }} required /></div>
+            <div style={{ marginBottom: '16px' }}><label style={{ display: 'block', marginBottom: '4px', fontWeight: 'bold' }}>Skills Learned</label>
+            <textarea name="skills_learned" value={form.skills_learned} onChange={handleChange} rows={2} style={{ width: '100%', padding: '8px', border: '1px solid #ddd', borderRadius: '4px' }} /></div>
+            <div style={{ marginBottom: '16px' }}><label style={{ display: 'block', marginBottom: '4px', fontWeight: 'bold' }}>Challenges</label>
+            <textarea name="challenges" value={form.challenges} onChange={handleChange} rows={2} style={{ width: '100%', padding: '8px', border: '1px solid #ddd', borderRadius: '4px' }} /></div>
+            <div style={{ display: 'flex', gap: '10px', justifyContent: 'flex-start' }}>
+              <button type="submit" disabled={saving} style={{ background: '#fff', color: '#333', border: '1px solid #ddd', padding: '8px 16px', borderRadius: '4px', cursor: 'pointer' }}>{saving ? 'Saving...' : 'Save as Draft'}</button>
+              <button type="button" onClick={(e) => handleSubmit(e, true)} disabled={saving} style={{ background: '#1976d2', color: '#fff', border: 'none', padding: '8px 16px', borderRadius: '4px', cursor: 'pointer' }}>{saving ? 'Submitting...' : 'Submit Log'}</button>
+              <button type="button" onClick={handleCancel} disabled={saving} style={{ background: '#fff', color: '#333', border: '1px solid #ddd', padding: '8px 16px', borderRadius: '4px', cursor: 'pointer' }}>Cancel</button>
             </div>
           </form>
         </div>
       )}
-
-      <div style={{ background: '#fff', border: '1px solid #ddd', borderRadius: '8px', overflow: 'hidden' }}>
+      <div style={{ background: '#fff', border: '1px solid #ddd', borderRadius: '4px', overflow: 'auto' }}>
         {logs.length === 0 ? (
-          <p style={{ padding: '32px', textAlign: 'center', color: '#666' }}>
-            No log entries yet. Click "New Log Entry" to get started.
-          </p>
+          <p style={{ padding: '32px', textAlign: 'center', color: '#666' }}>No log entries yet.</p>
         ) : (
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-            <thead>
-              <tr style={{ background: '#f5f5f5', borderBottom: '1px solid #ddd' }}>
-                <th style={{ padding: '12px', textAlign: 'left' }}>Week</th>
-                <th style={{ padding: '12px', textAlign: 'left' }}>Activities</th>
-                <th style={{ padding: '12px', textAlign: 'left' }}>Status</th>
-                <th style={{ padding: '12px', textAlign: 'left' }}>Submitted</th>
-                <th style={{ padding: '12px', textAlign: 'left' }}>Actions</th>
-              </tr>
-            </thead>
+            <thead><tr style={{ background: '#f5f5f5', borderBottom: '1px solid #ddd' }}>
+              <th style={{ padding: '12px', textAlign: 'left' }}>Week</th>
+              <th style={{ padding: '12px', textAlign: 'left' }}>Activities</th>
+              <th style={{ padding: '12px', textAlign: 'left' }}>Status</th>
+              <th style={{ padding: '12px', textAlign: 'left' }}>Submitted</th>
+              <th style={{ padding: '12px', textAlign: 'left' }}>Actions</th>
+            </tr></thead>
             <tbody>
               {logs.map(log => {
-                const statusStyle = getStatusStyle(log.status);
+                const style = getStatusStyle(log.status);
                 return (
                   <tr key={log.id} style={{ borderBottom: '1px solid #eee' }}>
                     <td style={{ padding: '12px' }}>Week {log.week_number}</td>
-                    <td style={{ padding: '12px', maxWidth: '250px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                      {log.activities}
-                    </td>
+                    <td style={{ padding: '12px', maxWidth: '250px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{log.activities}</td>
+                    <td style={{ padding: '12px' }}><span style={{ padding: '4px 8px', borderRadius: '4px', fontSize: '12px', ...style }}>{log.status}</span></td>
+                    <td style={{ padding: '12px', color: '#666' }}>{log.submitted_at ? new Date(log.submitted_at).toLocaleDateString() : '—'}</td>
                     <td style={{ padding: '12px' }}>
-                      <span style={{ padding: '4px 8px', borderRadius: '4px', fontSize: '12px', ...statusStyle }}>
-                        {log.status}
-                      </span>
-                    </td>
-                    <td style={{ padding: '12px', color: '#666' }}>
-                      {log.submitted_at ? new Date(log.submitted_at).toLocaleDateString() : '—'}
-                    </td>
-                    <td style={{ padding: '12px' }}>
-                      <button
-                        onClick={() => handleEdit(log)}
-                        style={{ background: '#fff', color: '#333', border: '1px solid #ddd', padding: '4px 12px', borderRadius: '4px', cursor: 'pointer' }}
-                      >
+                      <button onClick={() => handleEdit(log)} style={{ background: '#fff', border: '1px solid #ddd', padding: '4px 12px', borderRadius: '4px', cursor: 'pointer' }}>
                         {log.status === 'draft' ? 'Edit' : 'View'}
                       </button>
                     </td>

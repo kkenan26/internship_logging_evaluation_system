@@ -4,27 +4,24 @@ import API from '../../Services/Api';
 
 export default function SupervisorDashboard() {
   const { user } = useAuth();
-  const [dashboardData, setDashboardData] = useState(null);
+  const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await API.get('/logs/dashboard/');
-        const data = res.data;
-        const workload = data.workload || {};
-        const studentPerformance = data.student_performance || [];
-
-        setDashboardData({
+        const workload = res.data.workload || {};
+        setData({
           totalStudents: workload.total_students || 0,
           pendingReviews: workload.pending_reviews || 0,
-          reviewedCount: workload.reviewed || 0,
-          approvedCount: workload.approved || 0,
+          reviewed: workload.reviewed || 0,
+          approved: workload.approved || 0,
           completionRate: workload.review_completion_rate || 0,
-          studentPerformance: studentPerformance,
+          studentPerformance: res.data.student_performance || [],
         });
       } catch (err) {
-        console.error('Dashboard error:', err);
+        console.error(err);
       } finally {
         setLoading(false);
       }
@@ -32,87 +29,57 @@ export default function SupervisorDashboard() {
     fetchData();
   }, []);
 
-  if (loading) {
-    return <p style={{ padding: '32px', textAlign: 'center', color: '#666' }}>Loading dashboard...</p>;
-  }
+  if (loading) return <p style={{ padding: '32px', color: '#666' }}>loading...</p>;
+  if (!data) return <p style={{ padding: '32px', color: '#666' }}>could not load.</p>;
 
-  if (!dashboardData) {
-    return <p style={{ padding: '32px', textAlign: 'center', color: '#666' }}>Could not load dashboard.</p>;
-  }
-
-  const completionColor = dashboardData.completionRate >= 70 ? '#2e7d32' : dashboardData.completionRate >= 40 ? '#ed6c02' : '#c62828';
+  const color = data.completionRate >= 70 ? '#2e7d32' : data.completionRate >= 40 ? '#ed6c02' : '#c62828';
 
   return (
     <div>
       <h1>Supervisor Dashboard</h1>
-      <p>Welcome, {user?.first_name || user?.username}</p>
+      <p>welcome, {user?.first_name || user?.username}</p>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '16px', marginBottom: '24px' }}>
-        <div style={{ background: '#e3f2fd', padding: '20px', borderRadius: '8px' }}>
-          <div style={{ fontSize: '28px', fontWeight: 'bold' }}>{dashboardData.totalStudents}</div>
-          <div style={{ color: '#666' }}>Assigned Students</div>
-        </div>
-        <div style={{ background: '#fff3e0', padding: '20px', borderRadius: '8px' }}>
-          <div style={{ fontSize: '28px', fontWeight: 'bold' }}>{dashboardData.pendingReviews}</div>
-          <div style={{ color: '#666' }}>Pending Reviews</div>
-        </div>
-        <div style={{ background: '#e8f5e9', padding: '20px', borderRadius: '8px' }}>
-          <div style={{ fontSize: '28px', fontWeight: 'bold' }}>{dashboardData.reviewedCount}</div>
-          <div style={{ color: '#666' }}>Reviewed</div>
-        </div>
-        <div style={{ background: '#f3e5f5', padding: '20px', borderRadius: '8px' }}>
-          <div style={{ fontSize: '28px', fontWeight: 'bold' }}>{dashboardData.approvedCount}</div>
-          <div style={{ color: '#666' }}>Approved</div>
-        </div>
+        <div style={{ background: '#e3f2fd', padding: '20px', borderRadius: '4px' }}><div style={{ fontSize: '28px', fontWeight: 'bold' }}>{data.totalStudents}</div><div>Assigned Students</div></div>
+        <div style={{ background: '#fff0d0', padding: '20px', borderRadius: '4px' }}><div style={{ fontSize: '28px', fontWeight: 'bold' }}>{data.pendingReviews}</div><div>Pending Reviews</div></div>
+        <div style={{ background: '#d0f0d0', padding: '20px', borderRadius: '4px' }}><div style={{ fontSize: '28px', fontWeight: 'bold' }}>{data.reviewed}</div><div>Reviewed</div></div>
+        <div style={{ background: '#f0e0ff', padding: '20px', borderRadius: '4px' }}><div style={{ fontSize: '28px', fontWeight: 'bold' }}>{data.approved}</div><div>Approved</div></div>
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
-        <div style={{ background: '#fff', border: '1px solid #ddd', borderRadius: '8px', padding: '20px' }}>
+        <div style={{ background: '#fff', border: '1px solid #ddd', borderRadius: '4px', padding: '20px' }}>
           <h3>Review Progress</h3>
-          <div style={{ marginTop: '16px' }}>
-            <div style={{ marginBottom: '8px' }}>Completion Rate: {dashboardData.completionRate}%</div>
-            <div style={{ width: '100%', background: '#eee', borderRadius: '4px', overflow: 'hidden' }}>
-              <div style={{ width: `${dashboardData.completionRate}%`, height: '8px', background: completionColor }}></div>
-            </div>
-          </div>
-          <div style={{ marginTop: '20px' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-              <span>Pending: {dashboardData.pendingReviews}</span>
-              <span>Reviewed: {dashboardData.reviewedCount}</span>
-              <span>Approved: {dashboardData.approvedCount}</span>
-            </div>
+          <div style={{ marginTop: '16px' }}><div>Completion Rate: {data.completionRate}%</div>
+          <div style={{ width: '100%', background: '#ccc', borderRadius: '4px', overflow: 'hidden' }}><div style={{ width: `${data.completionRate}%`, height: '8px', background: color }}></div></div></div>
+          <div style={{ marginTop: '20px', display: 'flex', justifyContent: 'space-between' }}>
+            <span>Pending: {data.pendingReviews}</span>
+            <span>Reviewed: {data.reviewed}</span>
+            <span>Approved: {data.approved}</span>
           </div>
         </div>
-
-        <div style={{ background: '#fff', border: '1px solid #ddd', borderRadius: '8px', padding: '20px' }}>
+        <div style={{ background: '#fff', border: '1px solid #ddd', borderRadius: '4px', padding: '20px' }}>
           <h3>Quick Actions</h3>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '16px' }}>
-            <a href="/supervisor/reviews" style={{ background: '#1976d2', color: '#fff', textDecoration: 'none', padding: '10px', borderRadius: '4px', textAlign: 'center' }}>
-              View Pending Reviews
-            </a>
-          </div>
+          <a href="/supervisor/reviews" style={{ display: 'block', background: '#333', color: '#fff', textDecoration: 'none', padding: '10px', borderRadius: '4px', textAlign: 'center', marginTop: '16px' }}>View Pending Reviews</a>
         </div>
       </div>
 
-      {dashboardData.studentPerformance.length > 0 && (
-        <div style={{ background: '#fff', border: '1px solid #ddd', borderRadius: '8px', padding: '20px', marginTop: '20px' }}>
+      {data.studentPerformance.length > 0 && (
+        <div style={{ background: '#fff', border: '1px solid #ddd', borderRadius: '4px', padding: '20px', marginTop: '20px' }}>
           <h3>Student Performance</h3>
           <table style={{ width: '100%', marginTop: '16px' }}>
-            <thead>
-              <tr style={{ borderBottom: '1px solid #ddd' }}>
-                <th style={{ padding: '8px', textAlign: 'left' }}>Student</th>
-                <th style={{ padding: '8px', textAlign: 'left' }}>Total Logs</th>
-                <th style={{ padding: '8px', textAlign: 'left' }}>Approved</th>
-                <th style={{ padding: '8px', textAlign: 'left' }}>Approval Rate</th>
-              </tr>
-            </thead>
+            <thead><tr style={{ borderBottom: '1px solid #ddd' }}>
+              <th style={{ padding: '8px', textAlign: 'left' }}>Student</th>
+              <th style={{ padding: '8px', textAlign: 'left' }}>Total Logs</th>
+              <th style={{ padding: '8px', textAlign: 'left' }}>Approved</th>
+              <th style={{ padding: '8px', textAlign: 'left' }}>Approval Rate</th>
+            </tr></thead>
             <tbody>
-              {dashboardData.studentPerformance.map((student, idx) => (
+              {data.studentPerformance.map((s, idx) => (
                 <tr key={idx} style={{ borderBottom: '1px solid #eee' }}>
-                  <td style={{ padding: '8px' }}>{student.student}</td>
-                  <td style={{ padding: '8px' }}>{student.total_logs}</td>
-                  <td style={{ padding: '8px' }}>{student.approved_logs}</td>
-                  <td style={{ padding: '8px' }}>{student.approval_rate}%</td>
+                  <td style={{ padding: '8px' }}>{s.student}</td>
+                  <td style={{ padding: '8px' }}>{s.total_logs}</td>
+                  <td style={{ padding: '8px' }}>{s.approved_logs}</td>
+                  <td style={{ padding: '8px' }}>{s.approval_rate}%</td>
                 </tr>
               ))}
             </tbody>
