@@ -325,23 +325,23 @@ class AdminReportView(APIView):
             }
         })
 
-from .models import AcademicEvaluation  # ensure this import is present
 
-class StudentScoreView(generics.RetrieveAPIView):
-    serializer_class = StudentTotalScoreSerializer
+
+
+class StudentScoreView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
-    def get_object(self):
-        student_id = self.kwargs.get('student_id')
-        user = self.request.user
+    def get(self, request, student_id):
+        user = request.user
         if user.role == 'student' and user.id != int(student_id):
-            raise PermissionDenied("You can only view your own evaluation score.")
+            return Response({'error': 'Permission denied'}, status=403)
+
         try:
             student = CustomUser.objects.get(id=student_id, role='student')
         except CustomUser.DoesNotExist:
-            raise NotFound(f"Student with ID {student_id} not found.")
+            return Response({'error': 'Student not found'}, status=404)
 
-
+        # Criteria-based evaluations (weighted sum)
         evaluations = Evaluation.objects.filter(student=student)
         total_weighted = 0
         breakdown = []
@@ -379,19 +379,14 @@ class StudentScoreView(generics.RetrieveAPIView):
         else:
             grade = 'F'
 
-        return {
+        return Response({
             'student_id': student.id,
             'student_name': student.username,
             'total_weighted_score': final_score,
             'grade': grade,
             'evaluations_count': evaluations.count(),
             'breakdown': breakdown
-        }
-
-    def get(self, request, *args, **kwargs):
-        data = self.get_object()
-        serializer = self.get_serializer(data)
-        return Response(serializer.data)
+        })
 
 # ============================================================
 # COMPREHENSIVE DASHBOARD VIEW
