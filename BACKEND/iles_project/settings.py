@@ -1,19 +1,11 @@
 from datetime import timedelta
 from pathlib import Path
 import os
-from dotenv import load_dotenv
 
-# Load environment variables from .env file
-load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-try:
-    from dotenv import load_dotenv
-    load_dotenv()
-except ImportError:
-    pass
 
-SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-dev-key-only-for-development')
+SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-fallback-key')
 
 DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
